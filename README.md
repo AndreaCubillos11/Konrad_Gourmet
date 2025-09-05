@@ -7,7 +7,7 @@ El sistema cuenta con dos componentes principales:
 
 - **Backend (Node.js + Express):** API robusta que maneja la lógica de negocio, validaciones y seguridad. Administra la conexión con la base de datos, gestiona solicitudes de abastecimiento, controla cotizaciones de proveedores, genera órdenes de compra y valida automáticamente precios de referencia con datos del DANE (SIPSA).
 
-Funcionalidades principales
+Funcionalidades principales:
 
 - Registro y gestión de sucursales y usuarios.
 
