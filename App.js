@@ -3,7 +3,7 @@ const sequelize = require("./config/database");
 const usuarioRoutes = require("./routes/usuarioRoutes");
 const errorLogger = require("./middlewares/errorLogger");
 const sucursalesRoutes=require("./routes/sucursalesRouter");
-
+const listasDesplegables=require("./routes/listasDesplegablesRouter");
 
 
 const app = express();
@@ -12,6 +12,7 @@ app.use(express.json());
 // Rutas
 app.use("/api", usuarioRoutes);
 app.use("/api",sucursalesRoutes);
+app.use("/api",listasDesplegables);
 
 // Middleware de errores
 app.use(errorLogger);
