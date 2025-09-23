@@ -4,8 +4,9 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 @Component({
     selector: 'app-login',
     templateUrl: '../html/login.html',
-    standalone: true, // 👈 muy importante en Angular 17+
-    imports: [ReactiveFormsModule] // 👈 para que funcione [formGroup]
+    styleUrls: ['../css/login.css'], 
+    standalone: true, 
+    imports: [ReactiveFormsModule] 
 })
 export class LoginComponent {
     loginForm: FormGroup;

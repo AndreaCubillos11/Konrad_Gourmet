@@ -1,0 +1,42 @@
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
+        </div>
+        <nav>
+            <a class="nav-item active">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <a class="nav-item">
+                <i class="fas fa-clipboard-list"></i> Pedidos
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+        <header class="header">
+            <span class="role">Mesero</span>
+            <button class="logout-btn">Cerrar Sesión</button>
+        </header>
+
+        <h1>Pedidos y Mesas</h1>
+
+        <div class="status-cards">
+            <div class="card">
+                <p>Pedidos en curso</p>
+                <h2>{{ pedidosEnCurso }}</h2>
+            </div>
+            <div class="card">
+                <p>Mesas Activas</p>
+                <h2>{{ mesasActivas }}</h2>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-nuevo" (click)="nuevoPedido()">Nuevo Pedido</button>
+            <button class="btn btn-consultar" (click)="consultarPedidos()">Consultar Pedidos</button>
+        </div>
+    </main>
+</div>
