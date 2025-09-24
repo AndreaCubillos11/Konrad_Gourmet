@@ -1,0 +1,127 @@
+<div class="sidebar">
+    <div class="logo">
+        <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet">
+    </div>
+    <nav>
+        <a href="#"><i class="fas fa-home"></i> Inicio</a>
+        <a href="#"><i class="fas fa-building"></i> Sucursales</a>
+        <a href="#"><i class="fas fa-truck"></i> Proveedores</a>
+        <a href="#"><i class="fa-solid fa-box"></i> Inventario</a>
+        <a href="#" class="active"><i class="fas fa-list"></i> Listas</a>
+        <a href="#"><i class="fas fa-clipboard-check"></i> Auditorías</a>
+        <a href="#"><i class="fas fa-exclamation-triangle"></i> Errores</a>
+        <a href="#"><i class="fa-solid fa-users"></i> Usuarios y roles</a>
+    </nav>
+</div>
+
+<div class="content">
+    <!-- Header -->
+    <div class="header">
+        <input type="text" class="search" placeholder="Buscar..." />
+        <button class="alerta"><i class="fas fa-bell"></i> 1 alerta: Stock bajo</button>
+        <div class="user"><i class="fas fa-user-shield"></i> Administrador</div>
+        <button class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+    </div>
+
+    <!-- Main -->
+    <div class="main-content">
+        <h2 class="titulo">Listas_Admin</h2>
+
+        <div class="grid-container">
+            <!-- Grupos de listas -->
+            <div class="card full-width">
+                <h3><i class="fas fa-layer-group"></i> Grupos de listas</h3>
+                <div class="filtros">
+                    <button class="tag"><i class="fas fa-tags"></i> Categorías</button>
+                    <button class="tag"><i class="fas fa-ruler"></i> Unidades de medidas</button>
+                    <button class="tag"><i class="fas fa-warehouse"></i> Tipos de almacenamiento</button>
+                    <button class="tag"><i class="fas fa-truck-loading"></i> Tipos de proveedores</button>
+                    <button class="tag"><i class="fas fa-file-invoice-dollar"></i> Condiciones de pago</button>
+                    <button class="tag"><i class="fas fa-check-circle"></i> Estado del producto</button>
+                    <button class="tag"><i class="fas fa-adjust"></i> Razones de ajuste</button>
+                    <button class="tag"><i class="fas fa-trash-alt"></i> Razones del desperdicio</button>
+                </div>
+                <p style="font-size: 12px; color: #777;">
+                    Consejo: Mantenga las listas concisas y nombres claros para garantizar un estándar de datos
+                    consistentes en sus sucursales
+                </p>
+            </div>
+
+            <!-- Categorías -->
+            <div class="card full-width">
+                <h3><i class="fas fa-th-list"></i> Categorías</h3>
+                <div class="filtros">
+                    <button class="tag dark"><i class="fas fa-box"></i> Artículos</button>
+                    <button class="tag"><i class="fas fa-sliders-h"></i> Ajustes</button>
+                    <button class="tag"><i class="fas fa-clipboard-list"></i> Uso</button>
+                    <input type="text" placeholder="Buscar categorías..." class="search" />
+                    <button class="agregar"><i class="fas fa-plus"></i> Agregar</button>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Código</th>
+                            <th>Activo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Producto</td>
+                            <td>CAT-PRO</td>
+                            <td>Sí</td>
+                            <td><button class="agregar"><i class="fas fa-eye"></i> Ver</button></td>
+                        </tr>
+                        <tr>
+                            <td>Despensa</td>
+                            <td>CAT-PAN</td>
+                            <td>Sí</td>
+                            <td><button class="agregar"><i class="fas fa-eye"></i> Ver</button></td>
+                        </tr>
+                        <tr>
+                            <td>Mariscos</td>
+                            <td>CAT-CEA</td>
+                            <td>Sí</td>
+                            <td><button class="agregar"><i class="fas fa-eye"></i> Ver</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Detalles -->
+            <div class="card">
+                <h3><i class="fas fa-info-circle"></i> Detalles</h3>
+                <div class="detalle"><label>Nombre:</label> <span>Producto</span></div>
+                <div class="detalle"><label>Código:</label> <span>CAT-PRO</span></div>
+                <div class="detalle"><label>Descripción:</label> <span>Frutas :)</span></div>
+                <div class="detalle"><label>Estado:</label> <span>Activo</span></div>
+                <button class="btn-editar"><i class="fas fa-edit"></i> Editar</button>
+            </div>
+
+            <!-- Cambios recientes -->
+            <div class="card">
+                <h3><i class="fas fa-history"></i> Cambios recientes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Usuario</th>
+                            <th>Acción</th>
+                            <th>Detalles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01-09-2025</td>
+                            <td>A. Patel</td>
+                            <td>Actualización</td>
+                            <td>Cambio de categoría</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
