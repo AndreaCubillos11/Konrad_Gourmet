@@ -93,6 +93,8 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    font-weight: bold;
+    color: #0b2a55;
 }
 
 .header .logout {
@@ -112,6 +114,10 @@ body {
 /* ===== Main ===== */
 .main-content {
     padding: 25px;
+}
+
+.titulo {
+    color: #0b2a55;
 }
 
 .grid-container {

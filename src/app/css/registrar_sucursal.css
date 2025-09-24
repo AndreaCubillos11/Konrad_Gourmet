@@ -1,95 +1,97 @@
-/* ===== Layout General ===== */
-.layout {
+/* ===== Layout general ===== */
+body {
+    margin: 0;
     display: flex;
-    min-height: 100vh;
     font-family: Arial, sans-serif;
-    background: #f4f6f8;
+    height: 100vh;
+    background-color: #f4f6f8;
 }
 
 /* ===== Sidebar ===== */
 .sidebar {
     width: 220px;
-    background: #0b2a55;
+    background-color: #0b2a55;
     color: white;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 20px 0;
-}
-
-.logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .logo img {
     width: 160px;
-}
-
-
-.logo span {
-    color: #b58c58;
+    margin-bottom: 20px;
 }
 
 .menu {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
-
-
 
 .menu a {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 20px;
+    gap: 10px;
+    padding: 10px 14px;
     color: white;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 17px;
     border-radius: 8px;
     transition: background 0.3s;
 }
 
-.menu a:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
+.menu a:hover,
 .menu li.active a {
-    background: rgba(255, 255, 255, 0.2);
+    background: #163d75;
 }
 
-/* ===== Content ===== */
+/* ===== Contenido principal ===== */
 .content {
+    margin-left: 220px; /* espacio para sidebar fija */
     flex: 1;
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ===== Header ===== */
 .header {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     gap: 15px;
-    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .search {
-    flex: 1;
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
+    font-size: 14px;
 }
 
 .alerta {
     background: #b58c58;
     color: white;
     border: none;
-    padding: 8px 15px;
+    padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.alerta:hover {
+    background: #966c3d;
 }
 
 .user {
@@ -99,14 +101,23 @@
 
 .logout {
     background: #0b2a55;
-    color: white;
     border: none;
-    padding: 8px 15px;
+    color: white;
+    padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
 }
 
-/* ===== Main Content ===== */
+.logout:hover {
+    background: #163d75;
+}
+
+/* ===== Main ===== */
+.main-content {
+    padding: 22px;
+}
+
 .main-content h1 {
     margin-bottom: 20px;
     font-size: 26px;
@@ -117,7 +128,7 @@
     gap: 10px;
 }
 
-/* ===== Grid Cards ===== */
+/* ===== Grid de tarjetas ===== */
 .grid-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -128,12 +139,12 @@
     grid-column: span 2;
 }
 
-/* ===== Card ===== */
+/* ===== Tarjeta ===== */
 .card {
     background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 24px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 .card h3 {
@@ -154,14 +165,14 @@
 }
 
 .form-grid label {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: bold;
     color: #333;
 }
 
 .form-grid input,
 .form-grid textarea {
-    padding: 8px;
+    padding: 2px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 14px;
@@ -174,7 +185,7 @@ textarea {
     height: 60px;
 }
 
-/* ===== Mapa y Ubicación ===== */
+/* ===== Mapa y ubicación ===== */
 .map img {
     width: 100%;
     border-radius: 8px;
