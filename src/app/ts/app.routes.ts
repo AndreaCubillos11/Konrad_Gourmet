@@ -7,7 +7,8 @@ import { ConsultarPedidoComponent } from './Mesero/consultar-pedido.component';
 import { HomeAdminComponent } from './Admin/home_admin.component';      
 import { HomeSucursalComponent } from './Admin/home_sucursal.component';  
 import { RegistrarSucursalComponent } from './Admin/registrar_sucursal.component';  
-
+import { HomeProveedoresComponent } from './Admin/home_proveedores.component';  
+import { RegistrarProveedorComponent } from './Admin/registrar_proveedor.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,7 +18,9 @@ export const routes: Routes = [
     { path: 'consultar_pedido', component: ConsultarPedidoComponent },
     { path: 'home_admin', component: HomeAdminComponent },
     { path: 'home_sucursal', component: HomeSucursalComponent},
-    { path: 'registrar_sucursal', component: RegistrarSucursalComponent}
+    { path: 'registrar_sucursal', component: RegistrarSucursalComponent},
+    { path: 'home_proveedores', component: HomeProveedoresComponent},
+    { path: 'registrar_proveedor', component: RegistrarProveedorComponent}
 
 ];
 

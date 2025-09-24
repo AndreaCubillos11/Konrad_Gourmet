@@ -1,0 +1,281 @@
+/* ===== Layout general ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 220px;
+    background-color: #0b2a55;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.logo img {
+    width: 160px;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5px;
+    transition: background 0.3s;
+}
+
+.sidebar ul li i {
+    margin-right: 10px;
+    min-width: 20px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.sidebar ul li:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar ul li.active {
+    background: #163a73;
+}
+
+/* ===== MAIN CONTENT ===== */
+.content {
+    margin-left: 220px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.topbar .search {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 200px;
+    transition: border-color 0.3s;
+}
+
+.topbar .search:focus {
+    outline: none;
+    border-color: #0b2a55;
+}
+
+.topbar .alerts {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 0.95rem;
+}
+
+.logout {
+    background: #0b2a55;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.logout:hover {
+    background: #1d3e6d;
+}
+
+/* ===== FORMULARIO ===== */
+.proveedor-form {
+    padding: 25px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.proveedor-form h2 {
+    margin-top: 0;
+    color: #0b2a55;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.4rem;
+}
+
+/* ===== WIZARD ===== */
+.wizard {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.wizard .step {
+    background: #f0f0f0;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+}
+
+.wizard .step:hover {
+    background: #dcdcdc;
+}
+
+.wizard .step.active {
+    background: #0b2a55;
+    color: white;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+    margin: 0 0 12px 0;
+    color: #0b2a55;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ===== GRID DE DATOS ===== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 🔹 siempre 3 columnas fijas */
+    gap: 28px 50px; /* 🔹 más aire vertical y horizontal */
+    font-size: 0.95rem;
+}
+
+/* ===== CAMPOS DEL FORM ===== */
+.card .grid > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.card label {
+    font-size: 0.85rem;
+    color: #333;
+    margin-bottom: 8px; /* 🔹 más espacio label-input */
+}
+
+.card input,
+.card select {
+    width: 100%;
+    padding: 10px 14px; /* 🔹 más aire interno */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+}
+
+
+/* ===== BOTONES ===== */
+.acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.cancelar {
+    background: #ccc;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.cancelar:hover {
+    background: #b0b0b0;
+}
+
+.crear {
+    background: #0b2a55;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.crear:hover {
+    background: #163a73;
+}
+
+.alerta {
+    background: #b58c58;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.alerta:hover {
+    background: #966c3d;
+}
+
+/* ===== SCROLL ===== */
+.proveedor-form::-webkit-scrollbar {
+    width: 8px;
+}
+
+.proveedor-form::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}

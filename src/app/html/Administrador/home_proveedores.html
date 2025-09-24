@@ -1,0 +1,116 @@
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet">
+    </div>
+    <nav>
+      <a href="#"><i class="fa-solid fa-house"></i> Inicio</a>
+      <a href="#"><i class="fa-solid fa-building"></i> Sucursales</a>
+      <a href="#" class="active"><i class="fa-solid fa-truck"></i> Proveedores</a>
+      <a href="#"><i class="fa-solid fa-box"></i> Inventario</a>
+      <a href="#"><i class="fa-solid fa-list"></i> Listas</a>
+      <a href="#"><i class="fa-solid fa-clipboard-check"></i> Auditorías</a>
+      <a href="#"><i class="fa-solid fa-triangle-exclamation"></i> Errores</a>
+      <a href="#"><i class="fa-solid fa-users"></i> Usuarios y roles</a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="content">
+    <!-- Header -->
+    <header class="header">
+      <input type="text" placeholder="Buscar..." class="search">
+      <button class="alerta"><i class="fa-solid fa-bell"></i> 1 Alerta: Stock bajo</button>
+      <div class="user">
+        <span><i class="fa-solid fa-user-shield"></i> Administrador</span>
+        <button class="logout"><i class="fa-solid fa-sign-out-alt"></i> Cerrar Sesión</button>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <section class="main-content">
+      <h2 class="titulo"><i class="fa-solid fa-truck"></i> Proveedores</h2>
+
+      <div class="grid-container">
+        <!-- Detalles del proveedor -->
+        <div class="card">
+          <h3><i class="fa-solid fa-circle-info"></i> Detalles del proveedor</h3>
+          <div class="detalle"><label>Nombre</label><span>Proveedor Ejemplo S.A.S.</span></div>
+          <div class="detalle"><label>NIT</label><span>123456789-0</span></div>
+          <div class="detalle"><label>A tiempo</label><span>95%</span></div>
+          <div class="detalle"><label>Promedio</label><span>4.7</span></div>
+          <div class="detalle"><label>Entregas</label><span>120</span></div>
+          <button class="btn-editar"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+
+          <div class="contacto">
+            <h4><i class="fa-solid fa-user-tie"></i> Contacto principal</h4>
+            <p><b>Nombre:</b> Juan Pérez</p>
+            <p><b>Teléfono:</b> +57 300 123 4567</p>
+            <p><b>Email:</b> contacto@proveedorejemplo.com</p>
+            <p><b>Rol:</b> Gerente Comercial</p>
+            <p><b>Método de pago:</b> Transferencia Bancaria</p>
+          </div>
+        </div>
+
+        <!-- Lista de proveedores -->
+        <div class="card">
+          <h3><i class="fa-solid fa-truck-field"></i> Todos los proveedores</h3>
+          <div class="filtros">
+            <button class="tag dark">Total 24</button>
+            <button class="tag dark">Activos 21</button>
+            <button class="tag dark">Pendientes 3</button>
+            <button class="agregar"><i class="fa-solid fa-plus"></i> Agregar</button>
+            <button class="exportar"><i class="fa-solid fa-file-export"></i> Exportar</button>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th><th>NIT</th><th>Teléfono</th><th>Email</th><th>Categoría</th><th>Estatus</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Proveedor Ejemplo S.A.S.</td>
+                <td>123456789-0</td>
+                <td>+57 300 123 4567</td>
+                <td>contacto@proveedorejemplo.com</td>
+                <td>Alimentos</td>
+                <td>Activo</td>
+              </tr>
+              <tr>
+                <td>Distribuidora Andina</td>
+                <td>987654321-0</td>
+                <td>+57 301 765 4321</td>
+                <td>ventas@andina.com</td>
+                <td>Bebidas</td>
+                <td>Pendiente</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Resumen pedidos -->
+        <div class="card full-width">
+          <h3><i class="fa-solid fa-clipboard-list"></i> Resumen de pedidos por sucursal</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Sucursal</th><th>Proveedor</th><th>Órdenes abiertas</th><th>Última Orden</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Konrad Norte</td><td>Proveedor Ejemplo S.A.S.</td><td>3</td><td>2025-09-20</td>
+              </tr>
+              <tr>
+                <td>Konrad Centro</td><td>Distribuidora Andina</td><td>1</td><td>2025-09-18</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
