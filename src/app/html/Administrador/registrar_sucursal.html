@@ -1,0 +1,112 @@
+<div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet Logo" />
+        </div>
+
+        <!-- Menú -->
+        <ul class="menu">
+            <li><a routerLink="/inicio"><i class="fas fa-home"></i> Inicio</a></li>
+            <li class="active"><a routerLink="/sucursales"><i class="fas fa-location-dot"></i> Sucursales</a></li>
+            <li><a routerLink="/proveedores"><i class="fas fa-truck"></i> Proveedores</a></li>
+            <li><a routerLink="/inventario"><i class="fas fa-box"></i> Inventario</a></li>
+            <li><a routerLink="/listas"><i class="fas fa-list"></i> Listas</a></li>
+            <li><a routerLink="/auditorias"><i class="fas fa-search"></i> Auditorías</a></li>
+            <li><a routerLink="/errores"><i class="fas fa-triangle-exclamation"></i> Errores</a></li>
+            <li><a routerLink="/usuarios"><i class="fas fa-users"></i> Usuarios y roles</a></li>
+        </ul>
+    </aside>
+
+    <!-- Content -->
+    <main class="content">
+        <!-- Header -->
+        <header class="header">
+            <input type="text" class="search" placeholder="Buscar..." />
+            <button class="alerta"><i class="fas fa-bell"></i> 1 alerta: Stock bajo</button>
+            <div class="user"><i class="fas fa-user-shield"></i> Administrador</div>
+            <button class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
+        </header>
+
+        <!-- Main Content -->
+        <section class="main-content">
+            <h1><i class="fas fa-store"></i> Nueva Sucursal</h1>
+
+            <div class="grid-cards">
+                <!-- Detalles -->
+                <div class="card">
+                    <h3><i class="fas fa-info-circle"></i> Detalles de la sucursal</h3>
+                    <div class="form-grid">
+                        <label>Nombre</label>
+                        <input type="text" placeholder="Konrad Gourmet - Sur" />
+
+                        <label>Código</label>
+                        <input type="text" placeholder="KG-SU" />
+
+                        <label>Región</label>
+                        <input type="text" placeholder="Bogotá" />
+
+                        <label>Estatus</label>
+                        <input type="text" placeholder="Activa" />
+
+                        <label>Dirección</label>
+                        <input type="text" placeholder="Cra. 87 #50-31 sur, Bogotá" />
+
+                        <label>Ciudad</label>
+                        <input type="text" placeholder="Bogotá" />
+
+                        <label>Código postal</label>
+                        <input type="text" placeholder="11001" />
+
+                        <label>País</label>
+                        <input type="text" placeholder="Colombia" />
+
+                        <label>Horario</label>
+                        <input type="text" placeholder="9:00 - 22:00" />
+
+                        <label>Notas</label>
+                        <textarea placeholder="Notas adicionales..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Ubicación -->
+                <div class="card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+                    <div class="map">
+                        <img src="https://via.placeholder.com/400x200?text=Mapa" alt="Mapa" />
+                    </div>
+                    <div class="ubicacion-grid">
+                        <button class="btn-ubicacion"><i class="fas fa-map-pin"></i> Latitud 78.12312</button>
+                        <button class="btn-ubicacion"><i class="fas fa-map-pin"></i> Longitud 56.0898</button>
+                        <button class="btn-ubicacion"><i class="fas fa-truck"></i> Zonas de entrega 3</button>
+                    </div>
+                </div>
+
+                <!-- Contacto -->
+                <div class="card full-width">
+                    <h3><i class="fas fa-phone-alt"></i> Contacto</h3>
+                    <div class="form-grid">
+                        <label>Nombre del gerente</label>
+                        <input type="text" placeholder="Samantha Lee" />
+
+                        <label>Correo</label>
+                        <input type="email" placeholder="sam.lee@konradgourmet.com" />
+
+                        <label>Teléfono</label>
+                        <input type="text" placeholder="+57 3099012391" />
+
+                        <label>Contacto de respaldo</label>
+                        <input type="email" placeholder="backup@konradgourmet.com" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="buttons">
+                <button class="btn btn-cancelar"><i class="fas fa-times"></i> Cancelar</button>
+                <button class="btn btn-crear"><i class="fas fa-save"></i> Crear sucursal</button>
+            </div>
+        </section>
+    </main>
+</div>

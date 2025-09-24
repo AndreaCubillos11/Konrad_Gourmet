@@ -1,0 +1,244 @@
+/* ===== Layout General ===== */
+.layout {
+    display: flex;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 220px;
+    background: #0b2a55;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 160px;
+}
+
+
+.logo span {
+    color: #b58c58;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu li.active a {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== Content ===== */
+.content {
+    flex: 1;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ===== Header ===== */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.search {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.alerta {
+    background: #b58c58;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.user {
+    font-weight: bold;
+    color: #0b2a55;
+}
+
+.logout {
+    background: #0b2a55;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ===== Main Content ===== */
+.main-content h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #0b2a55;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ===== Grid Cards ===== */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+/* ===== Card ===== */
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin: 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0b2a55;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ===== Formularios ===== */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-grid label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-grid input,
+.form-grid textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #f1f3f5;
+}
+
+textarea {
+    grid-column: span 2;
+    resize: none;
+    height: 60px;
+}
+
+/* ===== Mapa y Ubicación ===== */
+.map img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.ubicacion-grid {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-ubicacion {
+    background: #0b2a55;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.3s;
+}
+
+.btn-ubicacion:hover {
+    background: #163d75;
+}
+
+/* ===== Botones principales ===== */
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s;
+}
+
+.btn-cancelar {
+    background: #b58c58;
+    color: white;
+}
+
+.btn-cancelar:hover {
+    background: #966c3d;
+}
+
+.btn-crear {
+    background: #0b2a55;
+    color: white;
+}
+
+.btn-crear:hover {
+    background: #163d75;
+}

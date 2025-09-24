@@ -1,0 +1,210 @@
+/* ===== Layout general ===== */
+body {
+    margin: 0;
+    display: flex;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 220px;
+    background-color: #0b2a55;
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.logo img {
+    width: 160px;
+    margin-bottom: 20px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #163d75;
+}
+
+/* ===== Contenido principal ===== */
+.content {
+    margin-left: 220px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Header ===== */
+.header {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.header .search {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.header .alerta {
+    background: #b58c58;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.header .alerta:hover {
+    background: #966c3d;
+}
+
+.header .user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header .logout {
+    background: #0b2a55;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.header .logout:hover {
+    background: #163d75;
+}
+
+/* ===== Main ===== */
+.main-content {
+    padding: 25px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+/* ===== Tarjetas ===== */
+.card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+    margin: 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0b2a55;
+}
+
+/* Botón editar */
+.btn-editar {
+    background: #0b2a55;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.btn-editar:hover {
+    background: #163d75;
+}
+
+/* ===== Tablas ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+thead {
+    background-color: #f1f1f1;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* ===== Detalles de sucursal ===== */
+.detalle {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+.detalle label {
+    font-weight: bold;
+}
+
+/* ===== Filtros en tabla sucursales ===== */
+.filtros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.filtros button {
+    background: #e0e0e0;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s;
+}
+
+.filtros button:hover {
+    background: #ccc;
+}

@@ -1,0 +1,150 @@
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="logo">
+        <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
+    </div>
+    <nav>
+        <a routerLink="/inicio" class="active"><i class="fa-solid fa-house"></i> Inicio</a>
+        <a routerLink="/sucursales"><i class="fa-solid fa-building"></i> Sucursales</a>
+        <a routerLink="/proveedores"><i class="fa-solid fa-truck"></i> Proveedores</a>
+        <a routerLink="/inventario"><i class="fa-solid fa-box"></i> Inventario</a>
+        <a routerLink="/listas"><i class="fa-solid fa-list"></i> Listas</a>
+        <a routerLink="/auditorias"><i class="fa-solid fa-clipboard-check"></i> Auditorías</a>
+        <a routerLink="/errores"><i class="fa-solid fa-triangle-exclamation"></i> Errores</a>
+        <a routerLink="/usuarios"><i class="fa-solid fa-users"></i> Usuarios y roles</a>
+    </nav>
+</aside>
+
+<!-- Contenido principal -->
+<div class="content">
+    <!-- Header -->
+    <div class="header">
+        <input type="text" class="search" placeholder="Buscar..." />
+        <button class="alerta"><i class="fa-solid fa-bell"></i> 1 Alerta: Stock bajo</button>
+        <div class="user">
+            <i class="fa-regular fa-user"></i> <span>Administrador</span>
+            <button class="logout">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="grid-cards">
+            <!-- Gestión de sucursales -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Gestión de sucursales</h3>
+                    <button class="btn-ver">Ver detalles</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sucursal</th>
+                            <th>Teléfono</th>
+                            <th>Jefe de sucursal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Central</td>
+                            <td>(555) 123-4567</td>
+                            <td>A. Reyes</td>
+                        </tr>
+                        <tr>
+                            <td>Norte</td>
+                            <td>(555) 123-4567</td>
+                            <td>P. Martínez</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Directorio de proveedores -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Directorio de proveedores</h3>
+                    <button class="btn-ver">Ver detalles</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>NIT</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FreshCo</td>
+                            <td>123456789</td>
+                            <td>123-456789</td>
+                            <td>ventas@freshco.com</td>
+                            <td>Activo</td>
+                        </tr>
+                        <tr>
+                            <td>Prime Foods</td>
+                            <td>987654321</td>
+                            <td>123-4567</td>
+                            <td>prime@foods.com</td>
+                            <td>Pendiente</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Gestión de listas -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Gestión de listas</h3>
+                    <button class="btn-ver">Ver detalles</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Código</th>
+                            <th>Activo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tomate</td>
+                            <td>Tx2342</td>
+                            <td>Sí</td>
+                            <td><button class="btn-ver">Editar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Usuarios y roles -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Usuarios y roles</h3>
+                    <button class="btn-ver">Ver detalles</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>N. Ramírez</td>
+                            <td>nramirez@kg.com</td>
+                            <td>Admin</td>
+                            <td>Activo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
