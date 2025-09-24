@@ -6,6 +6,7 @@ const sucursalesRoutes=require("./routes/sucursalesRouter");
 const listasDesplegables=require("./routes/listasDesplegablesRouter");
 const Plato=require("./routes/platoRouter");
 const Pedido=require("./routes/pedidoRoutes");
+const SolicitudAlimento=require("./routes/solicitudAlimentosRoutes");
 
 const app = express();
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use("/api",sucursalesRoutes);
 app.use("/api",listasDesplegables);
 app.use("/api",Plato);
 app.use("/api",Pedido);
+app.use("/api",SolicitudAlimento);
 
 // Middleware de errores
 app.use(errorLogger);

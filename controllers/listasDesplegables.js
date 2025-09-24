@@ -48,7 +48,7 @@ exports.CategoriaProducto = async (req, res, next) => {
             await CategoriaProducto.create({ nombre_categoria: categoria_Producto });
 
             await Auditoria.create({
-                accion_registrada: "CREAR CATE PRODUCTO",
+                accion_registrada: "CREAR CATEGORIA PRODUCTO",
                 id_usuario: creador_id
             });
         }

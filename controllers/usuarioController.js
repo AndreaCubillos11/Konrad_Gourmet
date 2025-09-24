@@ -115,7 +115,7 @@ exports.obtenerUsuarioPorId = async (req, res, next) => {
 exports.modificarUsuario = async (req, res, next) => {
     try {
         const { id_usuario } = req.params; // usuario a modificar
-        const { nombre, correo, contrasena, id_rol, modificador_id } = req.body;
+        const { nombre, correo, contrasena, id_rol, modificador_id ,estado} = req.body;
 
         // Validar que el modificador tenga rol administrador
         const rolModificador = await Usuario.findOne({ where: { id_usuario: modificador_id } });
@@ -146,6 +146,7 @@ exports.modificarUsuario = async (req, res, next) => {
             const hash = await bcrypt.hash(contrasena, SALT_ROUNDS);
             datosActualizados.contrasena = hash;
         }
+        if(estado) datosActualizados.estado=estado;
 
         // Actualizar usuario
         await usuario.update(datosActualizados);

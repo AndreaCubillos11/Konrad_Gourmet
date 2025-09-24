@@ -9,6 +9,11 @@ const Usuario = sequelize.define("Usuario", {
   nombre: { type: DataTypes.STRING(100), allowNull: false },
   correo: { type: DataTypes.STRING(100), allowNull: false, unique: true },
   contrasena: { type: DataTypes.STRING(255), allowNull: false },
+  estado: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true   // 👈 asegura consistencia con la BD
+  },
   id_rol: {
     type: DataTypes.INTEGER,
     allowNull: false,
