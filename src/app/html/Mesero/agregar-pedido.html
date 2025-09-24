@@ -1,0 +1,98 @@
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="logo">
+    <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
+  </div>
+  <nav>
+    <a routerLink="/home"><i class="fa-solid fa-house"></i> Inicio</a>
+    <a routerLink="/pedidos" class="active"><i class="fa-solid fa-utensils"></i> Pedidos</a>
+  </nav>
+</aside>
+
+<!-- Contenedor Principal -->
+<div class="content">
+  <!-- Header -->
+  <div class="header">
+    <div class="user">
+      <i class="fa-regular fa-user"></i> <span>Mesero</span>
+      <button class="logout">Cerrar Sesión</button>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <h1>Gestión de Pedidos</h1>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active">Entradas</div>
+      <div class="tab">Platos Fuertes</div>
+      <div class="tab">Postres</div>
+      <div class="tab">Bebidas</div>
+    </div>
+
+    <div class="layout">
+      <!-- Lista de platos -->
+      <div class="menu-list">
+        <div class="menu-item">
+          <span>Filete de Res</span>
+          <button>Agregar</button>
+        </div>
+        <div class="menu-item">
+          <span>Pasta al Pesto</span>
+          <button>Agregar</button>
+        </div>
+        <div class="menu-item">
+          <span>Risotto de Champiñones</span>
+          <button>Agregar</button>
+        </div>
+        <div class="menu-item">
+          <span>Sopa de Tomate</span>
+          <button>Agregar</button>
+        </div>
+      </div>
+
+      <!-- Panel de pedido -->
+      <div class="order-panel">
+        <h2>Detalle del pedido</h2>
+        <label for="mesa">Mesa:</label>
+        <select id="mesa">
+          <option>Mesa 1</option>
+          <option>Mesa 2</option>
+          <option>Mesa 3</option>
+          <option>Mesa 4</option>
+          <option>Mesa 5</option>
+        </select>
+
+        <div class="order-item">
+          <span>Filete de Res (x2)</span>
+          <div class="order-actions">
+            <button><i class="fa-solid fa-plus"></i></button>
+            <button><i class="fa-solid fa-minus"></i></button>
+            <button><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+
+        <div class="order-item">
+          <span>Tarta de Queso (x1)</span>
+          <div class="order-actions">
+            <button><i class="fa-solid fa-plus"></i></button>
+            <button><i class="fa-solid fa-minus"></i></button>
+            <button><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+
+        <div class="order-item">
+          <span>Coca - Cola (x2)</span>
+          <div class="order-actions">
+            <button><i class="fa-solid fa-plus"></i></button>
+            <button><i class="fa-solid fa-minus"></i></button>
+            <button><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+
+        <button class="send-order">Enviar Pedido</button>
+      </div>
+    </div>
+  </div>
+</div>

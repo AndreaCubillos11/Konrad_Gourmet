@@ -1,0 +1,219 @@
+/* Layout general */
+body {
+  margin: 0;
+  display: flex;
+  font-family: Arial, sans-serif;
+  height: 100vh; /* pantalla completa */
+  background-color: #f8f9fa;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #0b2a55; /* azul oscuro */
+  color: white;
+  height: 100vh; /* ocupa toda la altura */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.logo img {
+    width: 160px;
+    margin-bottom: 20px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar nav a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s;
+}
+
+.sidebar nav a:hover {
+  background: #163d75;
+}
+
+.sidebar nav a.active {
+  background: #163d75;
+}
+
+/* Contenido principal */
+.content {
+  margin-left: 220px; /* espacio para la sidebar */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header .user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .logout {
+  background: #0b2a55;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.header .logout:hover {
+  background: #163d75;
+}
+
+/* Contenido */
+.main-content {
+  padding: 20px;
+}
+
+.main-content h1 {
+  margin-bottom: 20px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 8px 16px;
+  background: #f1f1f1;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: #b58c58; /* dorado */
+  color: white;
+  font-weight: bold;
+}
+
+/* Layout de la parte principal */
+.layout {
+  display: flex;
+  gap: 20px;
+}
+
+/* Lista de menú */
+.menu-list {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item button {
+  background: #0b2a55;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.menu-item button:hover {
+  background: #163d75;
+}
+
+/* Panel del pedido */
+.order-panel {
+  width: 300px;
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.order-panel h2 {
+  margin-bottom: 15px;
+}
+
+.order-panel select {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0b2a55;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.order-actions button:hover {
+  color: #b58c58;
+}
+
+.send-order {
+  margin-top: 15px;
+  width: 100%;
+  background: #0b2a55;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.send-order:hover {
+  background: #163d75;
+}

@@ -15,11 +15,18 @@
     </aside>
 
     <!-- Main content -->
-    <main class="content">
-        <header class="header">
-            <span class="role">Mesero</span>
-            <button class="logout-btn">Cerrar Sesión</button>
-        </header>
+    <!-- Contenedor Principal -->
+    <div class="content">
+        <!-- Header -->
+        <div class="header">
+            <div class="user">
+                <i class="fa-regular fa-user"></i> <span>Mesero</span>
+                <button class="logout">Cerrar Sesión</button>
+            </div>
+        </div>
+
+        <!-- Contenido principal -->
+        <main>
 
         <h1>Pedidos y Mesas</h1>
 
@@ -38,5 +45,5 @@
             <button class="btn btn-nuevo" (click)="nuevoPedido()">Nuevo Pedido</button>
             <button class="btn btn-consultar" (click)="consultarPedidos()">Consultar Pedidos</button>
         </div>
-    </main>
-</div>
+        </main>
+    </div>

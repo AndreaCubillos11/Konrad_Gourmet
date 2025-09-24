@@ -1,0 +1,84 @@
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="logo">
+    <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet">
+  </div>
+  <nav>
+    <a routerLink="/mesero">
+      <i class="fas fa-home"></i> Inicio
+    </a>
+    <a routerLink="/consultar-pedido" class="active">
+      <i class="fas fa-list"></i> Pedidos
+    </a>
+  </nav>
+</div>
+
+<!-- Contenido principal -->
+<div class="content">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-right">
+      <div class="user">
+        <i class="fas fa-user"></i>
+        <span>Mesero</span>
+      </div>
+      <button class="logout">Cerrar Sesión</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="main-header">
+      <h1>Pedidos en curso</h1>
+      <button class="btn-new">+ Nuevo Pedido</button>
+    </div>
+
+    <div class="orders">
+      <!-- Pedido Mesa 1 -->
+      <div class="order-card">
+        <h3>Mesa: <span>1</span></h3>
+        <ul>
+          <li>3 Sopa de Tomate</li>
+          <li>2 Pepsi</li>
+          <li>1 Limonada</li>
+          <li>3 Torta de Queso</li>
+        </ul>
+        <button class="btn-cancel">Cancelar Pedido</button>
+      </div>
+
+      <!-- Pedido Mesa 2 -->
+      <div class="order-card">
+        <h3>Mesa: <span>2</span></h3>
+        <ul>
+          <li>2 Filete de Res</li>
+          <li>1 Tarta de Queso</li>
+          <li>2 Coca - Cola</li>
+        </ul>
+        <button class="btn-cancel">Cancelar Pedido</button>
+      </div>
+
+      <!-- Pedido Mesa 3 -->
+      <div class="order-card">
+        <h3>Mesa: <span>3</span></h3>
+        <ul>
+          <li>2 Ensalada César</li>
+          <li>1 Pasta al Pesto</li>
+          <li>1 Filete de Res</li>
+          <li>2 Limonadas de coco</li>
+        </ul>
+        <button class="btn-cancel">Cancelar Pedido</button>
+      </div>
+
+      <!-- Pedido Mesa 4 -->
+      <div class="order-card">
+        <h3>Mesa: <span>4</span></h3>
+        <ul>
+          <li>1 Aritos de Cebolla</li>
+          <li>1 Risotto de Champiñones</li>
+          <li>1 Colombiana</li>
+        </ul>
+        <button class="btn-cancel">Cancelar Pedido</button>
+      </div>
+    </div>
+  </div>
+</div>
