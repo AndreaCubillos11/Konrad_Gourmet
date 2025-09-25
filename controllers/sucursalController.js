@@ -75,3 +75,40 @@ exports.obtenerSucursales = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.obtenerSucursalPorId = async (req, res, next) => {
+  try {
+    const { id_sucursal } = req.params; // viene por params en la ruta
+    const { creador_id } = req.query;   // sigue opcional para auditoría
+
+    const sucursal = await Sucursal.findOne({
+      where: { id_sucursal },
+      include: {
+        model: Usuario,
+        attributes: ["id_usuario", "nombre", "correo"]
+      }
+    });
+
+    if (!sucursal) {
+      return res.status(404).json({ mensaje: "Sucursal no encontrada" });
+    }
+
+    // Registrar en auditoría que alguien consultó la sucursal
+    if (creador_id) {
+      await Auditoria.create({
+        accion_registrada: `CONSULTAR SUCURSAL ID ${id_sucursal}`,
+        id_usuario: creador_id
+      });
+    }
+
+    res.status(200).json({
+      mensaje: "Sucursal consultada con éxito",
+      sucursal
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+
