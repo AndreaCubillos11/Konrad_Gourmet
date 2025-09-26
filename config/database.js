@@ -5,10 +5,11 @@ const { Sequelize } = require("sequelize"); // ORM= Object Relational Mapper.
 class Database {
   constructor() {
     if (!Database.instance) {
-      this.sequelize = new Sequelize("Konrad_Gourmet", "postgres", "1234", {
+      this.sequelize = new Sequelize("konrad_gourmet", "postgres", "1234", {
         host: "localhost",
         dialect: "postgres",
         logging: false,
+        // en mi caso (Andres) es necesario establecer la conexión por puerto (opcional, por si no llega a funcionar) port: 5433,
       });
       Database.instance = this;
     }// cierra if 

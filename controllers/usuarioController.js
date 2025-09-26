@@ -1,66 +1,108 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const Usuario = require("../models/Usuario");
 const Rol = require("../models/Rol");
 const Auditoria = require("../models/Auditoria");
 
 const SALT_ROUNDS = 10;
+const SECRET_KEY = "token_key"; //asignar despues la llave, la misma de auth.js
 
+// POST: crear usuario
 exports.crearUsuario = async (req, res, next) => {
-    try {
-        const { nombre, correo, contrasena, id_rol, creador_id } = req.body;
+  try {
+    const { nombre, correo, contrasena, id_rol, creador_id } = req.body;
 
-     
-        
-        const rolCreador = await Usuario.findOne({ where: { id_usuario: creador_id } });
-        
-
-
-        if (!rolCreador || rolCreador.id_rol !== 1) {
-            return res.status(403).json({ error: "No autorizado" });
-        }
-
-        // Verificar duplicados
-        const existe = await Usuario.findOne({ where: { correo } });
-        if (existe) {
-            return res.status(400).json({ error: "Usuario con ese correo ya existe" });
-        }
-
-        // Hash de contraseña
-        const hash = await bcrypt.hash(contrasena, SALT_ROUNDS);
-
-        const nuevoUsuario = await Usuario.create({
-            nombre,
-            correo,
-            contrasena: hash,
-            id_rol
-        });
-
-        // Registrar en Auditoría
-        await Auditoria.create({
-            accion_registrada: "CREAR USUARIO",
-            id_usuario: creador_id
-        });
-
-        res.status(201).json({ mensaje: "Usuario creado con éxito", usuario: nuevoUsuario });
-    } catch (err) {
-        next(err); // Middleware de logging captura el error
+    const rolCreador = await Usuario.findOne({ where: { id_usuario: creador_id } });
+    if (!rolCreador || rolCreador.id_rol !== 1) {
+      return res.status(403).json({ error: "No autorizado" });
     }
+
+    // Verificar duplicados
+    const existe = await Usuario.findOne({ where: { correo } });
+    if (existe) {
+      return res.status(400).json({ error: "Usuario con ese correo ya existe" });
+    }
+
+    // Hash de contraseña
+    const hash = await bcrypt.hash(contrasena, SALT_ROUNDS);
+
+    const nuevoUsuario = await Usuario.create({
+      nombre,
+      correo,
+      contrasena: hash,
+      id_rol
+    });
+
+    // Auditoría
+    await Auditoria.create({
+      accion_registrada: "CREAR USUARIO",
+      id_usuario: creador_id
+    });
+
+    res.status(201).json({
+      mensaje: "Usuario creado con éxito",
+      usuario: {
+        id_usuario: nuevoUsuario.id_usuario,
+        nombre: nuevoUsuario.nombre,
+        correo: nuevoUsuario.correo,
+        id_rol: nuevoUsuario.id_rol
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// POST: login y generar token
+exports.login = async (req, res, next) => {
+  try {
+    const { correo, contrasena } = req.body;
+
+    const usuario = await Usuario.findOne({ where: { correo } });
+    if (!usuario) {
+      return res.status(401).json({ error: "Credenciales inválidas" });
+    }
+
+    const match = await bcrypt.compare(contrasena, usuario.contrasena);
+    if (!match) {
+      return res.status(401).json({ error: "Credenciales inválidas" });
+    }
+
+    // Generar token JWT
+    const token = jwt.sign(
+      { id_usuario: usuario.id_usuario, correo: usuario.correo, id_rol: usuario.id_rol },
+      SECRET_KEY,
+      { expiresIn: "1h" } // caduca en 1 hora
+    );
+
+    // Auditoría
+    await Auditoria.create({
+      accion_registrada: "LOGIN USUARIO",
+      id_usuario: usuario.id_usuario
+    });
+
+    res.status(200).json({
+      mensaje: "Login exitoso",
+      token
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
 // GET: consultar todos los usuarios
 exports.obtenerUsuarios = async (req, res, next) => {
   try {
-    const { creador_id } = req.query; // quién ejecuta la consulta
+    const { creador_id } = req.query;
 
     const usuarios = await Usuario.findAll({
-      attributes: ["id_usuario","nombre", "correo", "id_rol"],
+      attributes: ["id_usuario", "nombre", "correo", "id_rol"],
       include: {
         model: Rol,
         attributes: ["nombre_rol"]
       }
     });
 
-    // Registrar en auditoría
     if (creador_id) {
       await Auditoria.create({
         accion_registrada: "CONSULTAR USUARIOS",
@@ -68,23 +110,20 @@ exports.obtenerUsuarios = async (req, res, next) => {
       });
     }
 
-    res.status(200).json({
-      mensaje: "Usuarios consultados con éxito",
-      usuarios
-    });
+    res.status(200).json({ mensaje: "Usuarios consultados con éxito", usuarios });
   } catch (err) {
-    next(err); // lo captura el middleware de errores
+    next(err);
   }
 };
 
-// GET: consultar un usuario por id
+// GET: consultar usuario por id
 exports.obtenerUsuarioPorId = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { creador_id } = req.query;
 
     const usuario = await Usuario.findByPk(id, {
-      attributes: [ "id_usuario","nombre", "correo", "id_rol"],
+      attributes: ["id_usuario", "nombre", "correo", "id_rol"],
       include: {
         model: Rol,
         attributes: ["nombre_rol"]
@@ -95,7 +134,6 @@ exports.obtenerUsuarioPorId = async (req, res, next) => {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
-    // Registrar en auditoría
     if (creador_id) {
       await Auditoria.create({
         accion_registrada: `CONSULTAR USUARIO ${id}`,
@@ -103,62 +141,54 @@ exports.obtenerUsuarioPorId = async (req, res, next) => {
       });
     }
 
-    res.status(200).json({
-      mensaje: "Usuario consultado con éxito",
-      usuario
-    });
+    res.status(200).json({ mensaje: "Usuario consultado con éxito", usuario });
   } catch (err) {
     next(err);
   }
 };
 
+// PUT: modificar usuario
 exports.modificarUsuario = async (req, res, next) => {
-    try {
-        const { id_usuario } = req.params; // usuario a modificar
-        const { nombre, correo, contrasena, id_rol, modificador_id ,estado} = req.body;
+  try {
+    const { id_usuario } = req.params;
+    const { nombre, correo, contrasena, id_rol, modificador_id, estado } = req.body;
 
-        // Validar que el modificador tenga rol administrador
-        const rolModificador = await Usuario.findOne({ where: { id_usuario: modificador_id } });
-        if (!rolModificador || rolModificador.id_rol !== 1) {
-            return res.status(403).json({ error: "No autorizado" });
-        }
-
-        // Buscar usuario a modificar
-        const usuario = await Usuario.findByPk(id_usuario);
-        if (!usuario) {
-            return res.status(404).json({ error: "Usuario no encontrado" });
-        }
-
-        // Validar duplicado de correo (si lo envían actualizado)
-        if (correo && correo !== usuario.correo) {
-            const existe = await Usuario.findOne({ where: { correo } });
-            if (existe) {
-                return res.status(400).json({ error: "Correo ya está en uso por otro usuario" });
-            }
-        }
-
-        // Preparar campos actualizados
-        const datosActualizados = {};
-        if (nombre) datosActualizados.nombre = nombre;
-        if (correo) datosActualizados.correo = correo;
-        if (id_rol) datosActualizados.id_rol = id_rol;
-        if (contrasena) {
-            const hash = await bcrypt.hash(contrasena, SALT_ROUNDS);
-            datosActualizados.contrasena = hash;
-        }
-        if(estado) datosActualizados.estado=estado;
-
-        // Actualizar usuario
-        await usuario.update(datosActualizados);
-
-        // Registrar en Auditoría
-        await Auditoria.create({
-            accion_registrada: "MODIFICAR USUARIO:"+id_usuario,
-            id_usuario: modificador_id
-        });
-
-        res.status(200).json({ mensaje: "Usuario modificado con éxito", usuario });
-    } catch (err) {
-        next(err);
+    const rolModificador = await Usuario.findOne({ where: { id_usuario: modificador_id } });
+    if (!rolModificador || rolModificador.id_rol !== 1) {
+      return res.status(403).json({ error: "No autorizado" });
     }
+
+    const usuario = await Usuario.findByPk(id_usuario);
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    if (correo && correo !== usuario.correo) {
+      const existe = await Usuario.findOne({ where: { correo } });
+      if (existe) {
+        return res.status(400).json({ error: "Correo ya está en uso por otro usuario" });
+      }
+    }
+
+    const datosActualizados = {};
+    if (nombre) datosActualizados.nombre = nombre;
+    if (correo) datosActualizados.correo = correo;
+    if (id_rol) datosActualizados.id_rol = id_rol;
+    if (contrasena) {
+      const hash = await bcrypt.hash(contrasena, SALT_ROUNDS);
+      datosActualizados.contrasena = hash;
+    }
+    if (estado) datosActualizados.estado = estado;
+
+    await usuario.update(datosActualizados);
+
+    await Auditoria.create({
+      accion_registrada: "MODIFICAR USUARIO:" + id_usuario,
+      id_usuario: modificador_id
+    });
+
+    res.status(200).json({ mensaje: "Usuario modificado con éxito", usuario });
+  } catch (err) {
+    next(err);
+  }
 };
