@@ -11,5 +11,13 @@ router.post("/lista-UnidadMedida",listasDesplegables.UnidadMedida);
 
 router.post("/lista-Producto",listasDesplegables.Producto);
 
+router.get("/lista-CategoriaPlato/:id",listasDesplegables.ConsultarCategoriaPlato);
+
+router.get("/lista-CategoriaProducto/:id",listasDesplegables.ConsultarCategoriaProducto);
+
+router.get("/lista-UnidadMedida/:id",listasDesplegables.ConsultarUnidad);
+
+router.get("/lista-Producto/:id",listasDesplegables.ConsultarProductos);
+
 module.exports = router;
 
