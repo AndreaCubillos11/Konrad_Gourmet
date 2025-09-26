@@ -1,22 +1,27 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
     display: flex;
+    font-family: Arial, sans-serif;
     height: 100vh;
+    /* pantalla completa */
+    background-color: #f8f9fa;
 }
 
 /* Sidebar */
 .sidebar {
     width: 220px;
     background-color: #0b2a55;
+    /* azul oscuro */
     color: white;
     height: 100vh;
+    /* ocupa toda la altura */
     display: flex;
     flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
     position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .logo img {

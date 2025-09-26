@@ -1,19 +1,25 @@
 /* ===== LAYOUT GENERAL ===== */
-.layout {
+body {
+    margin: 0;
     display: flex;
-    height: 100vh;
     font-family: Arial, sans-serif;
-    background: #f0f2f5;
+    height: 100vh; /* pantalla completa */
+    background-color: #f8f9fa;
 }
 
 /* ===== SIDEBAR ===== */
 .sidebar {
     width: 220px;
-    background-color: #0b2a55;
-    color: #fff;
+    background-color: #0b2a55; /* azul oscuro */
+    color: white;
+    height: 100vh; /* ocupa toda la altura */
     display: flex;
     flex-direction: column;
     padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .logo img {
@@ -57,6 +63,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    margin-left: 220px; /* deja espacio a la derecha de la sidebar */
 }
 
 /* ===== HEADER ===== */
@@ -106,77 +113,69 @@
     background: #163a73;
 }
 
-/* ===== MAIN CONTENT ===== */
+/* ===== Contenedor principal ===== */
 .main-content {
+    flex-grow: 1;
+    padding: 30px;
+    display: flex;
+    justify-content: center; /* Centra el formulario horizontalmente */
+    align-items: flex-start; /* Mantiene arriba */
+    background-color: #f8f9fa;
+}
+
+/* ===== Card del formulario ===== */
+.form-card {
+    background: #fff;
     padding: 25px;
-    overflow-y: auto;
-}
-
-/* ===== CARD ===== */
-.card {
-    background: #ffffff;
     border-radius: 12px;
-    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
     max-width: 900px;
-    margin: auto;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card h3,
-.card h4 {
+/* ===== Títulos ===== */
+.form-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #0b2a55;
+    font-weight: bold;
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #0b2a55;
 }
 
+/* ===== Filas de formulario ===== */
 .form-row {
     display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
+    gap: 30px; /* separa horizontalmente los grupos de labels/inputs */
+    margin-bottom: 20px; /* espacio vertical entre filas */
 }
 
+/* ===== Grupo label + input ===== */
 .form-group {
-    flex: 1;
+    flex: 1; /* cada grupo ocupa el mismo ancho */
     display: flex;
     flex-direction: column;
 }
 
 .form-group label {
-    font-size: 0.85rem;
-    margin-bottom: 5px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
     color: #333;
 }
 
+/* ===== Inputs y selects ===== */
 .form-group input,
-.form-group textarea {
-    padding: 10px;
+.form-group select {
+    padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
+    font-size: 0.9rem;
 }
 
-textarea {
-    resize: vertical;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-table th,
-table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-}
-
-table th {
-    background: #f8f9fa;
-}
-
-.modal-actions {
+/* ===== Botones ===== */
+.button-row {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
@@ -184,18 +183,59 @@ table th {
 }
 
 .btn-primary {
-    background: #0b2a55;
-    color: white;
-    padding: 8px 16px;
+    background-color: #0b2a55;
+    color: #fff;
+    padding: 8px 18px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-primary:hover {
+    background-color: #09305c;
 }
 
 .btn-secondary {
-    background: #ccc;
-    padding: 8px 16px;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 8px 18px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+    background-color: #cacaca;
+}
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+thead {
+    background-color: #f1f1f1;
+}
+
+th,
+td {
+    padding: 6px 8px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.fila-click {
+    cursor: pointer;
+}
+
+.seleccionada {
+    background-color: #e0f3ff;
+    /* azul clarito */
 }
