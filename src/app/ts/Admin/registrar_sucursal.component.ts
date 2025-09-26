@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';  // 👈 para *ngFor y demás
     selector: 'app-registrar-sucursal',
     templateUrl: '../../html/Administrador/registrar_sucursal.html',
     styleUrls: ['../../css/registrar_sucursal.css'],
-    imports: [ReactiveFormsModule, CommonModule] // 👈 aquí agregas los módulos que necesita el HTML
+    imports: [ReactiveFormsModule, CommonModule] 
 })
 export class RegistrarSucursalComponent implements OnInit {
 

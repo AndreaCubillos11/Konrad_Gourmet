@@ -5,7 +5,7 @@
         <div class="logo">
             <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet Logo" />
         </div>
-
+ 
         <!-- Menú -->
         <ul class="menu">
             <li><a routerLink="/inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
@@ -18,7 +18,7 @@
             <li><a routerLink="/usuarios"><i class="fa-solid fa-users"></i> Usuarios y roles</a></li>
         </ul>
     </aside>
-
+ 
     <!-- Content -->
     <main class="content">
         <!-- Header -->
@@ -28,15 +28,15 @@
             <div class="user"><i class="fas fa-user-shield"></i> Administrador</div>
             <button class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
         </header>
-
+ 
         <!-- Main Content -->
         <section class="main-content">
             <h1><i class="fas fa-store"></i> Nueva Sucursal</h1>
-
+ 
             <!-- Formulario principal para crear sucursal -->
             <form (ngSubmit)="crear()" [formGroup]="sucursalForm" id="nueva-sucursal-form">
                 <div class="grid-cards">
-
+ 
                     <!-- Detalles -->
                     <div class="card">
                         <h3><i class="fas fa-info-circle"></i> Detalles de la sucursal</h3>
@@ -44,17 +44,17 @@
                             <label for="nombre">Nombre</label>
                             <input type="text" id="nombre" name="nombre" placeholder="Konrad Gourmet - Sur"
                                 formControlName="nombre" required />
-
+ 
                             <label for="direccion">Dirección</label>
                             <input type="text" id="direccion" name="direccion" placeholder="Cra. 87 #50-31 sur, Bogotá"
                                 formControlName="direccion" required />
-
+ 
                             <label for="telefono">Teléfono</label>
                             <input type="number" id="telefono" name="telefono" placeholder="+57 3104430592"
                                 formControlName="telefono" required />
                         </div>
                     </div>
-
+ 
                     <!-- Ubicación -->
                     <div class="card">
                         <h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
@@ -75,7 +75,7 @@
                         <input type="hidden" id="latitud-hidden" name="latitud" value="78.12312" />
                         <input type="hidden" id="longitud-hidden" name="longitud" value="56.0898" />
                     </div>
-
+ 
                     <!-- Contacto -->
                     <div class="card full-width">
                         <h3><i class="fas fa-phone-alt"></i> Contacto</h3>
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-
+ 
                 <!-- Botones -->
                 <div class="buttons">
                     <button type="button" class="btn btn-cancelar" onclick="cancelarFormulario()"><i
