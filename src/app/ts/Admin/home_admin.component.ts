@@ -1,28 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SucursalService } from '../../services/Administrador/sucursal-service';
 
 @Component({
     selector: 'app-home-admin',
     templateUrl: '../../html/Administrador/home_admin.html',
     styleUrls: ['../../css/home_admin.css']
 })
+export class HomeAdminComponent implements OnInit {
+    sucursal: any[] = [];
+    sucursalSeleccionada: any = null;
 
+    constructor(
+        private router: Router,
+        private sucursalService: SucursalService
+    ) { }
 
-export class HomeAdminComponent {
-    sucursales = [
-        { nombre: 'Central', telefono: '(555) 123-4567', jefe: 'A. Reyes' },
-        { nombre: 'Norte', telefono: '(555) 123-4567', jefe: 'P. Martínez' }
-    ];
+    ngOnInit(): void {
+        this.cargarSucursales();
+    }
 
-    proveedores = [
-        { nombre: 'Fresh Co', telefono: '(555) 123-4567', email: 'fresh@email.com', estado: 'Activo' },
-        { nombre: 'Prime Foods', telefono: '(555) 123-4567', email: 'sales@primefoods.com', estado: 'Pendiente' }
-    ];
+    cargarSucursales(): void {
+        this.sucursalService.consultarSucursales(2).subscribe({
+            next: (data) => {
+                this.sucursal = data.sucursales; // 👈 usar la propiedad correcta
+            },
+            error: (error) => {
+                console.error('Error en consulta de sucursales', error);
+            }
+        });
+    }
+    seleccionarSucursal(s: any): void {
+        this.sucursalSeleccionada = s;
+    }
+    verDetalles(): void {
+        this.router.navigate(['/home_sucursal', this.sucursalSeleccionada.id_sucursal]);
+    }
 
-    listas = [
-        { producto: 'Tomate', codigo: 'To2342', activo: 'Sí' }
-    ];
-
-    usuarios = [
-        { nombre: 'N. Ramirez', email: 'nramirez@kg.com', rol: 'Admin', estado: 'Activo' }
-    ];
 }

@@ -166,3 +166,12 @@ td {
 tbody tr:hover {
     background-color: #f9f9f9;
 }
+
+.fila-click {
+    cursor: pointer;
+}
+
+.seleccionada {
+    background-color: #e0f3ff;
+    /* azul clarito */
+}

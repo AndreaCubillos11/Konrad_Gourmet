@@ -33,80 +33,72 @@
         <section class="main-content">
             <h1><i class="fas fa-store"></i> Nueva Sucursal</h1>
 
-            <div class="grid-cards">
-                <!-- Detalles -->
-                <div class="card">
-                    <h3><i class="fas fa-info-circle"></i> Detalles de la sucursal</h3>
-                    <div class="form-grid">
-                        <label>Nombre</label>
-                        <input type="text" placeholder="Konrad Gourmet - Sur" />
+            <!-- Formulario principal para crear sucursal -->
+            <form (ngSubmit)="crear()" [formGroup]="sucursalForm" id="nueva-sucursal-form">
+                <div class="grid-cards">
 
-                        <label>Código</label>
-                        <input type="text" placeholder="KG-SU" />
+                    <!-- Detalles -->
+                    <div class="card">
+                        <h3><i class="fas fa-info-circle"></i> Detalles de la sucursal</h3>
+                        <div class="form-grid">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Konrad Gourmet - Sur"
+                                formControlName="nombre" required />
 
-                        <label>Región</label>
-                        <input type="text" placeholder="Bogotá" />
+                            <label for="direccion">Dirección</label>
+                            <input type="text" id="direccion" name="direccion" placeholder="Cra. 87 #50-31 sur, Bogotá"
+                                formControlName="direccion" required />
 
-                        <label>Estatus</label>
-                        <input type="text" placeholder="Activa" />
+                            <label for="telefono">Teléfono</label>
+                            <input type="number" id="telefono" name="telefono" placeholder="+57 3104430592"
+                                formControlName="telefono" required />
+                        </div>
+                    </div>
 
-                        <label>Dirección</label>
-                        <input type="text" placeholder="Cra. 87 #50-31 sur, Bogotá" />
+                    <!-- Ubicación -->
+                    <div class="card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+                        <div class="map">
+                            <img src="https://via.placeholder.com/400x200?text=Mapa" alt="Mapa" />
+                        </div>
+                        <div class="ubicacion-grid">
+                            <button type="button" class="btn-ubicacion" onclick="actualizarLatitud()"><i
+                                    class="fas fa-map-pin"></i> Latitud <span id="latitud">78.12312</span></button>
+                            <button type="button" class="btn-ubicacion" onclick="actualizarLongitud()"><i
+                                    class="fas fa-map-pin"></i> Longitud <span id="longitud">56.0898</span></button>
+                            <button type="button" class="btn-ubicacion"><i class="fas fa-truck"></i> Zonas de entrega
+                                <input type="number" id="zonas-entrega" name="zonas_entrega" value="3" min="1"
+                                    style="width: 50px; border: none; background: transparent;" />
+                            </button>
+                        </div>
+                        <!-- Campos ocultos para coordenadas -->
+                        <input type="hidden" id="latitud-hidden" name="latitud" value="78.12312" />
+                        <input type="hidden" id="longitud-hidden" name="longitud" value="56.0898" />
+                    </div>
 
-                        <label>Ciudad</label>
-                        <input type="text" placeholder="Bogotá" />
-
-                        <label>Código postal</label>
-                        <input type="text" placeholder="11001" />
-
-                        <label>País</label>
-                        <input type="text" placeholder="Colombia" />
-
-                        <label>Horario</label>
-                        <input type="text" placeholder="9:00 - 22:00" />
-
-                        <label>Notas</label>
-                        <textarea placeholder="Notas adicionales..."></textarea>
+                    <!-- Contacto -->
+                    <div class="card full-width">
+                        <h3><i class="fas fa-phone-alt"></i> Contacto</h3>
+                        <div class="form-grid">
+                            <label for="usuario">Nombre del jefe de cocina</label>
+                            <select id="usuario" formControlName="id_usuario" required
+                                (change)="actualizarCorreo($event)">
+                                <option value="">Seleccionar Jefe de cocina</option>
+                                <option *ngFor="let u of usuarios" [value]="u.id_usuario">{{ u.nombre }}</option>
+                            </select>
+                            <label for="correo">Correo</label>
+                            <input type="email" id="correo" [value]="correoSeleccionado" readonly />
+                        </div>
                     </div>
                 </div>
 
-                <!-- Ubicación -->
-                <div class="card">
-                    <h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
-                    <div class="map">
-                        <img src="https://via.placeholder.com/400x200?text=Mapa" alt="Mapa" />
-                    </div>
-                    <div class="ubicacion-grid">
-                        <button class="btn-ubicacion"><i class="fas fa-map-pin"></i> Latitud 78.12312</button>
-                        <button class="btn-ubicacion"><i class="fas fa-map-pin"></i> Longitud 56.0898</button>
-                        <button class="btn-ubicacion"><i class="fas fa-truck"></i> Zonas de entrega 3</button>
-                    </div>
+                <!-- Botones -->
+                <div class="buttons">
+                    <button type="button" class="btn btn-cancelar" onclick="cancelarFormulario()"><i
+                            class="fas fa-times"></i> Cancelar</button>
+                    <button type="submit" class="btn btn-crear"><i class="fas fa-save"></i> Crear sucursal</button>
                 </div>
-
-                <!-- Contacto -->
-                <div class="card full-width">
-                    <h3><i class="fas fa-phone-alt"></i> Contacto</h3>
-                    <div class="form-grid">
-                        <label>Nombre del gerente</label>
-                        <input type="text" placeholder="Samantha Lee" />
-
-                        <label>Correo</label>
-                        <input type="email" placeholder="sam.lee@konradgourmet.com" />
-
-                        <label>Teléfono</label>
-                        <input type="text" placeholder="+57 3099012391" />
-
-                        <label>Contacto de respaldo</label>
-                        <input type="email" placeholder="backup@konradgourmet.com" />
-                    </div>
-                </div>
-            </div>
-
-            <!-- Botones -->
-            <div class="buttons">
-                <button class="btn btn-cancelar"><i class="fas fa-times"></i> Cancelar</button>
-                <button class="btn btn-crear"><i class="fas fa-save"></i> Crear sucursal</button>
-            </div>
+            </form>
         </section>
     </main>
 </div>

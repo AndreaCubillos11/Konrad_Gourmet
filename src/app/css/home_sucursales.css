@@ -214,3 +214,38 @@ tbody tr:hover {
 .filtros button:hover {
     background: #ccc;
 }
+
+/* ===== Filtros superiores (Ciudad, Estatus, Agregar) ===== */
+.filtros-superiores {
+    display: flex;
+    justify-content: flex-end; /* alineados a la derecha */
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    background: #e5e7eb;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.tag:hover {
+    background: #ccc;
+}
+
+.agregar {
+    background: #b8860b;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.agregar:hover {
+    background: #966c3d;
+}

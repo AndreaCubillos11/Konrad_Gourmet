@@ -1,40 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Sucursal {
-    nombre: string;
-    direccion: string;
-    telefono: string;
-    jefeCocina: string;
-    status: string;
-}
-
-interface Inventario {
-    producto: string;
-    unidad: number;
-    capacidad: number;
-    estatus: string;
-    actualizado: string;
-}
+import { ActivatedRoute } from '@angular/router';
+import { SucursalService } from '../../services/Administrador/sucursal-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-home-sucursal',
+    imports: [CommonModule],
     templateUrl: '../../html/Administrador/home_sucursales.html',
     styleUrls: ['../../css/home_sucursales.css']
 })
 export class HomeSucursalComponent implements OnInit {
     // Detalles de sucursal activa
-    sucursal = {
-        nombre: 'Centro',
-        telefono: '(555) 123-45678',
-        email: 'centro@kg.com',
-        direccion: '9° a, Ac. 11 Sur #956',
-        jefeCocina: 'P. Martínez',
-        manager: 'J. Rodríguez',
-        horario: '9:00 - 22:00',
-        estatus: 'Activo'
-    };
+    sucursal: any;
+    creadorId = 2; // 👈 fijo por ahora, pero podría venir de localStorage o un token
+    sucursales: any[] = [];
 
-    // Lista de sucursales
+
+    /* Lista de sucursales
     sucursales: Sucursal[] = [
         { nombre: 'Central', direccion: '9° a, Ac. 11 Sur #956', telefono: '(555) 123-4567', jefeCocina: 'A. Reyes', status: 'Activo' },
         { nombre: 'Norte', direccion: '9° a, Ac. 11 Sur #956', telefono: '(555) 123-4567', jefeCocina: 'N. Ramírez', status: 'Pendiente' }
@@ -49,10 +31,40 @@ export class HomeSucursalComponent implements OnInit {
     total = 7;
     activos = 5;
     stockBajo = 1;
+*/
+    constructor(
+        private route: ActivatedRoute,
+        private sucursalService: SucursalService
+    ) { }
 
-    constructor() { }
+    ngOnInit(): void {
+        const idSucursal = Number(this.route.snapshot.paramMap.get('id'));
+        this.cargarSucursal(idSucursal);
+        this.cargarSucursales();
+    }
 
-    ngOnInit(): void { }
+    cargarSucursal(idSucursal: number): void {
+        this.sucursalService.consultarSucursalPorId(idSucursal, this.creadorId).subscribe({
+            next: (data) => {
+                this.sucursal = data.sucursal;
+                console.log('Detalle de sucursal:', this.sucursal);
+            },
+            error: (err) => {
+                console.error('Error al consultar la sucursal', err);
+            }
+        });
+    }
+
+        cargarSucursales(): void {
+        this.sucursalService.consultarSucursales(2).subscribe({
+            next: (data) => {
+                this.sucursales = data.sucursales;
+            },
+            error: (error) => {
+                console.error('Error en consulta de sucursales', error);
+            }
+        });
+    }
 
     editarSucursal() {
         alert('Función editar sucursal en construcción...');

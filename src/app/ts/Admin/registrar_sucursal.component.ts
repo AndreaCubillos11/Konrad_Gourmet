@@ -1,29 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // 👈 importa esto
+import { SucursalService } from '../../services/Administrador/sucursal-service';
+import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/Administrador/usuario-service';
+import { CommonModule } from '@angular/common';  // 👈 para *ngFor y demás
 
 @Component({
     selector: 'app-registrar-sucursal',
     templateUrl: '../../html/Administrador/registrar_sucursal.html',
-    styleUrls: ['../../css/registrar_sucursal.css']
+    styleUrls: ['../../css/registrar_sucursal.css'],
+    imports: [ReactiveFormsModule, CommonModule] // 👈 aquí agregas los módulos que necesita el HTML
 })
-export class RegistrarSucursalComponent {
+export class RegistrarSucursalComponent implements OnInit {
 
-    // Datos iniciales de la sucursal
-    sucursal = {
-        nombre: '',
-        codigo: '',
-        region: '',
-        estatus: '',
-        direccion: '',
-        ciudad: '',
-        codigoPostal: '',
-        pais: '',
-        horario: '',
-        notas: '',
-        gerente: '',
-        correo: '',
-        telefono: '',
-        respaldo: ''
-    };
+    sucursalForm!: FormGroup; // Se declara pero no se inicializa aún
+    usuarios: any[] = []
+    correoSeleccionado: string = '';
+
+    constructor(
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private sucursalService: SucursalService,
+        private usuarioService: UsuarioService
+    ) { }
+
+    ngOnInit(): void {
+        this.sucursalForm = this.formBuilder.group({
+            nombre: [''],
+            direccion: [''],
+            telefono: [''],
+            id_usuario: [0],
+            creador_id: [2]
+        });
+        this.cargarUsuarios();
+    }
 
     cancelar(): void {
         console.log('Acción: Cancelar registro');
@@ -31,7 +42,36 @@ export class RegistrarSucursalComponent {
     }
 
     crear(): void {
-        console.log('Sucursal registrada:', this.sucursal);
-        // aquí va la lógica para guardar en backend
+
+        // aquí va la lógica para guardar en backend con sucursalService
+        console.log(this.sucursalForm.value)
+        this.sucursalService.nuevaSucursal(this.sucursalForm.value).subscribe(
+            () => {
+                console.log("Sucursal registrada");
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
+    }
+
+    cargarUsuarios(): void {
+        this.usuarioService.consultarUsuarios(2).subscribe({
+            next: (data) => {
+                this.usuarios = data.usuarios;
+                console.log(this.usuarios);
+            },
+            error: (error) => {
+                console.error('Error en consultar los usuarios', error);
+            }
+        });
+    }
+
+    actualizarCorreo(event: Event): void {
+        const id = +(event.target as HTMLSelectElement).value;
+        const seleccionado = this.usuarios.find(u => u.id_usuario === id);
+        console.log(id);
+        console.log(seleccionado);
+        this.correoSeleccionado = seleccionado ? seleccionado.correo:'';
     }
 }

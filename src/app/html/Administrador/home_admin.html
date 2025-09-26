@@ -5,7 +5,7 @@
     </div>
     <nav>
         <a routerLink="/inicio" class="active"><i class="fa-solid fa-house"></i> Inicio</a>
-        <a routerLink="/sucursales"><i class="fa-solid fa-building"></i> Sucursales</a>
+        <a routerLink="/home_sucursal"><i class="fa-solid fa-building"></i> Sucursales</a>
         <a routerLink="/proveedores"><i class="fa-solid fa-truck"></i> Proveedores</a>
         <a routerLink="/inventario"><i class="fa-solid fa-box"></i> Inventario</a>
         <a routerLink="/listas"><i class="fa-solid fa-list"></i> Listas</a>
@@ -31,10 +31,11 @@
     <div class="main-content">
         <div class="grid-cards">
             <!-- Gestión de sucursales -->
+            <!-- Gestión de sucursales -->
             <div class="card">
                 <div class="card-header">
                     <h3>Gestión de sucursales</h3>
-                    <button class="btn-ver">Ver detalles</button>
+                    <button (click)="verDetalles()" class="btn-ver">Ver detalles</button>
                 </div>
                 <table>
                     <thead>
@@ -45,19 +46,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Central</td>
-                            <td>(555) 123-4567</td>
-                            <td>A. Reyes</td>
+                        @for (s of sucursal; track s) {
+                        <tr (click)="seleccionarSucursal(s)"
+                            [class.seleccionada]="s.id_sucursal === sucursalSeleccionada?.id_sucursal">
+                            <td>{{ s.nombre }}</td>
+                            <td>{{ s.telefono }}</td>
+                            <td>{{ s.Usuario.nombre }}</td>
                         </tr>
-                        <tr>
-                            <td>Norte</td>
-                            <td>(555) 123-4567</td>
-                            <td>P. Martínez</td>
-                        </tr>
+                        }
                     </tbody>
                 </table>
             </div>
+
 
             <!-- Directorio de proveedores -->
             <div class="card">

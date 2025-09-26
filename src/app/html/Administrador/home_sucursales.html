@@ -29,32 +29,45 @@
     <div class="main-content">
         <h2 class="titulo"><i class="fas fa-store"></i> Sucursales</h2>
 
+        <!-- Filtros superiores -->
+        <div class="filtros-superiores">
+            <button class="tag">Ciudad: Todas</button>
+            <button class="tag">Estatus: Activo</button>
+            <button class="agregar"><i class="fas fa-plus"></i> Agregar</button>
+        </div>
+
         <div class="grid-container">
             <!-- Detalles de sucursal -->
-            <div class="card">
+            <div class="card" *ngIf="sucursal">
                 <h3><i class="fas fa-info-circle"></i> Detalles de la sucursal</h3>
-                <div class="detalle"><label>Nombre</label><span>Centro</span></div>
-                <div class="detalle"><label>Teléfono</label><span>(555) 123-45678</span></div>
-                <div class="detalle"><label>Email</label><span>centro@kg.com</span></div>
-                <div class="detalle"><label>Dirección</label><span>9° a, Ac. 11 Sur #956</span></div>
-                <div class="detalle"><label>Jefe de cocina</label><span>P. Martínez</span></div>
-                <div class="detalle"><label>Manager</label><span>J. Rodríguez</span></div>
-                <div class="detalle"><label>Horario</label><span>9:00 - 22:00</span></div>
-                <div class="detalle"><label>Estatus</label><span>Activo</span></div>
-                <button class="btn-editar"><i class="fas fa-edit"></i> Editar</button>
-            </div>
 
+                <div class="detalle">
+                    <label>Nombre</label>
+                    <span>{{ sucursal.nombre }}</span>
+                </div>
+
+                <div class="detalle">
+                    <label>Teléfono</label>
+                    <span>{{ sucursal.telefono }}</span>
+                </div>
+
+                <div class="detalle">
+                    <label>Dirección</label>
+                    <span>{{ sucursal.direccion }}</span>
+                </div>
+
+                <div class="detalle">
+                    <label>Jefe de cocina</label>
+                    <span>{{ sucursal.Usuario.nombre }}</span>
+                </div>
+
+                <button class="btn-editar">
+                    <i class="fas fa-edit"></i> Editar
+                </button>
+            </div>
             <!-- Todas las sucursales -->
             <div class="card">
                 <h3><i class="fas fa-building"></i> Todas las sucursales</h3>
-                <div class="filtros">
-                    <button class="tag dark">Total 7</button>
-                    <button class="tag dark">Activos 5</button>
-                    <button class="tag dark">Stock bajo 1</button>
-                    <button class="tag">Ciudad: Todas</button>
-                    <button class="tag">Estatus: Activo</button>
-                    <button class="agregar"><i class="fas fa-plus"></i> Agregar</button>
-                </div>
                 <table>
                     <thead>
                         <tr>
@@ -66,20 +79,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @for (s of sucursales; track s.id_sucursal) {
                         <tr>
-                            <td>Central</td>
-                            <td>9° a, Ac. 11 Sur #956</td>
-                            <td>(555) 123-4567</td>
-                            <td>A. Reyes</td>
-                            <td>Activo</td>
+                            <td>{{ s.nombre }}</td>
+                            <td>{{ s.direccion }}</td>
+                            <td>{{ s.telefono }}</td>
+                            <td>{{ s.Usuario.nombre }}</td>
                         </tr>
-                        <tr>
-                            <td>Norte</td>
-                            <td>9° a, Ac. 11 Sur #956</td>
-                            <td>(555) 123-4567</td>
-                            <td>N. Ramírez</td>
-                            <td>Pendiente</td>
-                        </tr>
+                        }
                     </tbody>
                 </table>
             </div>

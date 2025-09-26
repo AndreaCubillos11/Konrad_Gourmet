@@ -23,7 +23,7 @@ export const routes: Routes = [
     { path: 'agregar_pedido', component: AgregarPedidoComponent },
     { path: 'consultar_pedido', component: ConsultarPedidoComponent },
     { path: 'home_admin', component: HomeAdminComponent },
-    { path: 'home_sucursal', component: HomeSucursalComponent},
+    { path: 'home_sucursal/:id', component: HomeSucursalComponent},
     { path: 'registrar_sucursal', component: RegistrarSucursalComponent},
     { path: 'home_proveedores', component: HomeProveedoresComponent},
     { path: 'home_listas', component: HomeListasComponent},
