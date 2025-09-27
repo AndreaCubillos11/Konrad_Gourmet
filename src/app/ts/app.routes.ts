@@ -15,7 +15,7 @@ import { HomeCrearUsuariosComponent } from './Admin/home_crearUsuarios.component
 import { HomeJefeComponent } from './JefeCocina/home_jefe.component';
 import { JefeMenuComponent } from './JefeCocina/jefe_menu.component';
 import { AgregarPlatoComponent } from './JefeCocina/agregar_plato.component';
-
+import { CrearUsuarioComponent } from './Admin/crear_usuario.component';
 
 
 
@@ -31,11 +31,12 @@ export const routes: Routes = [
     { path: 'home_proveedores', component: HomeProveedoresComponent },
     { path: 'home_listas', component: HomeListasComponent },
     { path: 'crear_lista', component: CrearListasComponent },
-    { path: 'crear_usuarios', component: HomeCrearUsuariosComponent },
+    { path: 'home_crear_usuarios', component: HomeCrearUsuariosComponent },
     { path: 'home_jefe', component: HomeJefeComponent },
     { path: 'jefe_menu', component: JefeMenuComponent },
     { path: 'agregar_plato', component: AgregarPlatoComponent },
-    { path: 'registrar_proveedor', component: RegistrarProveedorComponent }
+    { path: 'registrar_proveedor', component: RegistrarProveedorComponent },
+    { path: 'crear_usuario', component: CrearUsuarioComponent }
 
 ];
 
