@@ -1,0 +1,94 @@
+<div class="home-jefe-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="assets/images/KonradGourmetLogo.png" alt="Logo">
+        </div>
+        <nav>
+            <a routerLink="/home-jefe"><i class="fas fa-home"></i> Inicio</a>
+            <a routerLink="/jefe-menu" class="active"><i class="fas fa-utensils"></i> Menú</a>
+            <a routerLink="#"><i class="fas fa-clipboard-list"></i> Solicitudes</a>
+            <a routerLink="#"><i class="fa-solid fa-box"></i> Inventario</a>
+        </nav>
+    </aside>
+
+    <!-- Contenido -->
+    <div class="content">
+        <!-- Header -->
+        <header class="header">
+            <div class="alerta"><i class="fas fa-bell"></i> 1 alerta: Stock bajo</div>
+            <div class="header-right">
+                <div class="user"><i class="fas fa-user-circle"></i> Jefe de Cocina</div>
+                <button class="logout">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main class="main-content">
+            <h1>Plato Nuevo</h1>
+
+            <div class="form-plato">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre del plato</label>
+                        <input type="text" placeholder="Bandeja Paisa">
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría del Plato</label>
+                        <select>
+                            <option selected>Plato Fuerte</option>
+                            <option>Entrada</option>
+                            <option>Postre</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h3>Ingredientes del plato:</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Producto</label>
+                        <input type="text" placeholder="Frijol">
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría del Producto</label>
+                        <select>
+                            <option selected>Granos</option>
+                            <option>Proteínas</option>
+                            <option>Vegetales</option>
+                        </select>
+                    </div>
+                    <div class="form-group small">
+                        <label>Cantidad</label>
+                        <input type="number" placeholder="200">
+                    </div>
+                    <div class="form-group small">
+                        <label>Unidad</label>
+                        <select>
+                            <option selected>g</option>
+                            <option>kg</option>
+                            <option>unidad</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="acciones-ingrediente">
+                    <a href="#" class="eliminar">- Eliminar Ingrediente</a>
+                    <button type="button" class="btn-agregar"><i class="fas fa-plus"></i> Agregar ingrediente</button>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Precio del plato</label>
+                        <input type="text" placeholder="$ 25.200">
+                    </div>
+                </div>
+
+                <div class="form-botones">
+                    <button class="btn-guardar">Guardar</button>
+                    <button class="btn-cancelar">Cancelar</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

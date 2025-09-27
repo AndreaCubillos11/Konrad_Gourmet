@@ -1,0 +1,81 @@
+<div class="home-jefe-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet" />
+        </div>
+        <nav>
+            <a href="#"><i class="fas fa-home"></i> Inicio</a>
+            <a href="#"><i class="fas fa-utensils"></i> Menú</a>
+            <a href="#"><i class="fas fa-clipboard-list"></i> Solicitudes</a>
+            <a href="#"><i class="fa-solid fa-box"></i> Inventario</a>
+        </nav>
+    </aside>
+
+    <!-- Content -->
+    <div class="content">
+        <!-- Header -->
+        <header class="header">
+            <input type="text" placeholder="Buscar..." class="search" />
+            <button class="alerta"><i class="fas fa-bell"></i> 1 alerta: Stock bajo</button>
+            <div class="user">
+                <span><i class="fas fa-user-tie"></i> Jefe de Cocina</span>
+                <button class="logout">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main class="main-content">
+            <!-- Cards -->
+            <div class="grid-container">
+                <div class="card">
+                    <h3>12</h3>
+                    <p>Platos en el menú</p>
+                </div>
+                <div class="card">
+                    <h3>5</h3>
+                    <p>Stock Crítico</p>
+                </div>
+                <div class="card">
+                    <h3>3</h3>
+                    <p>Solicitudes pendientes</p>
+                </div>
+                <div class="card">
+                    <h3>80%</h3>
+                    <p>Disponibilidad de inventario</p>
+                </div>
+            </div>
+
+            <!-- Botón centrado -->
+            <div class="nueva-solicitud">
+                <button class="btn-solicitud">
+                    <i class="fas fa-plus-circle"></i> Nueva solicitud de alimentos
+                </button>
+            </div>
+
+            <!-- Botones grandes -->
+            <div class="botones-grandes">
+                <button class="big-btn">
+                    <i class="fas fa-utensils"></i> Registrar plato en el menú
+                </button>
+                <button class="big-btn outline">
+                    <i class="fas fa-chart-line"></i> Monitorear inventario
+                </button>
+            </div>
+
+            <!-- Platos recientes -->
+            <div class="card full-width">
+                <h3>
+                    Platos registrados recientemente
+                    <a href="#" class="ver-menu">Ver Menú</a>
+                </h3>
+                <ul>
+                    <li><i class="fas fa-times"></i> Ensalada César</li>
+                    <li><i class="fas fa-times"></i> Pasta al Pesto</li>
+                    <li><i class="fas fa-times"></i> Risotto de Champiñones</li>
+                    <li><i class="fas fa-times"></i> Sopa de Tomate</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+</div>

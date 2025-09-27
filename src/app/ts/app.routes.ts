@@ -12,7 +12,10 @@ import { RegistrarProveedorComponent } from './Admin/registrar_proveedor.compone
 import { HomeListasComponent } from './Admin/home_listas.component';
 import { CrearListasComponent } from './Admin/crear_listas.component';
 import { HomeCrearUsuariosComponent } from './Admin/home_crearUsuarios.component';
-import { CrearUsuarioComponent } from './Admin/crear_usuario.component';
+import { HomeJefeComponent } from './JefeCocina/home_jefe.component';
+import { JefeMenuComponent } from './JefeCocina/jefe_menu.component';
+import { AgregarPlatoComponent } from './JefeCocina/agregar_plato.component';
+
 
 
 
@@ -29,7 +32,9 @@ export const routes: Routes = [
     { path: 'home_listas', component: HomeListasComponent },
     { path: 'crear_lista', component: CrearListasComponent },
     { path: 'crear_usuarios', component: HomeCrearUsuariosComponent },
-    { path: 'crear_usuario', component: CrearUsuarioComponent }
+    { path: 'home_jefe', component: HomeJefeComponent },
+    { path: 'jefe_menu', component: JefeMenuComponent },
+    { path: 'agregar_plato', component: AgregarPlatoComponent }
 
 ];
 
