@@ -25,73 +25,43 @@
 
     <!-- Tabs -->
     <div class="tabs">
-      <div class="tab active">Entradas</div>
-      <div class="tab">Platos Fuertes</div>
-      <div class="tab">Postres</div>
-      <div class="tab">Bebidas</div>
+      <div
+        *ngFor="let cat of categorias"
+        class="tab"
+        [class.active]="cat === categoriaSeleccionada"
+        (click)="seleccionarCategoria(cat)">
+        {{ cat }}
+      </div>
     </div>
 
     <div class="layout">
       <!-- Lista de platos -->
       <div class="menu-list">
-        <div class="menu-item">
-          <span>Filete de Res</span>
-          <button>Agregar</button>
-        </div>
-        <div class="menu-item">
-          <span>Pasta al Pesto</span>
-          <button>Agregar</button>
-        </div>
-        <div class="menu-item">
-          <span>Risotto de Champiñones</span>
-          <button>Agregar</button>
-        </div>
-        <div class="menu-item">
-          <span>Sopa de Tomate</span>
-          <button>Agregar</button>
+        <div class="menu-item" *ngFor="let producto of getProductosPorCategoria()">
+          <span>{{ producto.nombre }}</span>
+          <button (click)="agregar(producto)">Agregar</button>
         </div>
       </div>
 
       <!-- Panel de pedido -->
       <div class="order-panel">
         <h2>Detalle del pedido</h2>
+
         <label for="mesa">Mesa:</label>
-        <select id="mesa">
-          <option>Mesa 1</option>
-          <option>Mesa 2</option>
-          <option>Mesa 3</option>
-          <option>Mesa 4</option>
-          <option>Mesa 5</option>
+        <select id="mesa" [(ngModel)]="mesaSeleccionada">
+          <option *ngFor="let m of mesas" [value]="m">Mesa {{ m }}</option>
         </select>
 
-        <div class="order-item">
-          <span>Filete de Res (x2)</span>
+        <div class="order-item" *ngFor="let p of pedido">
+          <span>{{ p.nombre }} (x{{ p.cantidad }})</span>
           <div class="order-actions">
-            <button><i class="fa-solid fa-plus"></i></button>
-            <button><i class="fa-solid fa-minus"></i></button>
-            <button><i class="fa-solid fa-trash"></i></button>
+            <button (click)="incrementar(p)"><i class="fa-solid fa-plus"></i></button>
+            <button (click)="disminuir(p)"><i class="fa-solid fa-minus"></i></button>
+            <button (click)="eliminar(p)"><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>
 
-        <div class="order-item">
-          <span>Tarta de Queso (x1)</span>
-          <div class="order-actions">
-            <button><i class="fa-solid fa-plus"></i></button>
-            <button><i class="fa-solid fa-minus"></i></button>
-            <button><i class="fa-solid fa-trash"></i></button>
-          </div>
-        </div>
-
-        <div class="order-item">
-          <span>Coca - Cola (x2)</span>
-          <div class="order-actions">
-            <button><i class="fa-solid fa-plus"></i></button>
-            <button><i class="fa-solid fa-minus"></i></button>
-            <button><i class="fa-solid fa-trash"></i></button>
-          </div>
-        </div>
-
-        <button class="send-order">Enviar Pedido</button>
+        <button class="send-order" (click)="enviarPedido()">Enviar Pedido</button>
       </div>
     </div>
   </div>
