@@ -34,7 +34,8 @@ export const routes: Routes = [
     { path: 'crear_usuarios', component: HomeCrearUsuariosComponent },
     { path: 'home_jefe', component: HomeJefeComponent },
     { path: 'jefe_menu', component: JefeMenuComponent },
-    { path: 'agregar_plato', component: AgregarPlatoComponent }
+    { path: 'agregar_plato', component: AgregarPlatoComponent },
+    { path: 'registrar_proveedor', component: RegistrarProveedorComponent }
 
 ];
 
