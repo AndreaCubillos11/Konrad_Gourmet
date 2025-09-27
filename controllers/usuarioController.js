@@ -4,8 +4,9 @@ const Usuario = require("../models/Usuario");
 const Rol = require("../models/Rol");
 const Auditoria = require("../models/Auditoria");
 
+const { SECRET_KEY } = require("../middlewares/auth");
+
 const SALT_ROUNDS = 10;
-const SECRET_KEY = "token_key"; //asignar despues la llave, la misma de auth.js
 
 // POST: crear usuario
 exports.crearUsuario = async (req, res, next) => {
@@ -72,7 +73,7 @@ exports.login = async (req, res, next) => {
     const token = jwt.sign(
       { id_usuario: usuario.id_usuario, correo: usuario.correo, id_rol: usuario.id_rol },
       SECRET_KEY,
-      { expiresIn: "1h" } // caduca en 1 hora
+      { expiresIn: "8h" } // caduca en 8 horas
     );
 
     // Auditoría

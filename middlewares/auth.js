@@ -1,5 +1,11 @@
 const jwt = require("jsonwebtoken");
-const SECRET_KEY = "token_key"; //asignar despues la llave, la misma de usuarioController.js
+// auth.js
+const crypto = require("crypto");
+
+// Genera una clave aleatoria segura (256 bits = 32 bytes)
+const SECRET_KEY = crypto.randomBytes(32).toString("hex");
+
+module.exports = { SECRET_KEY };
 
 exports.verificarToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
