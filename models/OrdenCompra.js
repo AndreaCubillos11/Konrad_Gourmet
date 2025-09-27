@@ -31,6 +31,5 @@ const OrdenCompra = sequelize.define("OrdenCompra", {
 
 // Relación
 OrdenCompra.belongsTo(Proveedor, { foreignKey: "id_proveedor" });
-Proveedor.hasMany(OrdenCompra, { foreignKey: "id_proveedor" });
 
 module.exports = OrdenCompra;

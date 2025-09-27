@@ -13,6 +13,10 @@ const Proveedor = sequelize.define("Proveedor", {
         type: DataTypes.STRING(100),
         allowNull: false
     },
+    nit: {
+        type: DataTypes.STRING(20),
+        allowNull: false
+    },
     direccion: {
         type: DataTypes.STRING(150),
         allowNull: true
@@ -34,8 +38,7 @@ const Proveedor = sequelize.define("Proveedor", {
 });
 
 // Relaciones
-Proveedor.hasMany(OrdenCompra, { foreignKey: "id_proveedor" });
-OrdenCompra.belongsTo(Proveedor, { foreignKey: "id_proveedor" });
+
 
 Proveedor.hasMany(Cotizacion, { foreignKey: "id_proveedor" });
 Cotizacion.belongsTo(Proveedor, { foreignKey: "id_proveedor" });

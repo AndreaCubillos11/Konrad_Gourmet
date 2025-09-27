@@ -49,8 +49,6 @@ exports.crearSolicitud = async (req, res, next) => {
             }
         });
 
-
-
         // Crear la solicitud (la fecha la genera el servidor)
         const nuevaSolicitud = await SolicitudAlimento.create({
             cantidad,

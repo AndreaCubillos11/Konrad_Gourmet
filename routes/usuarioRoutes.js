@@ -1,17 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const usuarioController = require("../controllers/usuarioController");
+const auth = require("../middlewares/auth"); // tu archivo auth.js
 
+// Ruta de login (NO requiere token)
+router.post("/login", usuarioController.login);
 
-// Consultar todos los usuarios
-router.get("/usuarios", usuarioController.obtenerUsuarios);
-
-// Consultar un usuario por id
-router.get("/usuarios/:id", usuarioController.obtenerUsuarioPorId);
-
-
-router.post("/usuarios", usuarioController.crearUsuario);
-
-router.put("/usuarios/:id_usuario",usuarioController.modificarUsuario);
+// Rutas que SÍ requieren token
+router.post("/usuarios", auth.verificarToken, usuarioController.crearUsuario);
+router.get("/usuarios", auth.verificarToken, usuarioController.obtenerUsuarios);
+router.get("/usuarios/:id", auth.verificarToken, usuarioController.obtenerUsuarioPorId);
+router.put("/usuarios/:id_usuario", auth.verificarToken, usuarioController.modificarUsuario);
 
 module.exports = router;

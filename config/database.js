@@ -10,6 +10,7 @@ class Database {
         dialect: "postgres",
         logging: false,
         // en mi caso (Andres) es necesario establecer la conexión por puerto (opcional, por si no llega a funcionar) port: 5433,
+      port: 5433,
       });
       Database.instance = this;
     }// cierra if 

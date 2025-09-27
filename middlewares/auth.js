@@ -5,15 +5,16 @@ exports.verificarToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
+  console.log("verificando token...")
   if (!token) {
     return res.status(403).json({ error: "Token requerido" });
   }
 
   jwt.verify(token, SECRET_KEY, (err, usuario) => {
     if (err) {
-      return res.status(403).json({ error: "Token inválido o expirado" });
+      // Pasamos el error a errorLogger
+      return next(err);
     }
-
     req.usuario = usuario;
     next();
   });
