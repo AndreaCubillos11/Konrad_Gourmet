@@ -7,6 +7,12 @@
     background-color: #00153a;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #00153a;
+}
+
 /* Tarjeta principal */
 .login-card {
     background-color: white;

@@ -1,14 +1,10 @@
 /* ===== Layout general ===== */
 body {
     margin: 0;
+    display: flex;
     font-family: Arial, sans-serif;
     height: 100vh;
     background-color: #f8f9fa;
-}
-
-.home-jefe-container {
-    display: flex;
-    height: 100vh;
 }
 
 /* ===== Sidebar ===== */
@@ -16,9 +12,14 @@ body {
     width: 220px;
     background-color: #0b2a55;
     color: white;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .logo img {
@@ -34,7 +35,7 @@ body {
 
 .sidebar nav a {
     text-decoration: none;
-    color: #fff;
+    color: white;
     padding: 10px;
     border-radius: 8px;
     display: flex;
@@ -48,8 +49,9 @@ body {
     background: #163d75;
 }
 
-/* ===== Content ===== */
+/* ===== Contenido principal ===== */
 .content {
+    margin-left: 220px;
     flex: 1;
     display: flex;
     flex-direction: column;

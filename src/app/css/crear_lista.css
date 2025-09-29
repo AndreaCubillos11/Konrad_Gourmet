@@ -66,27 +66,27 @@ body {
     margin-left: 220px; /* deja espacio a la derecha de la sidebar */
 }
 
-/* ===== HEADER ===== */
+/* ===== Header ===== */
 .header {
-    background: #f8f9fa;
-    padding: 12px 20px;
+    background-color: #f8f9fa;
+    padding: 15px 20px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-.search {
+.header .search {
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    width: 200px;
+    font-size: 14px;
 }
 
-.alerta {
+.header .alerta {
     background: #b58c58;
-    color: #fff;
+    color: white;
     border: none;
     padding: 8px 14px;
     border-radius: 6px;
@@ -94,25 +94,31 @@ body {
     font-weight: bold;
 }
 
-.user {
+.header .alerta:hover {
+    background: #966c3d;
+}
+
+.header .user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-weight: bold;
     color: #0b2a55;
 }
 
-.logout {
+.header .logout {
     background: #0b2a55;
     border: none;
     color: white;
     padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    font-weight: bold;
 }
 
-.logout:hover {
-    background: #163a73;
+.header .logout:hover {
+    background: #163d75;
 }
-
 /* ===== Contenedor principal ===== */
 .main-content {
     flex-grow: 1;

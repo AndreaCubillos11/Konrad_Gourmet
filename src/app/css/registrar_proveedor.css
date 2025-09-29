@@ -108,6 +108,14 @@ body {
     font-size: 0.95rem;
 }
 
+.topbar .user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    color: #0b2a55;
+}
+
 .logout {
     background: #0b2a55;
     border: none;

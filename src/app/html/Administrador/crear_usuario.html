@@ -17,14 +17,16 @@
     </aside>
 
     <!-- Contenido -->
-    <main class="content">
+    <div class="content">
         <!-- Header -->
-        <header class="header">
-            <input type="text" class="search" placeholder="Buscar..." />
-            <button class="alerta"><i class="fa-solid fa-bell"></i> 1 alerta: Stock bajo</button>
-            <span class="user"><i class="fa-solid fa-user"></i> Administrador</span>
-            <button class="logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
-        </header>
+        <div class="header">
+            <input type="text" placeholder="Buscar..." class="search">
+            <button class="alerta"><i class="fas fa-bell"></i> 1 Alerta: Stock bajo</button>
+            <div class="user">
+                <span><i class="fas fa-user-shield"></i> Administrador</span>
+                <button class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+            </div>
+        </div>
 
         <!-- Formulario crear usuario -->
         <section class="form-container">
@@ -79,5 +81,5 @@
                 <button class="btn-cancel"><i class="fa-solid fa-xmark"></i> Cancelar</button>
             </div>
         </section>
-    </main>
+    </div>
 </div>

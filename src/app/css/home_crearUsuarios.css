@@ -1,24 +1,28 @@
-/* Reutilizando tu base */
+/* ===== Layout general ===== */
 body {
     margin: 0;
+    display: flex;
     font-family: Arial, sans-serif;
+    height: 100vh;
     background-color: #f8f9fa;
 }
 
-/* Sidebar */
+/* ===== Sidebar ===== */
 .sidebar {
     width: 220px;
     background-color: #0b2a55;
     color: white;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
     position: fixed;
     top: 0;
     left: 0;
-    padding: 20px;
-    box-sizing: border-box;
 }
 
-.sidebar .logo img {
+.logo img {
     width: 160px;
     margin-bottom: 20px;
 }
@@ -34,56 +38,89 @@ body {
     color: white;
     padding: 10px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     transition: background 0.3s;
 }
 
-.sidebar nav a.active,
-.sidebar nav a:hover {
+.sidebar nav a:hover,
+.sidebar nav a.active {
     background: #163d75;
 }
 
-/* Contenido */
+/* ===== Contenido principal ===== */
 .content {
     margin-left: 220px;
-    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Header */
+/* ===== Header ===== */
 .header {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.search {
-    padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-.header-right {
-    display: flex;
+    justify-content: flex-end;
     align-items: center;
     gap: 15px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-.alert {
-    background: #a66b00;
+.header .search {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.header .alerta {
+    background: #b58c58;
     color: white;
     border: none;
-    padding: 6px 12px;
+    padding: 8px 14px;
     border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.logout {
+.header .alerta:hover {
+    background: #966c3d;
+}
+
+.header .user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    color: #0b2a55;
+}
+
+.header .logout {
     background: #0b2a55;
-    color: white;
     border: none;
-    padding: 6px 12px;
+    color: white;
+    padding: 8px 14px;
     border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-/* Tabs */
+.header .logout:hover {
+    background: #163d75;
+}
+
+/* ===== Main ===== */
+.main-content {
+    padding: 25px;
+}
+
+.main-header h1 {
+    color: #0b2a55;
+}
+
+/* ===== Tabs ===== */
 .tabs {
     margin: 20px 0;
     display: flex;
@@ -96,6 +133,7 @@ body {
     padding: 8px 16px;
     border-radius: 6px;
     cursor: pointer;
+    transition: background 0.3s;
 }
 
 .tab.active {
@@ -103,7 +141,7 @@ body {
     color: white;
 }
 
-/* Grid */
+/* ===== Grid ===== */
 .grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -112,32 +150,45 @@ body {
 
 .card {
     background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 .card.full {
     grid-column: span 2;
 }
 
+.card h3 {
+    margin: 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0b2a55;
+}
+
+/* ===== Tablas ===== */
 table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 14px;
     margin-top: 10px;
 }
 
-table th,
-table td {
-    border-bottom: 1px solid #ddd;
-    padding: 8px;
+thead {
+    background-color: #f1f1f1;
+}
+
+th, td {
+    padding: 10px;
     text-align: left;
+    border-bottom: 1px solid #eee;
 }
 
-table tr:hover {
-    background: #f1f1f1;
+tbody tr:hover {
+    background-color: #f9f9f9;
 }
 
+/* ===== Detalles usuario ===== */
 .detail-actions {
     display: flex;
     gap: 10px;
@@ -148,14 +199,64 @@ table tr:hover {
     background: #0b2a55;
     color: white;
     border: none;
-    padding: 6px 12px;
+    padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
 }
 
+.detail-actions button:hover {
+    background: #163d75;
+}
+
+/* ===== Permisos ===== */
 .permissions {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
     margin-top: 10px;
+}
+
+.permissions label {
+    display: block;
+    margin: 5px 0;
+}
+
+/* ===== Botones de acciones ===== */
+.actions {
+    display: flex;
+    gap: 12px; /* espacio entre botones */
+}
+
+.actions button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Botón principal (azul oscuro) */
+.actions button:first-child {
+    background-color: #0b2a55;
+    color: white;
+}
+
+.actions button:first-child:hover {
+    background-color: #163d75;
+}
+
+/* Botón secundario (dorado) */
+.actions button:last-child {
+    background-color: #b58c58;
+    color: white;
+}
+
+.actions button:last-child:hover {
+    background-color: #966c3d;
 }

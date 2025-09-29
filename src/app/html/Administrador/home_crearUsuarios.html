@@ -3,25 +3,25 @@
         <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet" />
     </div>
     <nav>
-        <a routerLink="/inicio" class="active"><i class="fa-solid fa-house"></i> Inicio</a>
+        <a routerLink="/inicio"><i class="fa-solid fa-house"></i> Inicio</a>
         <a routerLink="/home_sucursal"><i class="fa-solid fa-building"></i> Sucursales</a>
         <a routerLink="/proveedores"><i class="fa-solid fa-truck"></i> Proveedores</a>
         <a routerLink="/inventario"><i class="fa-solid fa-box"></i> Inventario</a>
         <a routerLink="/listas"><i class="fa-solid fa-list"></i> Listas</a>
         <a routerLink="/auditorias"><i class="fa-solid fa-clipboard-check"></i> Auditorías</a>
         <a routerLink="/errores"><i class="fa-solid fa-triangle-exclamation"></i> Errores</a>
-        <a routerLink="/usuarios"><i class="fa-solid fa-users"></i> Usuarios y roles</a>
+        <a routerLink="/usuarios" class="active"><i class="fa-solid fa-users"></i> Usuarios y roles</a>
     </nav>
 </div>
 
 <div class="content">
     <!-- Header -->
     <div class="header">
-        <input type="text" class="search" placeholder="Buscar..." />
-        <div class="header-right">
-            <button class="alert"><i class="fa-solid fa-bell"></i> 1 alerta: Stock bajo</button>
-            <div class="user"><i class="fa-solid fa-user-shield"></i> Administrador</div>
-            <button class="logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
+        <input type="text" placeholder="Buscar..." class="search">
+        <button class="alerta"><i class="fas fa-bell"></i> 1 Alerta: Stock bajo</button>
+        <div class="user">
+            <span><i class="fas fa-user-shield"></i> Administrador</span>
+            <button class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
         </div>
     </div>
 

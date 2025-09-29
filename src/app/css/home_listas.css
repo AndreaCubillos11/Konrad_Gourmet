@@ -1,8 +1,7 @@
-/* ===== Layout general ===== */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
     display: flex;
+    font-family: Arial, sans-serif;
     height: 100vh;
     background-color: #f8f9fa;
 }
@@ -22,11 +21,13 @@ body {
     left: 0;
 }
 
+/* Logo */
 .logo img {
     width: 160px;
     margin-bottom: 20px;
 }
 
+/* Menú de navegación */
 .sidebar nav {
     display: flex;
     flex-direction: column;
@@ -44,14 +45,10 @@ body {
     transition: background 0.3s;
 }
 
+/* Hover y activo */
 .sidebar nav a:hover,
 .sidebar nav a.active {
     background: #163d75;
-}
-
-.sidebar nav a i {
-    width: 18px;
-    text-align: center;
 }
 
 /* ===== Content ===== */
