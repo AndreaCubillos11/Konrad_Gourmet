@@ -1,0 +1,116 @@
+<div class="solicitud-alimentos-container">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet" />
+        </div>
+        <nav>
+            <a href="#"><i class="fas fa-home"></i> Inicio</a>
+            <a href="#"><i class="fas fa-utensils"></i> Menú</a>
+            <a href="#" class="active"><i class="fas fa-clipboard-list"></i> Solicitudes</a>
+            <a href="#"><i class="fas fa-box"></i> Inventario</a>
+        </nav>
+    </aside>
+
+    <!-- ===== Content ===== -->
+    <div class="content">
+        <!-- ===== Header ===== -->
+        <header class="header">
+            <button class="alerta"><i class="fas fa-bell"></i> 1 alerta: Stock bajo</button>
+            <div class="user"><i class="fas fa-user"></i> Jefe de Cocina</div>
+            <button class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </header>
+
+        <!-- ===== Main content ===== -->
+        <main class="main-content">
+            <div class="solicitud-layout">
+                <!-- ===== Formulario de solicitud ===== -->
+                <form class="form-solicitud">
+                    <h2>Solicitud de Alimentos</h2>
+
+                    <div class="form-row">
+                        <label>Sucursal</label>
+                        <input type="text" value="Sucursal Chapinero" readonly />
+                    </div>
+
+                    <div class="form-row">
+                        <label>Solicitante</label>
+                        <input type="text" value="Javier García" readonly />
+                    </div>
+
+                    <div class="form-row">
+                        <label>Producto</label>
+                        <input type="text" value="Leche Entera" />
+                    </div>
+
+                    <div class="form-row">
+                        <label>Categoría del Producto</label>
+                        <select>
+                            <option>Lácteos</option>
+                            <option>Cárnicos</option>
+                            <option>Verduras</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Cantidad</label>
+                        <input type="number" value="20" />
+                    </div>
+
+                    <div class="form-row">
+                        <label>Unidad</label>
+                        <select>
+                            <option>Litros</option>
+                            <option>Kilos</option>
+                            <option>Unidades</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Marca</label>
+                        <input type="text" value="Alpina" />
+                    </div>
+
+                    <div class="acciones-producto">
+                        <a href="#" class="eliminar"><i class="fas fa-minus-circle"></i> Eliminar Producto</a>
+                        <a href="#" class="agregar"><i class="fas fa-plus-circle"></i> Agregar Producto</a>
+                    </div>
+
+                    <div class="acciones-form">
+                        <button type="submit" class="btn-enviar">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitud
+                        </button>
+                        <button type="button" class="btn-cancelar">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </form>
+
+                <!-- ===== Alertas de Stock Bajo ===== -->
+                <aside class="alertas-stock">
+                    <h3>Alertas de Stock Bajo</h3>
+
+                    <div class="alerta-item">
+                        <div class="alerta-info">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span><strong>Zanahorias</strong> (Stock bajo, &lt;25%) - <span class="cantidad">22</span></span>
+                        </div>
+                        <button class="btn-solicitar">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+
+                    <div class="alerta-item">
+                        <div class="alerta-info">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span><strong>Mantequilla</strong> (Stock bajo, &lt;25%) - <span class="cantidad">18</span></span>
+                        </div>
+                        <button class="btn-solicitar">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </aside>
+            </div>
+        </main>
+    </div>
+</div>

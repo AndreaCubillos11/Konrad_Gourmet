@@ -1,0 +1,154 @@
+<div class="inventario-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet Logo">
+        </div>
+        <nav>
+            <a href="#"><i class="fas fa-home"></i> Inicio</a>
+            <a href="#"><i class="fas fa-utensils"></i> Menú</a>
+            <a href="#"><i class="fas fa-clipboard-list"></i> Solicitudes</a>
+            <a href="#" class="active"><i class="fas fa-box"></i> Inventario</a>
+        </nav>
+    </aside>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <!-- Header -->
+        <header class="header">
+            <button class="alerta">
+                <i class="fas fa-bell"></i> 1 alerta: Stock bajo
+            </button>
+            <div class="user">
+                <i class="fas fa-user-circle"></i> Jefe de Cocina
+            </div>
+            <button class="logout">Cerrar Sesión</button>
+        </header>
+
+        <!-- Inventario -->
+        <main class="main-content">
+            <div class="tabla-container">
+                <h2>Inventario</h2>
+
+                <!-- Filtros -->
+                <div class="filtros">
+                    <button class="filtro active">Todas</button>
+                    <button class="filtro">Vegetales</button>
+                    <button class="filtro">Proteínas</button>
+                    <button class="filtro">Lácteos</button>
+                    <button class="filtro">Granos</button>
+                </div>
+
+                <!-- Contenido con grid + columna lateral -->
+                <div class="contenido-inventario">
+                    <!-- Grid principal -->
+                    <div class="grid-inventario">
+                        <!-- Vegetales -->
+                        <div class="card">
+                            <h3>Vegetales</h3>
+                            <div class="item">
+                                <span>Tomate</span>
+                                <span>80 Unidades • 75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress azul" style="width: 75%;"></div>
+                            </div>
+
+                            <div class="item">
+                                <span>Cebolla</span>
+                                <span>50 Unidades • 45%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress azul" style="width: 45%;"></div>
+                            </div>
+
+                            <div class="item">
+                                <span>Zanahorias</span>
+                                <span>20 Unidades • 19%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress rojo" style="width: 19%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Lácteos -->
+                        <div class="card">
+                            <h3>Lácteos</h3>
+                            <div class="item">
+                                <span>Queso</span>
+                                <span>80 Unidades • 75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress azul" style="width: 75%;"></div>
+                            </div>
+
+                            <div class="item">
+                                <span>Mantequilla</span>
+                                <span>18 Unidades • 20%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress rojo" style="width: 20%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Proteínas -->
+                        <div class="card">
+                            <h3>Proteínas</h3>
+                            <div class="item">
+                                <span>Carne de Res</span>
+                                <span>60 Unidades • 70%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress azul" style="width: 70%;"></div>
+                            </div>
+
+                            <div class="item">
+                                <span>Pollo</span>
+                                <span>35 Unidades • 30%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress amarillo" style="width: 30%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Granos -->
+                        <div class="card">
+                            <h3>Granos</h3>
+                            <div class="item">
+                                <span>Frijol</span>
+                                <span>300 kg • 80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress azul" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna lateral derecha -->
+                    <aside class="sidebar-derecha">
+                        <div class="movimientos">
+                            <h3>Últimos Movimientos</h3>
+                            <ul>
+                                <li>+20 kg Tomate (27/09/2025)</li>
+                                <li>-10 Unid Mantequilla (26/09/2025)</li>
+                                <li>+50 kg Frijol (25/09/2025)</li>
+                            </ul>
+                        </div>
+
+                        <div class="alertas-stock">
+                            <h3>Alertas de Stock Bajo</h3>
+                            <div class="alerta-item">
+                                <span>Zanahorias (20 u.)</span>
+                                <button class="solicitar">Solicitar</button>
+                            </div>
+                            <div class="alerta-item">
+                                <span>Mantequilla (18 u.)</span>
+                                <button class="solicitar">Solicitar</button>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
