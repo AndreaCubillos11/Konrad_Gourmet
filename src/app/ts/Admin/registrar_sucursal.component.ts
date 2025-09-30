@@ -4,7 +4,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // 👈 impor
 import { SucursalService } from '../../services/Administrador/sucursal-service';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/Administrador/usuario-service';
-import { CommonModule } from '@angular/common';  // 👈 para *ngFor y demás
+import { CommonModule } from '@angular/common';  
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-registrar-sucursal',
@@ -22,7 +23,8 @@ export class RegistrarSucursalComponent implements OnInit {
         private formBuilder: FormBuilder,
         private router: Router,
         private sucursalService: SucursalService,
-        private usuarioService: UsuarioService
+        private usuarioService: UsuarioService,
+        private cookieService: CookieService
     ) { }
 
     ngOnInit(): void {
@@ -45,7 +47,7 @@ export class RegistrarSucursalComponent implements OnInit {
 
         // aquí va la lógica para guardar en backend con sucursalService
         console.log(this.sucursalForm.value)
-        this.sucursalService.nuevaSucursal(this.sucursalForm.value).subscribe(
+        this.sucursalService.nuevaSucursal(this.sucursalForm.value,this.cookieService.get('token')).subscribe(
             () => {
                 console.log("Sucursal registrada");
             },
@@ -56,7 +58,7 @@ export class RegistrarSucursalComponent implements OnInit {
     }
 
     cargarUsuarios(): void {
-        this.usuarioService.consultarUsuarios(2).subscribe({
+        this.usuarioService.consultarUsuarios(2, this.cookieService.get('token')).subscribe({
             next: (data) => {
                 this.usuarios = data.usuarios;
                 console.log(this.usuarios);

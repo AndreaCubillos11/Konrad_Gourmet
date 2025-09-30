@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SucursalService } from '../../services/Administrador/sucursal-service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-home-admin',
@@ -13,7 +14,8 @@ export class HomeAdminComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private sucursalService: SucursalService
+        private sucursalService: SucursalService,
+        private cookieService: CookieService
     ) { }
 
     ngOnInit(): void {
@@ -21,7 +23,7 @@ export class HomeAdminComponent implements OnInit {
     }
 
     cargarSucursales(): void {
-        this.sucursalService.consultarSucursales(2).subscribe({
+        this.sucursalService.consultarSucursales(2,this.cookieService.get('token')).subscribe({
             next: (data) => {
                 this.sucursal = data.sucursales; // 👈 usar la propiedad correcta
             },

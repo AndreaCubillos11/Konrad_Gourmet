@@ -13,39 +13,39 @@ export class SucursalService {
   constructor(private http: HttpClient) { }
 
 
-  consultarSucursales(idUsuario: any): Observable<any> {
+  consultarSucursales(idUsuario: any,token:any): Observable<any> {
     return this.http.get<any>(
       `${this.apiUrl}?creador_id=${idUsuario}`,
       {
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
         }
       }
     );
   }
 
   // Consulta sucursal por id
-  consultarSucursalPorId(idSucursal: number, creadorId: number): Observable<any> {
+  consultarSucursalPorId(idSucursal: number, creadorId: number,token:any): Observable<any> {
     return this.http.get<any>
     (`${this.apiUrl}/${idSucursal}?creador_id=${creadorId}`,
     {
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
         }
       }
     );
   }
 
-  nuevaSucursal( data: any): Observable<any> {
+  nuevaSucursal( data: any,token:any): Observable<any> {
     return this.http.post<any>(
       this.apiUrlP,
       data,
       {
         headers: {
           'Content-Type': 'application/json',
-         // 'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${token}`
         }
       });
   }

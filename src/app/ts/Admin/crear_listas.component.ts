@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // 👈 impor
 import { Router } from '@angular/router';
 import { ListasDesplegables } from '../../services/Administrador/listas-desplegables';
 import { CommonModule } from '@angular/common';  // 👈 para *ngFor y demás
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -43,7 +44,8 @@ unidades = [
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
-        private listaDesplegables: ListasDesplegables
+        private listaDesplegables: ListasDesplegables,
+        private cookieService: CookieService
 
     ) { }
 
@@ -102,7 +104,7 @@ unidades = [
 crearCategoriaPlato(): void {
     console.log(this.catPlatoForm.value); // aquí tienes categoria_Plato y creador_id
 
-    this.listaDesplegables.nuevaCategoriaPlato(this.catPlatoForm.value).subscribe(
+    this.listaDesplegables.nuevaCategoriaPlato(this.catPlatoForm.value,this.cookieService.get('token')).subscribe(
         () => {
             console.log("Categoría de plato registrada");
         },
@@ -115,7 +117,7 @@ crearCategoriaPlato(): void {
 crearCategoriaProducto(): void {
     console.log(this.catProductoForm.value); // aquí tienes categoria_Plato y creador_id
 
-    this.listaDesplegables.nuevaCategoriaPlato(this.catProductoForm.value).subscribe(
+    this.listaDesplegables.nuevaCategoriaPlato(this.catProductoForm.value,this.cookieService.get('token')).subscribe(
         () => {
             console.log("Categoría registrada");
         },
@@ -128,7 +130,7 @@ crearCategoriaProducto(): void {
 crearUnidad(): void {
     console.log(this.unidadForm.value); // aquí tienes categoria_Plato y creador_id
 
-    this.listaDesplegables.nuevaCategoriaPlato(this.unidadForm.value).subscribe(
+    this.listaDesplegables.nuevaCategoriaPlato(this.unidadForm.value,this.cookieService.get('token')).subscribe(
         () => {
             console.log("Categoría registrada");
         },
@@ -141,7 +143,7 @@ crearUnidad(): void {
 crearProducto(): void {
     console.log(this.productoForm.value); // aquí tienes categoria_Plato y creador_id
 
-    this.listaDesplegables.nuevaCategoriaPlato(this.productoForm.value).subscribe(
+    this.listaDesplegables.nuevaCategoriaPlato(this.productoForm.value,this.cookieService.get('token')).subscribe(
         () => {
             console.log("Categoría registrada");
         },

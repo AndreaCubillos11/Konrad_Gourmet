@@ -2,12 +2,12 @@
     <div class="login-card">
         <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet Logo" class="logo" />
 
-        <form>
+        <form (ngSubmit)= "onSubmit()" [formGroup] = "loginForm">
             <div class="input-group">
                 <label for="email">Correo Electrónico</label>
                 <div class="input-wrapper">
                     <span class="icon"> 👤 </span>
-                    <input type="email" id="email" placeholder="Admin@KonradGourmet.co" required />
+                    <input type="email" id="email" placeholder="Admin@KonradGourmet.co" required formControlName = "correo" />
                 </div>
             </div>
 
@@ -15,7 +15,7 @@
                 <label for="password">Contraseña</label>
                 <div class="input-wrapper">
                     <span class="icon">🔒</span>
-                    <input type="password" id="password" placeholder="••••••••" required />
+                    <input type="password" id="password" placeholder="••••••••" required  formControlName = "contrasena"/>
                 </div>
             </div>
 

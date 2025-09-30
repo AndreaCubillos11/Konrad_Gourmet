@@ -12,26 +12,26 @@ export class ListasDesplegables {
 
   constructor(private http: HttpClient) { }
 
-  nuevaCategoriaPlato(data: any): Observable<any> {
+  nuevaCategoriaPlato(data: any,token:any): Observable<any> {
     return this.http.post<any>(
       this.apiUrl,
       data,
       {
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
         }
       });
   }
 
-  nuevaCategoriaProducto(data: any): Observable<any> {
+  nuevaCategoriaProducto(data: any,token:any): Observable<any> {
     return this.http.post<any>(
       this.apiUrl,
       data,
       {
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
         }
       });
   }

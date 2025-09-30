@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SucursalService } from '../../services/Administrador/sucursal-service';
 import { CommonModule } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
     selector: 'app-home-sucursal',
@@ -34,7 +36,8 @@ export class HomeSucursalComponent implements OnInit {
 */
     constructor(
         private route: ActivatedRoute,
-        private sucursalService: SucursalService
+        private sucursalService: SucursalService,
+        private cookieService: CookieService
     ) { }
 
     ngOnInit(): void {
@@ -44,7 +47,7 @@ export class HomeSucursalComponent implements OnInit {
     }
 
     cargarSucursal(idSucursal: number): void {
-        this.sucursalService.consultarSucursalPorId(idSucursal, this.creadorId).subscribe({
+        this.sucursalService.consultarSucursalPorId(idSucursal, this.creadorId, this.cookieService.get('token')).subscribe({
             next: (data) => {
                 this.sucursal = data.sucursal;
                 console.log('Detalle de sucursal:', this.sucursal);
@@ -55,8 +58,8 @@ export class HomeSucursalComponent implements OnInit {
         });
     }
 
-        cargarSucursales(): void {
-        this.sucursalService.consultarSucursales(2).subscribe({
+    cargarSucursales(): void {
+        this.sucursalService.consultarSucursales(2,this.cookieService.get('token')).subscribe({
             next: (data) => {
                 this.sucursales = data.sucursales;
             },

@@ -12,7 +12,8 @@
       "architect": {
         "build": {
           "builder": "@angular/build:application",
-          "options": {
+          "options":  {
+            "aot": true,
             "index": "src/app/html/index.html",
             "browser": "src/app/ts/main.ts",
             "polyfills": [
