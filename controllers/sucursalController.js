@@ -5,11 +5,10 @@ const Auditoria = require("../models/Auditoria");
 // Crear una sucursal
 exports.crearSucursal = async (req, res, next) => {
   try {
-    const { nombre, direccion, telefono, id_usuario, creador_id } = req.body;
+    const { nombre, direccion, telefono, id_usuario, creador_id,estado } = req.body;
 
     // Verificar permisos -> solo admin (ej: rol 1)
     const creador = await Usuario.findOne({ where: { id_usuario: creador_id } });
-    console.log(creador);
 
     if (!creador || creador.id_rol !== 1) {
       return res.status(403).json({ error: "No autorizado para crear sucursal" });
@@ -29,7 +28,8 @@ exports.crearSucursal = async (req, res, next) => {
       nombre,
       direccion,
       telefono,
-      id_usuario
+      id_usuario,
+      estado
     });
 
     // Registrar en auditoría

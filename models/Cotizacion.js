@@ -9,7 +9,7 @@ const Cotizacion = sequelize.define("Cotizacion", {
         autoIncrement: true,
         primaryKey: true
     },
-    fecha_hora: {
+    fecha_maxima_resp: {
         type: DataTypes.DATE,
         allowNull: false
     },
@@ -17,18 +17,35 @@ const Cotizacion = sequelize.define("Cotizacion", {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: Proveedor,
+            model: "proveedor",
             key: "id_proveedor"
         }
+    },
+    id_solicitud: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: "solicitudalimento",
+            key: "id_solicitud"
+        }
+    },
+        id_estado: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: "estadocotizacion",
+            key: "id_estado"
+        }
     }
+
 }, {
     tableName: "cotizacion",
     timestamps: false
 });
 
 // Relación con Proveedor
-Cotizacion.belongsTo(Proveedor, { foreignKey: "id_proveedor" });
+//Cotizacion.belongsTo(Proveedor, { foreignKey: "id_proveedor" });
 
-Cotizacion.belongsTo(EstadoCotizacion, { foreignKey: "id_proveedor" });
+Cotizacion.belongsTo(EstadoCotizacion, { foreignKey: "id_estado" });
 
 module.exports = Cotizacion;

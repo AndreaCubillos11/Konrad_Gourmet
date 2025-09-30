@@ -30,7 +30,12 @@ const Sucursal = sequelize.define("Sucursal", {
       model: "usuario", // nombre de la tabla en la BD
       key: "id_usuario"
     }
-  }
+  },
+  estado: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true   // 👈 asegura consistencia con la BD
+}
 }, {
   tableName: "sucursal",
   timestamps: false
