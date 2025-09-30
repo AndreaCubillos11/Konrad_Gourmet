@@ -1,13 +1,10 @@
-.inventario-container {
-    display: flex;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #f3f4f6;
+/* ===== Layout general ===== */
+body {
     margin: 0;
-}
-
-.tabla-container h2 {
-    color: #0b2a55;
+    display: flex;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background-color: #f8f9fa;
 }
 
 /* ===== Sidebar ===== */
@@ -15,9 +12,14 @@
     width: 220px;
     background-color: #0b2a55;
     color: white;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .logo img {
@@ -33,7 +35,7 @@
 
 .sidebar nav a {
     text-decoration: none;
-    color: #fff;
+    color: white;
     padding: 10px;
     border-radius: 8px;
     display: flex;
@@ -47,15 +49,17 @@
     background: #163d75;
 }
 
-/* ===== Content & Header ===== */
+/* ===== Contenido principal ===== */
 .content {
+    margin-left: 220px;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
+/* ===== Header ===== */
 .header {
-    background: #f8f9fa;
+    background-color: #f8f9fa;
     padding: 15px 20px;
     display: flex;
     justify-content: flex-end;
@@ -64,9 +68,16 @@
     border-bottom: 1px solid #e0e0e0;
 }
 
-.alerta {
+.header .search {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.header .alerta {
     background: #b58c58;
-    color: #fff;
+    color: white;
     border: none;
     padding: 8px 14px;
     border-radius: 6px;
@@ -74,11 +85,11 @@
     font-weight: bold;
 }
 
-.alerta:hover {
+.header .alerta:hover {
     background: #966c3d;
 }
 
-.user {
+.header .user {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -86,7 +97,7 @@
     color: #0b2a55;
 }
 
-.logout {
+.header .logout {
     background: #0b2a55;
     border: none;
     color: white;
@@ -96,10 +107,9 @@
     font-weight: bold;
 }
 
-.logout:hover {
+.header .logout:hover {
     background: #163d75;
 }
-
 /* ===== Main Content ===== */
 .main-content {
     padding: 25px;
