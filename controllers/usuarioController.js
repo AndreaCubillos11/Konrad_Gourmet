@@ -84,7 +84,8 @@ exports.login = async (req, res, next) => {
 
     res.status(200).json({
       mensaje: "Login exitoso",
-      token
+      token,
+      usuario
     });
   } catch (err) {
     next(err);
