@@ -19,4 +19,6 @@ router.get("/lista-UnidadMedida/:id",auth.verificarToken, listasDesplegables.Con
 
 router.get("/lista-Producto/:id",auth.verificarToken, listasDesplegables.ConsultarProductos);
 
+router.get("/lista-Producto/categoria/:id_categoria",auth.verificarToken,listasDesplegables.ConsultarProductosPorCategoria);
+
 module.exports = router;
