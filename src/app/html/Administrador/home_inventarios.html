@@ -1,0 +1,147 @@
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="logo">
+        <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
+    </div>
+    <nav>
+        <a routerLink="/inicio"><i class="fa-solid fa-house"></i> Inicio</a>
+        <a routerLink="/home_sucursal"><i class="fa-solid fa-building"></i> Sucursales</a>
+        <a routerLink="/proveedores"><i class="fa-solid fa-truck"></i> Proveedores</a>
+        <a routerLink="/inventario" class="active"><i class="fa-solid fa-box"></i> Inventario</a>
+        <a routerLink="/listas"><i class="fa-solid fa-list"></i> Listas</a>
+        <a routerLink="/auditorias"><i class="fa-solid fa-clipboard-check"></i> Auditorías</a>
+        <a routerLink="/errores"><i class="fa-solid fa-triangle-exclamation"></i> Errores</a>
+        <a routerLink="/usuarios"><i class="fa-solid fa-users"></i> Usuarios y roles</a>
+    </nav>
+</aside>
+
+<!-- Contenido principal -->
+<div class="content">
+    <!-- Header -->
+    <div class="header">
+        <input type="text" class="search" placeholder="Buscar..." />
+        <button class="alerta"><i class="fa-solid fa-bell"></i> 1 Alerta: Stock bajo</button>
+        <div class="user">
+            <i class="fas fa-user-shield"></i> <span>Administrador</span>
+            <button class="logout"> <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Barra superior de filtros -->
+        <div class="top-actions">
+            <button class="add"><i class="fa-solid fa-plus"></i> Agregar</button>
+            <button class="export"><i class="fa-solid fa-file-export"></i> Exportar</button>
+        </div>
+
+        <div class="inventory-layout">
+            <!-- Filtros -->
+            <div class="filters">
+                <h3>Filtros</h3>
+                <div class="quick-filters">
+                    <button>Artículos 120</button>
+                    <button>Stock bajo 12</button>
+                    <button>Vencimiento 15</button>
+                </div>
+
+                <h4>Almacenamiento</h4>
+                <select>
+                    <option value="all">Todos</option>
+                    <option value="refrigerado">Refrigerado</option>
+                    <option value="congelado">Congelado</option>
+                    <option value="seco">Seco</option>
+                </select>
+
+                <h4>Proveedores</h4>
+                <select>
+                    <option value="all">Todos</option>
+                    <option value="freshco">FreshCo</option>
+                    <option value="primefood">Prime Food</option>
+                    <option value="oceancatch">Ocean Catch</option>
+                </select>
+
+                <h4>Actividad</h4>
+                <div class="activity-messages">
+                    <p>📦 PO #1041 fue marcado como recibido</p>
+                    <p>🔄 Sincronizar desde el punto de venta</p>
+                </div>
+            </div>
+
+            <!-- Total de inventario -->
+            <div class="inventory">
+                <h3>Total de inventario</h3>
+                <div class="table-box">
+                    <button class="tab-active">Artículos</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Artículo</th>
+                                <th>Categoría</th>
+                                <th>Proveedor</th>
+                                <th>Inventario Actual</th>
+                                <th>Mínimo Inventario</th>
+                                <th>Estatus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tomates</td>
+                                <td>Producto</td>
+                                <td>FreshCo</td>
+                                <td>42kg</td>
+                                <td>60kg</td>
+                                <td>Bajo</td>
+                            </tr>
+                            <tr>
+                                <td>Aceite</td>
+                                <td>Despensa</td>
+                                <td>Prime Food</td>
+                                <td>18L</td>
+                                <td>15L</td>
+                                <td>Normal</td>
+                            </tr>
+                            <tr>
+                                <td>Salmón</td>
+                                <td>Mariscos</td>
+                                <td>Ocean Catch</td>
+                                <td>9kg</td>
+                                <td>10kg</td>
+                                <td>Bajo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Sugerencias -->
+                <div class="suggestions">
+                    <h4>Sugerencias de reordenamiento</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Artículo</th>
+                                <th>Cantidad Sugerida</th>
+                                <th>Proveedor</th>
+                                <th>Razón</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tomates</td>
+                                <td>20kg</td>
+                                <td>Fresh Co</td>
+                                <td>Debajo del estándar</td>
+                            </tr>
+                            <tr>
+                                <td>Filete</td>
+                                <td>5kg</td>
+                                <td>Ocean Catch</td>
+                                <td>Debajo del estándar del vendedor</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

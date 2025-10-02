@@ -18,7 +18,8 @@ import { AgregarPlatoComponent } from './JefeCocina/agregar_plato.component';
 import { CrearUsuarioComponent } from './Admin/crear_usuario.component';
 import { SolicitudAlimentosComponent } from './JefeCocina/solicitud_alimentos.component'
 import { InventarioComponent } from './JefeCocina/inventario.component'
-
+import { HomeInventariosComponent } from './Admin/home_inventarios.component'
+import { AgregarInventarioComponent } from './Admin/agregar_inventario.component'
 
 
 export const routes: Routes = [
@@ -40,7 +41,9 @@ export const routes: Routes = [
     { path: 'registrar_proveedor', component: RegistrarProveedorComponent },
     { path: 'crear_usuario', component: CrearUsuarioComponent },
     { path: 'solicitud_alimentos', component: SolicitudAlimentosComponent },
-    { path: 'inventario', component: InventarioComponent }
+    { path: 'inventario', component: InventarioComponent },
+    { path: 'home_inventarios', component: HomeInventariosComponent},
+    { path: 'agregar_inventario', component: AgregarInventarioComponent}
 
 ];
 

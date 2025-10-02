@@ -1,0 +1,147 @@
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="logo">
+        <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
+    </div>
+    <nav>
+        <a routerLink="/inicio"><i class="fa-solid fa-house"></i> Inicio</a>
+        <a routerLink="/home_sucursal"><i class="fa-solid fa-building"></i> Sucursales</a>
+        <a routerLink="/proveedores"><i class="fa-solid fa-truck"></i> Proveedores</a>
+        <a routerLink="/inventario" class="active"><i class="fa-solid fa-box"></i> Inventario</a>
+        <a routerLink="/listas"><i class="fa-solid fa-list"></i> Listas</a>
+        <a routerLink="/auditorias"><i class="fa-solid fa-clipboard-check"></i> Auditorías</a>
+        <a routerLink="/errores"><i class="fa-solid fa-triangle-exclamation"></i> Errores</a>
+        <a routerLink="/usuarios"><i class="fa-solid fa-users"></i> Usuarios y roles</a>
+    </nav>
+</aside>
+
+<!-- Contenido principal -->
+<div class="content">
+    <!-- Header -->
+    <div class="header">
+        <input type="text" class="search" placeholder="Buscar..." />
+        <button class="alerta"><i class="fa-solid fa-bell"></i> 1 Alerta: Stock bajo</button>
+        <div class="user">
+            <i class="fas fa-user-shield"></i> <span>Administrador</span>
+            <button class="logout"> <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <!-- Formulario de Inventario -->
+    <div class="main-content">
+        <h2>Nuevo artículo en el inventario</h2>
+
+        <form class="inventory-form">
+            <!-- Detalles básicos -->
+            <div class="card">
+                <h3>Detalles básicos</h3>
+                <div class="form-grid vertical">
+                    <div>
+                        <label>Nombre</label>
+                        <input type="text" placeholder="Ej: Tomates Roma">
+                    </div>
+                    <div>
+                        <label>Categoría</label>
+                        <select>
+                            <option>Seleccionar categoría...</option>
+                            <option>Productos</option>
+                            <option>Despensa</option>
+                            <option>Mariscos</option>
+                            <option>Bebidas</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Proveedor principal</label>
+                        <select>
+                            <option>Seleccionar proveedor...</option>
+                            <option>Fresh Frams Co.</option>
+                            <option>Prime Food</option>
+                            <option>Ocean Catch</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Unidad</label>
+                        <input type="text" placeholder="25lb">
+                    </div>
+                    <div>
+                        <label>Código</label>
+                        <input type="text" placeholder="PRD-001">
+                    </div>
+                    <div>
+                        <label>Descripción</label>
+                        <textarea placeholder="Tomates para salsas. Mantener entre 7° y 13° C."></textarea>
+                    </div>
+                    <div>
+                        <label>Ubicación del almacenamiento</label>
+                        <select>
+                            <option>Seleccionar ubicación...</option>
+                            <option>Nevera A1</option>
+                            <option>Nevera A2</option>
+                            <option>Almacén Seco</option>
+                            <option>Congelador</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Costos y precios -->
+            <div class="card">
+                <h3>Costos y precios</h3>
+                <div class="form-grid">
+                    <div>
+                        <label>Costo x unidad</label>
+                        <input type="text" placeholder="$52.000 / unidad">
+                    </div>
+                    <div>
+                        <label>Costo (deseado)</label>
+                        <input type="text" placeholder="$45.000 / unidad">
+                    </div>
+                    <div>
+                        <label>Stock recomendado</label>
+                        <input type="number" placeholder="10">
+                    </div>
+                    <div>
+                        <label>Punto de reorden</label>
+                        <input type="number" placeholder="4">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventario y seguimiento -->
+            <div class="card">
+                <h3>Inventario y seguimiento</h3>
+                <div class="form-grid">
+                    <div>
+                        <label>Stock Actual</label>
+                        <input type="number" placeholder="35 unidades">
+                    </div>
+                    <div>
+                        <label>Unidad receptora</label>
+                        <select>
+                            <option>Unidades</option>
+                            <option>Paquetes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Unidad de receta</label>
+                        <select>
+                            <option>Gramos</option>
+                            <option>Mililitros</option>
+                            <option>Unidades</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Caducidad/Vida útil</label>
+                        <input type="text" placeholder="7 días desde la recepción">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">+ Guardar Artículo</button>
+                <button type="button" class="btn-secondary">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
