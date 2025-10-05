@@ -30,6 +30,10 @@ const Proveedor = sequelize.define("Proveedor", {
         validate: {
             isEmail: true
         }
+    },
+    ciudad: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
     }
 }, {
     tableName: "proveedor",

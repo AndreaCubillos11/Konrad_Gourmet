@@ -4,7 +4,7 @@ const Auditoria = require("../models/Auditoria");
 // Crear proveedor
 exports.crearProveedor = async (req, res, next) => {
   try {
-    const { nombre, direccion, telefono, correo, creador_id } = req.body;
+    const { nombre, direccion, telefono, correo,ciudad, creador_id } = req.body;
 
     // Validar duplicado por correo
     if (correo) {
@@ -18,7 +18,8 @@ exports.crearProveedor = async (req, res, next) => {
       nombre,
       direccion,
       telefono,
-      correo
+      correo,
+      ciudad
     });
 
     // Auditoría
@@ -44,7 +45,7 @@ exports.obtenerProveedores = async (req, res, next) => {
     const { creador_id } = req.query;
 
     const proveedores = await Proveedor.findAll({
-      attributes: ["id_proveedor", "nombre", "direccion", "telefono", "correo"]
+      attributes: ["id_proveedor", "nombre", "direccion", "telefono", "correo","ciudad"]
     });
 
     if (creador_id) {
@@ -70,7 +71,7 @@ exports.obtenerProveedorPorId = async (req, res, next) => {
     const { creador_id } = req.query;
 
     const proveedor = await Proveedor.findByPk(id_proveedor, {
-      attributes: ["id_proveedor", "nombre", "direccion", "telefono", "correo"]
+      attributes: ["id_proveedor", "nombre", "direccion", "telefono", "correo","ciudad"]
     });
 
     if (!proveedor) {
@@ -97,7 +98,7 @@ exports.obtenerProveedorPorId = async (req, res, next) => {
 exports.modificarProveedor = async (req, res, next) => {
   try {
     const { id_proveedor } = req.params;
-    const { nombre, direccion, telefono, correo, modificador_id } = req.body;
+    const { nombre, direccion, telefono, correo, modificador_id ,ciudad} = req.body;
 
     const proveedor = await Proveedor.findByPk(id_proveedor);
     if (!proveedor) {
@@ -117,6 +118,7 @@ exports.modificarProveedor = async (req, res, next) => {
     if (direccion) datosActualizados.direccion = direccion;
     if (telefono) datosActualizados.telefono = telefono;
     if (correo) datosActualizados.correo = correo;
+    if(ciudad) datosActualizados.ciudad=ciudad;
 
     await proveedor.update(datosActualizados);
 
