@@ -33,9 +33,15 @@ const Pedido = sequelize.define("Pedido", {
             model: "usuario",
             key: "id_usuario"
         }
-    }
+    },
+    estado: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true   // 👈 asegura consistencia con la BD
+  }
 }, {
     tableName: "pedido",
+    schema: "public",// fuerza el esquema correcto
     timestamps: false
 });
 

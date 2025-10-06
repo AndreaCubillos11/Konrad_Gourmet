@@ -98,7 +98,7 @@ exports.obtenerUsuarios = async (req, res, next) => {
     const { creador_id } = req.query;
 
     const usuarios = await Usuario.findAll({
-      attributes: ["id_usuario", "nombre", "correo", "id_rol"],
+      attributes: ["id_usuario", "nombre", "correo", "id_rol","estado"],
       include: {
         model: Rol,
         attributes: ["nombre_rol"]
@@ -125,7 +125,7 @@ exports.obtenerUsuarioPorId = async (req, res, next) => {
     const { creador_id } = req.query;
 
     const usuario = await Usuario.findByPk(id, {
-      attributes: ["id_usuario", "nombre", "correo", "id_rol"],
+      attributes: ["id_usuario", "nombre", "correo", "id_rol","estado"],
       include: {
         model: Rol,
         attributes: ["nombre_rol"]
