@@ -196,17 +196,43 @@ body {
 .btn.agregar {
     background: #0b2a55;
     color: white;
+    display: inline-flex;   /* hace que el botón use flex */
+    align-items: center;    /* centra verticalmente */
+    justify-content: center;/* centra horizontalmente */
+    gap: 6px;               /* espacio entre ícono y texto */
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .btn.agregar:hover {
     background: #163d75;
 }
 
+td {
+    vertical-align: middle; /* centra verticalmente el contenido dentro de cada celda */
+}
+
 .btn.eliminar {
     background: #b58c58;
     color: white;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    line-height: 1.2;
 }
+
 
 .btn.eliminar:hover {
     background: #966c3d;
 }
+
+
+

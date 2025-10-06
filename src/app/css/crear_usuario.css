@@ -59,11 +59,11 @@ body {
 
 /* ===== Header ===== */
 .header {
-    background-color: #f8f9fa; /* gris claro */
+    background-color: #f8f9fa;
     padding: 12px 20px;
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* todo a la derecha */
+    justify-content: flex-end;
     gap: 15px;
     border-bottom: 1px solid #ddd;
     position: sticky;
@@ -71,7 +71,6 @@ body {
     z-index: 100;
 }
 
-/* Barra de búsqueda */
 .header .search {
     flex: 0 0 220px;
     padding: 8px 12px;
@@ -80,7 +79,6 @@ body {
     font-size: 14px;
 }
 
-/* Botón de alerta */
 .header .alerta {
     background: #b58c58;
     color: white;
@@ -89,23 +87,21 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
+    transition: background 0.3s;
 }
 
 .header .alerta:hover {
     background: #966c3d;
 }
 
-/* Contenedor usuario */
 .header .user {
     display: flex;
     align-items: center;
     gap: 12px;
     font-weight: bold;
     color: #0b2a55;
-    margin-left: 0; /* ya no empuja nada */
 }
 
-/* Botón logout */
 .header .logout {
     background: #0b2a55;
     border: none;
@@ -121,68 +117,121 @@ body {
     background: #163d75;
 }
 
-/* ===== Formulario ===== */
+/* ===== Sección del formulario ===== */
+.form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    overflow-y: auto;
+}
+
+/* ===== Contenedor del formulario ===== */
 .form-container {
     background: #fff;
-    padding: 20px;
+    padding: 40px 50px;
     border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-    margin: 25px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    max-width: 850px;
+    width: 100%;
+    margin: 40px auto;
 }
 
 .form-container h2 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #0b2a55;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
 }
 
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-}
-
+/* ===== Tarjeta del formulario ===== */
 .form-card {
     background: #f9f9f9;
-    padding: 15px;
+    padding: 25px 30px;
     border-radius: 10px;
+    border: 1px solid #e0e0e0;
 }
 
 .form-card h3 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: #163d75;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+}
+
+/* ===== Campos del formulario ===== */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 45px;
 }
 
 label {
     display: block;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     color: #333;
+    font-weight: 500;
 }
 
 input,
+select,
 textarea {
     width: 100%;
-    padding: 6px;
+    padding: 10px 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
     margin-top: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+    background-color: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #0b2a55;
+    outline: none;
 }
 
 /* ===== Botones ===== */
 .form-actions {
-    margin-top: 20px;
+    margin-top: 35px;
     display: flex;
-    gap: 15px;
+    justify-content: center;
+    gap: 25px;
 }
 
+.btn-primary,
+.btn-secondary,
+.btn-cancel {
+    border: none;
+    border-radius: 6px;
+    padding: 12px 28px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-cancel:hover {
+    transform: scale(1.03);
+}
+
+/* Botones de colores */
 .btn-primary {
     background: #0b2a55;
     color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
 }
 
 .btn-primary:hover {
@@ -192,11 +241,6 @@ textarea {
 .btn-secondary {
     background: #b58c58;
     color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
 }
 
 .btn-secondary:hover {
@@ -204,15 +248,40 @@ textarea {
 }
 
 .btn-cancel {
-    background: #59412c;
+    background: #8b5e3b;
     color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
+    min-width: 160px;
+    justify-content: center;
 }
 
 .btn-cancel:hover {
-    background: #8c5818;
+    background: #70492e;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-container {
+        padding: 25px;
+    }
+
+    .header .search {
+        flex: 1;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-cancel {
+        width: 100%;
+        justify-content: center;
+    }
 }

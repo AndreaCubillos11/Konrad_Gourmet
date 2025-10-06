@@ -72,7 +72,6 @@ body {
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 14px;
 }
 
 .header .alerta {
@@ -83,10 +82,6 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-}
-
-.header .alerta:hover {
-    background: #966c3d;
 }
 
 .header .user {
@@ -107,134 +102,135 @@ body {
     font-weight: bold;
 }
 
-.header .logout:hover {
-    background: #163d75;
-}
-/* ===== Main content ===== */
+/* ===== Formulario ===== */
 .main-content {
-    padding: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    padding: 30px;
 }
 
-/* ===== Formulario de Solicitud ===== */
+h1 {
+    margin-bottom: 20px;
+    color: #0b2a55;
+}
+
 .form-solicitud {
-    background: #fff;
+    background: white;
+    padding: 25px 30px;
     border-radius: 12px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-    padding: 25px 30px;
-    width: 70%;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 20px;
+    max-width: 1000px;
 }
 
-.form-solicitud h2 {
-    color: #0b2a55;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-/* ===== Fila del formulario ===== */
 .form-row {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: flex-end;
 }
 
-.form-row label {
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 19%;
+}
+
+.form-group.small {
+    max-width: 40%;
+}
+
+.form-group.small-medium {
+    max-width: 95%;
+}
+
+.form-group.tiny {
+    max-width: 70%; /* Cantidad más pequeña */
+}
+
+.form-group label {
     font-weight: bold;
     color: #0b2a55;
-    font-size: 14px;
+    margin-bottom: 5px;
 }
 
-.form-row input,
-.form-row select {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
+input,
+select {
+    padding: 8px;
+    border: 1px solid #0b2a55;
     border-radius: 6px;
     font-size: 14px;
-    background: #fdfdfd;
 }
 
-.form-row input[readonly] {
-    background: #f1f1f1;
-    cursor: not-allowed;
-}
-
-/* ===== Grid para campos en fila ===== */
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
-
-/* ===== Acciones de productos ===== */
+/* ===== Botones intermedios ===== */
 .acciones-producto {
     display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    font-size: 14px;
-}
-
-.acciones-producto a {
-    text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.acciones-producto .agregar {
-    color: #0b2a55;
-}
-
-.acciones-producto .agregar:hover {
-    text-decoration: underline;
-}
-
-.acciones-producto .eliminar {
-    color: #b58c58;
-}
-
-.acciones-producto .eliminar:hover {
-    text-decoration: underline;
-}
-
-/* ===== Botones finales ===== */
-.acciones-form {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
     margin-top: 10px;
 }
 
-.btn-enviar,
-.btn-cancelar {
-    padding: 10px 20px;
-    border-radius: 8px;
+.btn-eliminar {
+    background: none;
     border: none;
+    color: #0b2a55;
     font-weight: bold;
+    font-size: 15px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
+    transition: color 0.3s;
 }
 
-.btn-enviar {
+.btn-eliminar:hover {
+    color: #163d75;
+}
+
+.btn-agregar {
     background: #0b2a55;
     color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-.btn-enviar:hover {
+.btn-agregar:hover {
+    background: #163d75;
+}
+
+/* ===== Botones finales ===== */
+.form-botones {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 15px;
+}
+
+.btn-guardar {
+    background: #0b2a55;
+    color: white;
+    border: none;
+    padding: 10px 35px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-guardar:hover {
     background: #163d75;
 }
 
 .btn-cancelar {
     background: #b58c58;
     color: white;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .btn-cancelar:hover {

@@ -1,32 +1,44 @@
 import { Component } from '@angular/core';
+import { Proveedores } from '../../services/Administrador/proveedores';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-proveedores',
   templateUrl: '../../html/Administrador/home_proveedores.html',
-  styleUrls: ['../../css/home_proveedores.css']
+  styleUrls: ['../../css/home_proveedores.css'],
+  imports: [CommonModule]
 })
 export class HomeProveedoresComponent {
-  proveedores = [
-    { nombre: 'FreshCo', nit: '123143243', telefono: '(555) 123-4567', email: 'ventas@fc.co', categoria: 'Producción', estatus: 'Activo' },
-    { nombre: 'PrimeFood', nit: '586757545', telefono: '(555) 123-4567', email: 'ventas@pf.co', categoria: 'Despensa', estatus: 'Pendiente' },
-    { nombre: 'OceanCatch', nit: '45370235', telefono: '(555) 123-4567', email: 'ventas@oc.co', categoria: 'Despensa', estatus: 'Activo' }
-  ];
+
+    proveedores: any[] = [];
+
+  constructor(
+    private router: Router,
+    private proveedorService: Proveedores,
+    private cookieService: CookieService
+  ) { }
 
   pedidosSucursal = [
     { sucursal: 'Centro', proveedor: 'FreshCo', ordenes: 2, ultima: '01-06-2025' },
     { sucursal: 'Norte', proveedor: 'Prime Food', ordenes: 1, ultima: '01-07-2025' }
   ];
 
-  proveedorSeleccionado = {
-    nombre: 'FreshCo',
-    nit: '123456789-Produce',
-    contacto: 'Alex Rivera',
-    telefono: '(555) 111-2222',
-    email: 'Alex@freshco.com',
-    rol: 'Gerente de cuenta',
-    metodo: 'Transferencia',
-    entregas: 15,
-    aTiempo: 395,
-    promedio: 2.34
-  };
+
+  ngOnInit() {
+        this.obtenerProveedores();
+    }
+
+  obtenerProveedores() {
+    this.proveedorService.consultarSucursales(localStorage.getItem('id_usuario'), this.cookieService.get('token')).subscribe({
+        next: (data) => {
+          console.log(data);
+          this.proveedores = data.proveedores}
+
+        ,
+        error: (err) => console.error('Error al consultar los proveedores:', err)
+      })
+    } 
 }

@@ -4,6 +4,7 @@
         <div class="logo">
             <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet" />
         </div>
+
         <nav>
             <a routerLink="/inicio"><i class="fa-solid fa-house"></i> Inicio</a>
             <a routerLink="/home_sucursal"><i class="fa-solid fa-building"></i> Sucursales</a>
@@ -16,69 +17,75 @@
         </nav>
     </aside>
 
-    <!-- Contenido -->
+    <!-- Contenido principal -->
     <div class="content">
         <!-- Header -->
-        <div class="header">
-            <input type="text" placeholder="Buscar..." class="search">
+        <header class="header">
+            <input type="text" placeholder="Buscar..." class="search" />
             <button class="alerta"><i class="fas fa-bell"></i> 1 Alerta: Stock bajo</button>
             <div class="user">
                 <span><i class="fas fa-user-shield"></i> Administrador</span>
                 <button class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
             </div>
-        </div>
+        </header>
 
         <!-- Formulario crear usuario -->
-        <section class="form-container">
-            <h2><i class="fa-solid fa-user-plus"></i> Crear un nuevo usuario</h2>
+        <section class="form-section">
+            <div class="form-container">
+                <h2><i class="fa-solid fa-user-plus"></i> Crear nuevo usuario</h2>
 
-            <div class="form-grid">
-                <!-- Datos principales -->
                 <div class="form-card">
-                    <h3>Información principal</h3>
-                    <label>Nombre <input type="text" [(ngModel)]="usuario.nombre" /></label>
-                    <label>Apellido <input type="text" [(ngModel)]="usuario.apellido" /></label>
-                    <label>Correo electrónico <input type="email" [(ngModel)]="usuario.email" /></label>
-                    <label>Teléfono <input type="text" [(ngModel)]="usuario.telefono" /></label>
-                    <label>Sucursal principal <input type="text" [(ngModel)]="usuario.sucursal" /></label>
-                    <label>Cargo <input type="text" [(ngModel)]="usuario.cargo" /></label>
-                    <label>Notas <textarea [(ngModel)]="usuario.notas"></textarea></label>
+                    <h3><i class="fa-solid fa-id-card"></i> Información principal</h3>
+
+                    <div class="form-grid">
+                        <div>
+                            <label>Nombre Completo</label>
+                            <input type="text" [(ngModel)]="usuario.nombre" placeholder="Ej: Juan Pérez" />
+                        </div>
+
+                        <div>
+                            <label>Correo electrónico</label>
+                            <input type="email" [(ngModel)]="usuario.email" placeholder="usuario@ejemplo.com" />
+                        </div>
+
+                        <div>
+                            <label>Teléfono</label>
+                            <input type="text" [(ngModel)]="usuario.telefono" placeholder="+57 300 000 0000" />
+                        </div>
+
+                        <div>
+                            <label>Sucursal principal</label>
+                            <select [(ngModel)]="usuario.sucursal">
+                                <option value="">Seleccionar sucursal</option>
+                                <option value="Norte">Sucursal Norte</option>
+                                <option value="Centro">Sucursal Centro</option>
+                                <option value="Sur">Sucursal Sur</option>
+                            </select>
+                        </div>
+
+                        <div style="grid-column: 1 / -1;">
+                            <label>Cargo / Rol</label>
+                            <select [(ngModel)]="usuario.cargo">
+                                <option value="">Seleccionar cargo</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Gerente">Gerente</option>
+                                <option value="Auditor">Auditor</option>
+                                <option value="Empleado">Empleado</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Notificaciones -->
-                <div class="form-card">
-                    <h3>Notificaciones</h3>
-                    <label><input type="checkbox" [(ngModel)]="usuario.notifStock" /> Alerta de stock bajo</label>
-                    <label><input type="checkbox" [(ngModel)]="usuario.notifPedidos" /> Notificación nuevos
-                        pedidos</label>
-                    <label><input type="checkbox" [(ngModel)]="usuario.notifProveedores" /> Actualización de
-                        proveedores</label>
-                </div>
+                <!-- Botones -->
+                <div class="form-actions">
+                    <button class="btn-primary" (click)="crearUsuario()">
+                        <i class="fa-solid fa-user-plus"></i> Guardar usuario
+                    </button>
 
-                <!-- Permisos -->
-                <div class="form-card">
-                    <h3>Accesos y permisos</h3>
-                    <label>Inventario <input type="text" [(ngModel)]="usuario.permInventario" /></label>
-                    <label>Compras <input type="text" [(ngModel)]="usuario.permCompras" /></label>
-                    <label>Proveedores <input type="text" [(ngModel)]="usuario.permProveedores" /></label>
-                    <label>Acceso temporal <input type="text" [(ngModel)]="usuario.accesoTemporal" /></label>
+                    <button class="btn-cancel">
+                        <i class="fa-solid fa-xmark"></i> Cancelar
+                    </button>
                 </div>
-
-                <!-- Multi-sucursal -->
-                <div class="form-card">
-                    <h3>Multi - sucursal</h3>
-                    <label>Agregar sucursal secundaria
-                        <input type="text" [(ngModel)]="usuario.sucursalSecundaria" />
-                    </label>
-                </div>
-            </div>
-
-            <!-- Botones -->
-            <div class="form-actions">
-                <button class="btn-primary" (click)="crearUsuario()"><i class="fa-solid fa-user-plus"></i> Crear
-                    usuario</button>
-                <button class="btn-secondary"><i class="fa-solid fa-save"></i> Guardar borrador</button>
-                <button class="btn-cancel"><i class="fa-solid fa-xmark"></i> Cancelar</button>
             </div>
         </section>
     </div>

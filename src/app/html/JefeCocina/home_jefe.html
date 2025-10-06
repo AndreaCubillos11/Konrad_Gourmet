@@ -5,10 +5,10 @@
             <img src="assets/images/KonradGourmetLogo.png" alt="Konrad Gourmet" />
         </div>
         <nav>
-            <a href="#" class="active"><i class="fas fa-home"></i> Inicio</a>
-            <a href="#"><i class="fas fa-utensils"></i> Menú</a>
-            <a href="#"><i class="fas fa-clipboard-list"></i> Solicitudes</a>
-            <a href="#"><i class="fa-solid fa-box"></i> Inventario</a>
+            <a href="/home_jefe" class="active"><i class="fas fa-home"></i> Inicio</a>
+            <a href="/jefe_menu"><i class="fas fa-utensils"></i> Menú</a>
+            <a href="/solicitud_alimentos"><i class="fas fa-clipboard-list"></i> Solicitudes</a>
+            <a href="/inventario"><i class="fa-solid fa-box"></i> Inventario</a>
         </nav>
     </aside>
 
@@ -53,9 +53,12 @@
                 </button>
             </div>
 
+
+            <div class="card full-width">
+
             <!-- Botones grandes -->
             <div class="botones-grandes">
-                <button class="big-btn">
+                <button class="big-btn" (click)="irAgregarPlato()">
                     <i class="fas fa-utensils"></i> Registrar plato en el menú
                 </button>
                 <button class="big-btn outline">
@@ -63,18 +66,7 @@
                 </button>
             </div>
 
-            <!-- Platos recientes -->
-            <div class="card full-width">
-                <h3>
-                    Platos registrados recientemente
-                    <a href="#" class="ver-menu">Ver Menú</a>
-                </h3>
-                <ul>
-                    <li><i class="fas fa-times"></i> Ensalada César</li>
-                    <li><i class="fas fa-times"></i> Pasta al Pesto</li>
-                    <li><i class="fas fa-times"></i> Risotto de Champiñones</li>
-                    <li><i class="fas fa-times"></i> Sopa de Tomate</li>
-                </ul>
+                
             </div>
         </main>
     </div>

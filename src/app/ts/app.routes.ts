@@ -20,30 +20,40 @@ import { SolicitudAlimentosComponent } from './JefeCocina/solicitud_alimentos.co
 import { InventarioComponent } from './JefeCocina/inventario.component'
 import { HomeInventariosComponent } from './Admin/home_inventarios.component'
 import { AgregarInventarioComponent } from './Admin/agregar_inventario.component'
+import { HomeAuxiliarComponent } from './AuxiliarCompra/home_auxiliar.component'
+import { ConsultaSolicitudesComponent } from './AuxiliarCompra/consulta_solicitudes.component'
+import { SolicitudCotizacionComponent } from './AuxiliarCompra/solicitud_cotizacion.component'
 
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
+    //Mesero
     { path: 'mesero', component: HomeComponent },
     { path: 'agregar_pedido', component: AgregarPedidoComponent },
     { path: 'consultar_pedido', component: ConsultarPedidoComponent },
+    //Administrador
     { path: 'home_admin', component: HomeAdminComponent },
     { path: 'home_sucursal/:id', component: HomeSucursalComponent },
     { path: 'registrar_sucursal', component: RegistrarSucursalComponent },
     { path: 'home_proveedores', component: HomeProveedoresComponent },
+    { path: 'registrar_proveedor', component: RegistrarProveedorComponent },
     { path: 'home_listas', component: HomeListasComponent },
     { path: 'crear_lista', component: CrearListasComponent },
     { path: 'home_crear_usuarios', component: HomeCrearUsuariosComponent },
+    { path: 'crear_usuario', component: CrearUsuarioComponent },
+    { path: 'home_inventarios', component: HomeInventariosComponent },
+    { path: 'agregar_inventario', component: AgregarInventarioComponent },
+    //Jefe de Cocina
     { path: 'home_jefe', component: HomeJefeComponent },
     { path: 'jefe_menu', component: JefeMenuComponent },
     { path: 'agregar_plato', component: AgregarPlatoComponent },
-    { path: 'registrar_proveedor', component: RegistrarProveedorComponent },
-    { path: 'crear_usuario', component: CrearUsuarioComponent },
     { path: 'solicitud_alimentos', component: SolicitudAlimentosComponent },
     { path: 'inventario', component: InventarioComponent },
-    { path: 'home_inventarios', component: HomeInventariosComponent},
-    { path: 'agregar_inventario', component: AgregarInventarioComponent}
+    //Auxiliar de compras
+    { path: 'home_auxiliar', component: HomeAuxiliarComponent },
+    { path: 'consulta_solicitudes', component: ConsultaSolicitudesComponent },
+    { path: 'solicitud_cotizacion', component: SolicitudCotizacionComponent }
 
 ];
 

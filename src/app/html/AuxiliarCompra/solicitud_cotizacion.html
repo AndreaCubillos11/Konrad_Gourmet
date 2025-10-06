@@ -1,0 +1,81 @@
+<div class="app-container">
+    <!-- ===== Menú Lateral ===== -->
+    <aside>
+        <div class="logo">
+            <img src="assets/images/KonradGourmetLogo.png" alt="Logo Konrad Gourmet">
+        </div>
+        <nav>
+            <a routerLink="/inicio" class="active">
+                <i class="fa-solid fa-house"></i> Inicio
+            </a>
+            <a routerLink="/solicitudes">
+                <i class="fa-solid fa-file-lines"></i> Solicitudes
+            </a>
+            <a routerLink="/cotizaciones">
+                <i class="fa-solid fa-coins"></i> Cotizaciones
+            </a>
+        </nav>
+    </aside>
+
+    <!-- ===== Contenido Principal ===== -->
+    <div class="content">
+        <!-- Header superior -->
+        <div class="header">
+            <div class="user">
+                <span>Aux. Compras</span>
+            </div>
+            <button class="logout">Cerrar Sesión</button>
+        </div>
+
+        <!-- Main -->
+        <div class="main-content">
+            <h1>Solicitud de Cotización</h1>
+
+            <!-- Filtros -->
+            <div class="filtros">
+                <div class="form-group">
+                    <label for="proveedor">Proveedor</label>
+                    <select id="proveedor">
+                        <option value="Seleccionar">Seleccione proveedor</option>
+                        <option value="Leche">Alpina</option>
+                        <option value="Granos">Diana</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="fechaRespuesta">Fecha Máx. de Respuesta</label>
+                    <input type="date" id="fechaRespuesta" value="2025-05-04" />
+                </div>
+            </div>
+
+            <!-- Tabla -->
+            <h3>Detalles de la solicitud</h3>
+            <div class="tabla-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha de Solicitud</th>
+                            <th>Producto</th>
+                            <th>Cantidad y Unidad</th>
+                            <th>Marca</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4 de Mayo del 2025</td>
+                            <td>Pechuga de Pollo</td>
+                            <td>8 Kg</td>
+                            <td>Friko</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Botones -->
+            <div class="acciones">
+                <button class="btn-generar" (click)="generarPDF()">Generar PDF</button>
+                <button class="btn-enviar" [disabled]="!pdfGenerado" (click)="enviarCotizacion()">Enviar Cotización</button>
+            </div>
+        </div>
+    </div>
+</div>

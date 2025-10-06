@@ -1,0 +1,184 @@
+/* ===== Layout General ===== */
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f3f4f6;
+}
+
+.content {
+    margin-left: 220px; /* espacio del menú lateral */
+    padding: 20px;
+}
+
+/* ===== Header Superior ===== */
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #f9fafb;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.header .user {
+    margin-right: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.header .logout {
+    background-color: #e5e7eb;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.header .logout:hover {
+    background-color: #d1d5db;
+}
+
+/* ===== Menú lateral ===== */
+aside {
+    width: 220px;
+    height: 100vh;
+    background-color: #0a2c60; /* azul oscuro */
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+aside nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+aside nav a {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+aside nav a:hover,
+aside nav a.active {
+    background-color: #163d7a; /* azul más claro */
+}
+
+/* ===== Contenido Principal ===== */
+.main-content h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.filtros {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    color: #374151;
+    font-weight: 600;
+}
+
+.form-group select,
+.form-group input {
+    padding: 8px 12px;
+    border: 1px solid #9ca3af;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* ===== Tabla ===== */
+.tabla-container {
+    margin-top: 15px;
+    border: 1px solid #9ca3af;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #0a2c60;
+    color: white;
+    font-size: 14px;
+    text-align: left;
+}
+
+thead th {
+    padding: 12px;
+}
+
+tbody td {
+    padding: 12px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+    color: #111827;
+}
+
+/* ===== Botones ===== */
+.acciones {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn-generar {
+    background-color: #c08457; /* marrón */
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-generar:hover {
+    background-color: #a86e47;
+}
+
+.btn-enviar {
+    background-color: #9ca3af; /* gris */
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-enviar:enabled {
+    background-color: #0a2c60; /* azul oscuro */
+}
+
+.btn-enviar:enabled:hover {
+    background-color: #163d7a;
+}
+
+.logo img {
+    width: 150px;
+    margin: 20px auto;
+    display: block;
+}

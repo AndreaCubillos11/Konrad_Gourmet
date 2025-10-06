@@ -12,8 +12,6 @@ body {
     width: 100%;
 }
 
-
-
 /* ===== SIDEBAR ===== */
 .sidebar {
     width: 220px;
@@ -52,6 +50,7 @@ body {
     align-items: center;
     gap: 0.5px;
     transition: background 0.3s;
+    cursor: pointer;
 }
 
 .sidebar ul li i {
@@ -199,13 +198,14 @@ body {
 /* ===== GRID DE DATOS ===== */
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 🔹 siempre 3 columnas fijas */
-    gap: 28px 50px; /* 🔹 más aire vertical y horizontal */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* ✅ Ajuste flexible */
+    gap: 28px 40px;
     font-size: 0.95rem;
 }
 
 /* ===== CAMPOS DEL FORM ===== */
-.card .grid > div {
+.card .grid>div {
     display: flex;
     flex-direction: column;
 }
@@ -213,36 +213,50 @@ body {
 .card label {
     font-size: 0.85rem;
     color: #333;
-    margin-bottom: 8px; /* 🔹 más espacio label-input */
+    margin-bottom: 8px;
 }
 
 .card input,
 .card select {
     width: 100%;
-    padding: 10px 14px; /* 🔹 más aire interno */
+    padding: 10px 14px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 0.9rem;
     transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
+.card input:focus,
+.card select:focus {
+    border-color: #0b2a55;
+    outline: none;
+}
+
+/* ✅ Evita desbordamiento del input Dirección */
+.detalles-empresa input[placeholder="Cra. 2 # 36-86"] {
+    max-width: 100%;
+}
 
 /* ===== BOTONES ===== */
 .acciones {
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 14px;
     margin-top: 20px;
 }
 
 .cancelar {
     background: #ccc;
     border: none;
-    padding: 8px 16px;
+    padding: 10px 30px;
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s ease;
     font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .cancelar:hover {
@@ -253,11 +267,14 @@ body {
     background: #0b2a55;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 10px 30px;
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s ease;
     font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .crear:hover {

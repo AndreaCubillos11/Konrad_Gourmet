@@ -1,14 +1,14 @@
-<div class="home-jefe-container">
+<div class="agregar-plato-container">
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="logo">
             <img src="assets/images/KonradGourmetLogo.png" alt="Logo">
         </div>
         <nav>
-            <a routerLink="/home-jefe"><i class="fas fa-home"></i> Inicio</a>
-            <a routerLink="/jefe-menu" class="active"><i class="fas fa-utensils"></i> Menú</a>
-            <a routerLink="#"><i class="fas fa-clipboard-list"></i> Solicitudes</a>
-            <a routerLink="#"><i class="fa-solid fa-box"></i> Inventario</a>
+            <a routerLink="/home_jefe"><i class="fas fa-home"></i> Inicio</a>
+            <a routerLink="/jefe_menu" class="active"><i class="fas fa-utensils"></i> Menú</a>
+            <a routerLink="/solicitud_alimento"><i class="fas fa-clipboard-list"></i> Solicitudes</a>
+            <a routerLink="/inventario"><i class="fa-solid fa-box"></i> Inventario</a>
         </nav>
     </aside>
 
@@ -28,68 +28,100 @@
         <main class="main-content">
             <h1>Plato Nuevo</h1>
 
-            <div class="form-plato">
+            <!-- FORMULARIO -->
+            <form class="form-plato" [formGroup]="platoForm" (ngSubmit)="registrarPlato()">
+
+                <!-- Nombre y Categoría del Plato -->
                 <div class="form-row">
                     <div class="form-group">
                         <label>Nombre del plato</label>
-                        <input type="text" placeholder="Bandeja Paisa">
+                        <input type="text" formControlName="nombre" placeholder="Ej: Bandeja Paisa">
                     </div>
+
                     <div class="form-group">
                         <label>Categoría del Plato</label>
-                        <select>
-                            <option selected>Plato Fuerte</option>
-                            <option>Entrada</option>
-                            <option>Postre</option>
+                        <select formControlName="id_categoria_plato">
+                            <option value="">Seleccione una categoría</option>
+                            <option *ngFor="let cp of categoriasPlato" [value]="cp.id_categoria">
+                                {{ cp.nombre_categoria }}
+                            </option>
                         </select>
                     </div>
                 </div>
 
                 <h3>Ingredientes del plato:</h3>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Producto</label>
-                        <input type="text" placeholder="Frijol">
-                    </div>
-                    <div class="form-group">
-                        <label>Categoría del Producto</label>
-                        <select>
-                            <option selected>Granos</option>
-                            <option>Proteínas</option>
-                            <option>Vegetales</option>
-                        </select>
-                    </div>
-                    <div class="form-group small">
-                        <label>Cantidad</label>
-                        <input type="number" placeholder="200">
-                    </div>
-                    <div class="form-group small">
-                        <label>Unidad</label>
-                        <select>
-                            <option selected>g</option>
-                            <option>kg</option>
-                            <option>unidad</option>
-                        </select>
+                <!-- Ingredientes dinámicos -->
+                <div formArrayName="ingredientes">
+                    <div *ngFor="let ing of ingredientes.controls; let i=index" [formGroupName]="i" class="form-row">
+
+                        <!-- Categoría del Producto -->
+                        <div class="form-group">
+                            <label>Categoría del Producto</label>
+                            <select formControlName="id_categoria_producto" (change)="consultarProductoPorCategoria(i)">
+                                <option value="">Seleccione una categoría</option>
+                                <option *ngFor="let cp of categoriasProducto" [value]="cp.id_categoria">
+                                    {{ cp.nombre_categoria }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Producto</label>
+                            <select formControlName="id_producto">
+                                <option value="">Seleccione un producto</option>
+                                <option *ngFor="let p of productosPorIngrediente[i]" [value]="p.id_producto">
+                                    {{ p.nombre }}
+                                </option>
+                            </select>
+                        </div>
+                        <!-- Cantidad -->
+                        <div class="form-group small">
+                            <label>Cantidad</label>
+                            <input type="number" formControlName="cantidad" placeholder="Ej: 200">
+                        </div>
+
+                        <!-- Unidad -->
+                        <div class="form-group">
+                            <label>Unidad</label>
+                            <select formControlName="id_unidad">
+                                <option value="">Seleccione unidad</option>
+                                <option *ngFor="let u of unidades" [value]="u.id_unidad">
+                                    {{ u.nombre_unidad }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- Botón eliminar -->
+                        <button type="button" class="eliminar" (click)="eliminarIngrediente(i)">
+                            - Eliminar Ingrediente
+                        </button>
                     </div>
                 </div>
 
+                <!-- Botón agregar ingrediente -->
                 <div class="acciones-ingrediente">
-                    <a href="#" class="eliminar">- Eliminar Ingrediente</a>
-                    <button type="button" class="btn-agregar"><i class="fas fa-plus"></i> Agregar ingrediente</button>
+                    <button type="button" class="btn-agregar" (click)="agregarIngrediente()">
+                        <i class="fas fa-plus"></i> Agregar ingrediente
+                    </button>
                 </div>
 
+                <!-- Precio -->
                 <div class="form-row">
                     <div class="form-group">
                         <label>Precio del plato</label>
-                        <input type="text" placeholder="$ 25.200">
+                        <input type="number" formControlName="precio_venta" placeholder="Ej: 25000">
                     </div>
                 </div>
 
+                <!-- Botones -->
                 <div class="form-botones">
-                    <button class="btn-guardar">Guardar</button>
-                    <button class="btn-cancelar">Cancelar</button>
+                    <button type="submit" class="btn-guardar">Guardar</button>
+                    <button type="button" class="btn-cancelar" (click)="platoForm.reset(); ingredientes.clear()">
+                        Cancelar
+                    </button>
                 </div>
-            </div>
+            </form>
         </main>
-    </div>
-</div>
+    </div> <!-- Cierra .content -->
+</div> <!-- Cierra .agregar-plato-container -->

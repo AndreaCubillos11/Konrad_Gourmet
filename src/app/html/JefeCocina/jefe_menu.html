@@ -42,56 +42,36 @@
             <div class="tabla-container">
                 <!-- Filtros -->
                 <div class="filtros">
-                    <button class="filtro active">Todas</button>
-                    <button class="filtro">Entradas</button>
-                    <button class="filtro">Platos fuertes</button>
-                    <button class="filtro">Postres</button>
+                    <!-- Botón para mostrar todos -->
+                    <button class="filtro" (click)="filtrarPorCategoria('todos')">Todos</button>
+
+                    <button class="filtro" *ngFor="let categoria of categoriasPlato"
+                        (click)="filtrarPorCategoria(categoria.nombre_categoria)">
+                        {{ categoria.nombre_categoria }}
+                    </button>
                 </div>
 
-                <!-- Tabla -->
+
                 <table class="tabla">
                     <thead>
                         <tr>
                             <th>Plato</th>
                             <th>Categoría</th>
                             <th>Precio</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Ensalada César</td>
-                            <td>Entrada</td>
-                            <td>$9.500</td>
-                        </tr>
-                        <tr>
-                            <td>Sopa de Tomate</td>
-                            <td>Plato Fuerte</td>
-                            <td>$19.200</td>
-                        </tr>
-                        <tr>
-                            <td>Aritos de Cebolla</td>
-                            <td>Entrada</td>
-                            <td>$10.500</td>
-                        </tr>
-                        <tr>
-                            <td>Filete de Res</td>
-                            <td>Plato Fuerte</td>
-                            <td>$22.300</td>
-                        </tr>
-                        <tr>
-                            <td>Tarta de Queso</td>
-                            <td>Postre</td>
-                            <td>$8.500</td>
-                        </tr>
-                        <tr>
-                            <td>Pasta al Pesto</td>
-                            <td>Plato Fuerte</td>
-                            <td>$21.200</td>
-                        </tr>
-                        <tr>
-                            <td>Risotto de Champiñones</td>
-                            <td>Plato Fuerte</td>
-                            <td>$23.400</td>
+                        <tr *ngFor="let plato of platos">
+
+                            <td>{{ plato.nombre }}</td>
+                            <td>{{ plato.CategoriaPlato?.nombre_categoria }}</td>
+                            <td>${{ plato.precio_venta }}</td>
+                            <button class="btn eliminar" (click)="eliminarPlato(plato.id_plato)">
+                                <i class="fas fa-trash"></i> Eliminar plato
+                            </button>
+                            <td>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -100,9 +80,6 @@
                 <div class="botones-acciones">
                     <button class="btn agregar">
                         <i class="fas fa-plus"></i> Agregar plato
-                    </button>
-                    <button class="btn eliminar">
-                        <i class="fas fa-trash"></i> Eliminar plato
                     </button>
                 </div>
             </div>

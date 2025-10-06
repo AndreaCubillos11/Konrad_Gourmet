@@ -1,0 +1,155 @@
+<div class="consulta-solicitudes-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="assets/images/KonradGourmetLogo.png" alt="Logo">
+        </div>
+        <nav>
+            <a routerLink="/home_auxiliar"><i class="fas fa-home"></i> Inicio</a>
+            <a routerLink="/consulta_solicitudes" class="active"><i class="fas fa-clipboard-list"></i> Solicitudes</a>
+            <a routerLink="/cotizaciones"><i class="fas fa-file-invoice-dollar"></i> Cotizaciones</a>
+        </nav>
+    </aside>
+
+    <!-- Contenido -->
+    <div class="content">
+        <!-- Header -->
+        <div class="header">
+            <div class="user">
+                <i class="fas fa-user-tie"></i> Aux. Compras
+            </div>
+            <button class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+
+        <!-- Main -->
+        <main class="main-content">
+            <h1>Consulta de Solicitudes</h1>
+
+            <!-- Filtros -->
+            <div class="filtros">
+                <div class="form-group">
+                    <label>Sucursal</label>
+                    <select>
+                        <option>Sucursal Chapinero</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Rango de Fecha</label>
+                    <input type="date" value="2025-04-04">
+                    <input type="date" value="2025-05-25">
+                </div>
+
+                <div class="form-group">
+                    <label>Producto</label>
+                    <input type="text" placeholder="Ej: Aceite" value="Aceite">
+                </div>
+
+                <div class="form-group">
+                    <label>Marca</label>
+                    <input type="text" placeholder="Ej: Diana" value="Diana">
+                </div>
+
+                <div class="form-group">
+                    <label>Estado</label>
+                    <select>
+                        <option>Pendiente</option>
+                        <option>Comprado</option>
+                        <option>Cotizado</option>
+                    </select>
+                </div>
+
+                <button class="btn-buscar"><i class="fas fa-search"></i> Buscar</button>
+            </div>
+
+            <!-- Tabla -->
+            <div class="tabla-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha de Solicitud</th>
+                            <th>Producto</th>
+                            <th>Cantidad y Unidad</th>
+                            <th>Marca</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>20 de Abril del 2025</td>
+                            <td>Leche Entera</td>
+                            <td>6 Litros</td>
+                            <td>Colanta</td>
+                            <td><span class="estado cotizado">Cotizado</span></td>
+                            <td>
+                                <button class="btn-ver">Ver</button>
+                                <button class="btn-descargar">Descargar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>25 de Abril del 2025</td>
+                            <td>Arroz</td>
+                            <td>50 Kg</td>
+                            <td>Diana</td>
+                            <td><span class="estado comprado">Comprado</span></td>
+                            <td>
+                                <button class="btn-ver">Ver</button>
+                                <button class="btn-descargar">Descargar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>30 de Abril del 2025</td>
+                            <td>Azúcar</td>
+                            <td>3 Kg</td>
+                            <td>Riopaila</td>
+                            <td><span class="estado cotizado">Cotizado</span></td>
+                            <td>
+                                <button class="btn-ver">Ver</button>
+                                <button class="btn-descargar">Descargar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4 de Mayo del 2025</td>
+                            <td>Pechuga de Pollo</td>
+                            <td>8 Kg</td>
+                            <td>Friko</td>
+                            <td><span class="estado pendiente">Pendiente</span></td>
+                            <td>
+                                <button class="btn-ver">Ver</button>
+                                <button class="btn-descargar">Descargar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7 de Mayo del 2025</td>
+                            <td>Manzanas</td>
+                            <td>100 Unidades</td>
+                            <td>Grupo Dispersa</td>
+                            <td><span class="estado cotizado">Cotizado</span></td>
+                            <td>
+                                <button class="btn-ver">Ver</button>
+                                <button class="btn-descargar">Descargar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>14 de Mayo del 2025</td>
+                            <td>Sal</td>
+                            <td>4 Kg</td>
+                            <td>Refisal</td>
+                            <td><span class="estado pendiente">Pendiente</span></td>
+                            <td>
+                                <button class="btn-ver">Ver</button>
+                                <button class="btn-descargar">Descargar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Botón Reporte -->
+            <div class="acciones-reporte">
+                <button class="btn-reporte">Generar Reporte de Solicitudes</button>
+            </div>
+        </main>
+    </div>
+</div>

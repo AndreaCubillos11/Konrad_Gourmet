@@ -25,8 +25,9 @@ export class HomeAdminComponent implements OnInit {
     cargarSucursales(): void {
         this.sucursalService.consultarSucursales(2,this.cookieService.get('token')).subscribe({
             next: (data) => {
-                this.sucursal = data.sucursales; // 👈 usar la propiedad correcta
+                this.sucursal = data.sucursales; 
             },
+
             error: (error) => {
                 console.error('Error en consulta de sucursales', error);
             }

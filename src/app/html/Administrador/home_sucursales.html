@@ -3,8 +3,8 @@
         <img src="assets/images/KonradGourmetLogo.png" alt="Logo Konrad Gourmet">
     </div>
     <nav>
-        <a href="#"><i class="fa-solid fa-house"></i> Inicio</a>
-        <a href="#" class="active"><i class="fa-solid fa-building"></i> Sucursales</a>
+        <a href="/home_admin"><i class="fa-solid fa-house"></i> Inicio</a>
+        <a href="/registrar_sucursal" class="active"><i class="fa-solid fa-building"></i> Sucursales</a>
         <a href="#"><i class="fa-solid fa-truck"></i> Proveedores</a>
         <a href="#"><i class="fa-solid fa-box"></i> Inventario</a>
         <a href="#"><i class="fa-solid fa-list"></i> Listas</a>
@@ -31,9 +31,8 @@
 
         <!-- Filtros superiores -->
         <div class="filtros-superiores">
-            <button class="tag">Ciudad: Todas</button>
             <button class="tag">Estatus: Activo</button>
-            <button class="agregar"><i class="fas fa-plus"></i> Agregar</button>
+            <button class="agregar"><i class="fas fa-plus"></i> Agregar Sucursal</button>
         </div>
 
         <div class="grid-container">
@@ -60,10 +59,6 @@
                     <label>Jefe de cocina</label>
                     <span>{{ sucursal.Usuario.nombre }}</span>
                 </div>
-
-                <button class="btn-editar">
-                    <i class="fas fa-edit"></i> Editar
-                </button>
             </div>
             <!-- Todas las sucursales -->
             <div class="card">
@@ -85,6 +80,7 @@
                             <td>{{ s.direccion }}</td>
                             <td>{{ s.telefono }}</td>
                             <td>{{ s.Usuario.nombre }}</td>
+                            <td>{{ s.estado }}</td>
                         </tr>
                         }
                     </tbody>

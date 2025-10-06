@@ -111,7 +111,7 @@ body {
 }
 
 .btn-new {
-  background-color: #a66b00; /* dorado */
+  background-color: #b58c58; /* dorado */
   border: none;
   color: white;
   padding: 8px 16px;
@@ -120,7 +120,7 @@ body {
   font-weight: bold;
 }
 .btn-new:hover {
-  background-color: #805200;
+  background-color: #b58c58;
 }
 
 /* Grid de pedidos */
@@ -176,4 +176,15 @@ body {
 }
 .btn-cancel:hover {
   background: #163d75;
+}
+
+.btn-entregado {
+  background: #b58c58;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  align-self: flex-start;
 }

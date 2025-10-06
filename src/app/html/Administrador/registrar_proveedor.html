@@ -32,137 +32,57 @@
     <section class="proveedor-form">
       <h2><i class="fas fa-truck"></i> Agregar Proveedor</h2>
 
-      <!-- Wizard pasos -->
-      <div class="wizard">
-        <button class="step active"><i class="fas fa-building"></i> Datos de la empresa</button>
-        <button class="step"><i class="fas fa-user-friends"></i> Contactos</button>
-        <button class="step"><i class="fas fa-tags"></i> Categoría</button>
-        <button class="step"><i class="fas fa-file-alt"></i> Términos y documentos</button>
-      </div>
-
-      <!-- Detalles de empresa -->
-      <div class="card">
-        <h3><i class="fas fa-building"></i> Detalles de la empresa</h3>
-        <div class="grid">
-          <div>
-            <label><b>Nombre:</b></label>
-            <input type="text" placeholder="Fresh Harvest">
-          </div>
-          <div>
-            <label><b>Código:</b></label>
-            <input type="text" placeholder="00123">
-          </div>
-          <div>
-            <label><b>Tipo:</b></label>
-            <select>
-              <option>Proveedor</option>
-              <option>Distribuidor</option>
-              <option>Fabricante</option>
-            </select>
-          </div>
-          <div>
-            <label><b>Estado:</b></label>
-            <select>
-              <option>Activo</option>
-              <option>Inactivo</option>
-            </select>
-          </div>
-          <div>
-            <label><b>Dirección:</b></label>
-            <input type="text" placeholder="Cra. 2 # 36-86">
-          </div>
-          <div>
-            <label><b>Ciudad:</b></label>
-            <input type="text" placeholder="Cartagena">
-          </div>
-          <div>
-            <label><b>País:</b></label>
-            <input type="text" placeholder="Colombia">
-          </div>
-          <div>
-            <label><b>NIT:</b></label>
-            <input type="text" placeholder="890-480-184-4">
-          </div>
-          <div>
-            <label><b>Moneda de pago:</b></label>
-            <select>
-              <option>COP</option>
-              <option>USD</option>
-              <option>EUR</option>
-            </select>
+      <!-- Formulario -->
+      <form action="#" method="post">
+        <!-- Detalles de empresa -->
+        <div class="card">
+          <h3><i class="fas fa-building"></i> Detalles de la empresa</h3>
+          <div class="grid detalles-empresa">
+            <div>
+              <label><b>Nombre:</b></label>
+              <input type="text" placeholder="Fresh Harvest" name="nombre">
+            </div>
+            <div>
+              <label><b>Dirección:</b></label>
+              <input type="text" placeholder="Cra. 2 # 36-86" name="direccion">
+            </div>
+            <div>
+              <label><b>Ciudad:</b></label>
+              <select name="ciudad">
+                <option value="">Seleccione ciudad</option>
+                <option>Bogotá</option>
+                <option>Medellin</option>
+                <option>Cali</option>
+              </select>
+            </div>
+            <div>
+              <label><b>NIT:</b></label>
+              <input type="text" placeholder="890-480-184-4" name="nit">
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Contactos -->
-      <div class="card">
-        <h3><i class="fas fa-user-friends"></i> Contactos principales</h3>
-        <div class="grid">
-          <div>
-            <label><b>Gerente de cuentas:</b></label>
-            <input type="text" placeholder="Andrés Martínez">
-          </div>
-          <div>
-            <label><b>Teléfono:</b></label>
-            <input type="tel" placeholder="+57 314 5672333">
-          </div>
-          <div>
-            <label><b>Correo:</b></label>
-            <input type="email" placeholder="andresg@freshharvest.co">
+        <!-- Contactos -->
+        <div class="card">
+          <h3><i class="fas fa-user-friends"></i> Contactos principales</h3>
+          <div class="grid">
+            <div>
+              <label><b>Teléfono:</b></label>
+              <input type="tel" placeholder="+57 314 5672333" name="telefono">
+            </div>
+            <div>
+              <label><b>Correo:</b></label>
+              <input type="email" placeholder="andresg@freshharvest.co" name="correo">
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Categorías -->
-      <div class="card">
-        <h3><i class="fas fa-tags"></i> Categorías y artículos</h3>
-        <div class="grid">
-          <div>
-            <label><b>Productos frescos:</b></label>
-            <input type="text" placeholder="Frutas, verduras">
-          </div>
-          <div>
-            <label><b>Lácteos:</b></label>
-            <input type="text" placeholder="Leche, queso">
-          </div>
-          <div>
-            <label><b>Proteínas:</b></label>
-            <input type="text" placeholder="Carnes, aves, pescados">
-          </div>
+        <!-- Botones -->
+        <div class="acciones">
+          <button type="reset" class="cancelar"><i class="fas fa-times"></i> Cancelar</button>
+          <button type="submit" class="crear"><i class="fas fa-paper-plane"></i> Enviar solicitud</button>
         </div>
-      </div>
-
-      <!-- Condiciones -->
-      <div class="card">
-        <h3><i class="fas fa-file-alt"></i> Condiciones de pago y documentos</h3>
-        <div class="grid">
-          <div>
-            <label><b>Condiciones de pago:</b></label>
-            <select>
-              <option>Neto 30</option>
-              <option>Neto 15</option>
-              <option>Neto 60</option>
-            </select>
-          </div>
-          <div>
-            <label><b>Días de entrega:</b></label>
-            <input type="text" placeholder="Mar / Jue">
-          </div>
-          <div>
-            <label><b>Contrato:</b></label>
-            <select>
-              <option>Vigente</option>
-              <option>Vencido</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Botones -->
-      <div class="acciones">
-        <button class="cancelar"><i class="fas fa-times"></i> Cancelar</button>
-        <button class="crear"><i class="fas fa-check"></i> Crear proveedor</button>
-      </div>
+      </form>
     </section>
   </main>
 </div>

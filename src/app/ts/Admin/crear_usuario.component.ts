@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
     selector: 'app-crear-usuario',
     standalone: true,   
-    templateUrl: '../../html/Administrador/crear_usuario.html',
+    templateUrl:'../../html/Administrador/crear_usuario.html',
     styleUrls: ['../../css/crear_usuario.css'],
     imports: [CommonModule, FormsModule]  
 })
