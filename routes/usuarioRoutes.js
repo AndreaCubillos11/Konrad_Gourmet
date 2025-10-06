@@ -8,11 +8,12 @@ router.post("/login", usuarioController.login);
 
 
 // Rutas que SÍ requieren token
+router.get("/usuarios/rol",auth.verificarToken,usuarioController.consultarRoles);
 router.post("/usuarios", auth.verificarToken, usuarioController.crearUsuario);
 router.get("/usuarios", auth.verificarToken, usuarioController.obtenerUsuarios);
 router.get("/usuarios/:id", auth.verificarToken, usuarioController.obtenerUsuarioPorId);
 router.put("/usuarios/:id_usuario", auth.verificarToken, usuarioController.modificarUsuario);
-router.get("/usuarios/rol",auth.verificarToken,usuarioController.consultarRoles);
+
 
 
 module.exports = router;
