@@ -194,3 +194,24 @@ exports.modificarUsuario = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.consultarRoles=async(req,res,next)=>{
+  try {
+    const { creador_id } = req.query;
+
+    const roles = await Rol.findAll({
+      attributes: [ "id_rol","nombre_rol"]
+    });
+
+
+      await Auditoria.create({
+        accion_registrada: "CONSULTAR ROLES",
+        id_usuario: creador_id
+      });
+    
+
+    res.status(200).json({ mensaje: "Roles del sistema", roles });
+  } catch (err) {
+    next(err);
+  }
+};
