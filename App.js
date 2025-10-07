@@ -2,24 +2,28 @@ const express = require("express");
 const sequelize = require("./config/database");
 const usuarioRoutes = require("./routes/usuarioRoutes");
 const errorLogger = require("./middlewares/errorLogger");
-const sucursalesRoutes=require("./routes/sucursalesRouter");
-const listasDesplegables=require("./routes/listasDesplegablesRouter");
-const Plato=require("./routes/platoRouter");
-const Pedido=require("./routes/pedidoRoutes");
-const SolicitudAlimento=require("./routes/solicitudAlimentosRoutes");
-const ProveedorRoutes=require("./routes/proveedorRoutes");
+const sucursalesRoutes = require("./routes/sucursalesRouter");
+const listasDesplegables = require("./routes/listasDesplegablesRouter");
+const Plato = require("./routes/platoRouter");
+const Pedido = require("./routes/pedidoRoutes");
+const SolicitudAlimento = require("./routes/solicitudAlimentosRoutes");
+const ProveedorRoutes = require("./routes/proveedorRoutes");
+const InventarioRoutes = require("./routes/inventarioRoutes");
+const CotizacionRoutes=require("./routes/cotizacionRoutes");
 
 const app = express();
 app.use(express.json());
 
 // Rutas
-app.use("/api",usuarioRoutes);
-app.use("/api",sucursalesRoutes);
-app.use("/api",listasDesplegables);
-app.use("/api",Plato);
-app.use("/api",Pedido);
-app.use("/api",SolicitudAlimento);
-app.use("/api",ProveedorRoutes);
+app.use("/api", usuarioRoutes);
+app.use("/api", sucursalesRoutes);
+app.use("/api", listasDesplegables);
+app.use("/api", Plato);
+app.use("/api", Pedido);
+app.use("/api", SolicitudAlimento);
+app.use("/api", ProveedorRoutes);
+app.use("/api", InventarioRoutes);
+app.use("/api",CotizacionRoutes);
 
 // Middleware de errores
 app.use(errorLogger);
