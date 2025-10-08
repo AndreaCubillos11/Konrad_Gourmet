@@ -111,6 +111,29 @@ exports.Producto = async (req, res, next) => {
   }
 };
 
+exports.Marca=async(req,res,next)=>{
+try {
+    const {nombre_marca, creador_id } = req.body;
+    const existe = await Marca.findOne({ where: { nombre_marca: nombre_marca } });
+    if (existe) {
+      return res.status(400).json({ error: "Ya existe esa Marca" });
+    }
+
+    const nuevaMarca = await Marca.create({
+     nombre_marca
+    });
+
+    await Auditoria.create({
+      accion_registrada: "CREAR MARCA",
+      id_usuario: creador_id
+    });
+    res.status(200).json({ mensaje: "Lista alimentada correctamente." });
+
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.ConsultarCategoriaPlato = async (req, res, next) => {
   try {
     const { creador_id } = req.query; // quién ejecuta la consulta
@@ -229,6 +252,38 @@ exports.ConsultarProductosPorCategoria = async (req, res, next) => {
     }
 
     res.status(200).json({ productos });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.consultarMarcas = async (req, res, next) => {
+  try {
+    const { creador_id } = req.query;
+
+    // Validar que exista el creador_id
+    if (!creador_id) {
+      return res.status(400).json({ error: "Debe proporcionar el creador_id en la query." });
+    }
+
+    // Consultar todas las marcas
+    const marcas = await Marca.findAll({
+      attributes: ["id_marca", "nombre_marca"],
+      order: [["nombre_marca", "ASC"]]
+    });
+
+    // Registrar la acción en Auditoría
+    await Auditoria.create({
+      accion_registrada: "CONSULTAR MARCAS",
+      id_usuario: creador_id
+    });
+
+    // Respuesta
+    res.status(200).json({
+      mensaje: "Marcas consultadas correctamente.",
+      marcas
+    });
+
   } catch (err) {
     next(err);
   }
