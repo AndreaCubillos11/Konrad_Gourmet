@@ -52,10 +52,6 @@ exports.obtenerSucursales = async (req, res, next) => {
     // lo recibimos por query param o lo que uses como "usuario que consulta"
 
     const sucursales = await Sucursal.findAll({
-      include: {
-        model: Usuario,
-        attributes: ["id_usuario", "nombre", "correo"]
-      }
     });
 
     // Registrar en auditoría que alguien consultó las sucursales
@@ -81,11 +77,7 @@ exports.obtenerSucursalPorId = async (req, res, next) => {
     const { creador_id } = req.query;   // sigue opcional para auditoría
 
     const sucursal = await Sucursal.findOne({
-      where: { id_sucursal },
-      include: {
-        model: Usuario,
-        attributes: ["id_usuario", "nombre", "correo"]
-      }
+      where: { id_sucursal }
     });
 
     if (!sucursal) {
