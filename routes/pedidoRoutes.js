@@ -9,6 +9,8 @@ router.get("/pedido/activos/:id_sucursal",auth.verificarToken, pedido.consultarP
 
 router.put("/pedido/:id_pedido/estado",auth.verificarToken, pedido.actualizarEstadoPedido);
 
+router.delete("/pedido/:id_pedido",auth.verificarToken, pedido.eliminarPedido);
+
 
 
 module.exports = router;

@@ -75,10 +75,10 @@ exports.consultarPedidosActivosPorSucursal = async (req, res, next) => {
         {
           model: PedidoDetalle,
           attributes: ["id_plato", "cantidad"],
-          include:[
+          include: [
             {
-              model:Plato,
-               attributes: ["nombre", "precio_venta"]
+              model: Plato,
+              attributes: ["nombre", "precio_venta"]
             }
           ]
         },
@@ -136,7 +136,7 @@ exports.actualizarEstadoPedido = async (req, res, next) => {
 
     // Registrar en Auditoría
     await Auditoria.create({
-       accion_registrada: `PEDIDO ACTUALIZADO (ID: ${id_pedido}) - Estado cambiado a ${estado}`,
+      accion_registrada: `PEDIDO ACTUALIZADO (ID: ${id_pedido}) - Estado cambiado a ${estado}`,
       id_usuario: creador_id
     });
 
@@ -149,5 +149,52 @@ exports.actualizarEstadoPedido = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.eliminarPedido = async (req, res, next) => {
+  try {
+    const { id_pedido } = req.params;
+    const { creador_id} = req.query; // usuario que ejecuta la acción
+
+    // Verificar que el pedido exista
+    const pedido = await Pedido.findByPk(id_pedido);
+    if (!pedido) {
+      return res.status(404).json({ error: "Pedido no encontrado" });
+    }
+
+    // Verificar rol del usuario
+    const usuario = await Usuario.findByPk(creador_id);
+    const rolUsuario = await Rol.findOne({ where: { id_rol: usuario.id_rol } });
+
+    if (
+      rolUsuario.nombre_rol.toLowerCase() !== "mesero"
+    ) {
+      return res.status(403).json({ error: "No autorizado para eliminar pedidos" });
+    }
+
+    // Primero eliminar los detalles asociados
+    await PedidoDetalle.destroy({
+      where: { id_pedido },
+    });
+
+    // Luego eliminar el pedido
+    await Pedido.destroy({
+      where: { id_pedido },
+    });
+
+    // Registrar la acción en la auditoría
+    await Auditoria.create({
+      accion_registrada: `PEDIDO ELIMINADO (ID: ${id_pedido})`,
+      id_usuario:creador_id,
+    });
+
+    res.status(200).json({
+      mensaje: `Pedido con ID ${id_pedido} eliminado correctamente`,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 
 
