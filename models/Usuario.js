@@ -2,8 +2,6 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 const Rol = require("./Rol");
 
-
-
 const Usuario = sequelize.define("Usuario", {
   id_usuario: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
   nombre: { type: DataTypes.STRING(100), allowNull: false },
@@ -23,17 +21,13 @@ const Usuario = sequelize.define("Usuario", {
     }
   }
 },
+{
+  tableName: "usuario",   // 👈 en minúscula
+  timestamps: false
+});
 
-
-  {
-    tableName: "usuario",   // 👈 en minúscula
-    timestamps: false
-  });
-
-// Usuario.js
+// 🔗 Relaciones
 Usuario.belongsTo(Rol, { foreignKey: "id_rol" });
-
-// Rol.js
 Rol.hasMany(Usuario, { foreignKey: "id_rol" });
 
 module.exports = Usuario;
