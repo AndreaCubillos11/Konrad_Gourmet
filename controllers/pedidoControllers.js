@@ -4,6 +4,7 @@ const Auditoria = require("../models/Auditoria");
 const Rol = require("../models/Rol");
 const Usuario = require("../models/Usuario");
 const sequelize = require("../config/database"); // ✅ Importa tu Singleton
+const Plato = require("../models/Plato");
 
 exports.crearPedido = async (req, res, next) => {
   const t = await sequelize.transaction(); // ✅ Ya no será undefined
@@ -74,6 +75,12 @@ exports.consultarPedidosActivosPorSucursal = async (req, res, next) => {
         {
           model: PedidoDetalle,
           attributes: ["id_plato", "cantidad"],
+          include:[
+            {
+              model:Plato,
+               attributes: ["nombre", "precio_venta"]
+            }
+          ]
         },
         {
           model: Usuario,
