@@ -5,13 +5,15 @@ const Rol = require("../models/Rol");
 const Auditoria = require("../models/Auditoria");
 
 const { SECRET_KEY } = require("../middlewares/auth");
+const Sucursal = require("../models/Sucursales");
 
 const SALT_ROUNDS = 10;
 
 // POST: crear usuario
 exports.crearUsuario = async (req, res, next) => {
   try {
-    const { nombre, correo, contrasena, id_rol, creador_id } = req.body;
+
+    const { nombre, correo, contrasena, id_rol, creador_id, id_sucursal } = req.body;
 
     const rolCreador = await Usuario.findOne({ where: { id_usuario: creador_id } });
     if (!rolCreador || rolCreador.id_rol !== 1) {
@@ -31,7 +33,8 @@ exports.crearUsuario = async (req, res, next) => {
       nombre,
       correo,
       contrasena: hash,
-      id_rol
+      id_rol,
+      id_sucursal
     });
 
     // Auditoría
@@ -46,7 +49,8 @@ exports.crearUsuario = async (req, res, next) => {
         id_usuario: nuevoUsuario.id_usuario,
         nombre: nuevoUsuario.nombre,
         correo: nuevoUsuario.correo,
-        id_rol: nuevoUsuario.id_rol
+        id_rol: nuevoUsuario.id_rol,
+        id_sucursal: nuevoUsuario.id_sucursal
       }
     });
   } catch (err) {
@@ -98,11 +102,17 @@ exports.obtenerUsuarios = async (req, res, next) => {
     const { creador_id } = req.query;
 
     const usuarios = await Usuario.findAll({
-      attributes: ["id_usuario", "nombre", "correo", "id_rol","estado"],
-      include: {
-        model: Rol,
-        attributes: ["nombre_rol"]
-      }
+      attributes: ["id_usuario", "nombre", "correo", "id_rol", "estado", "id_sucursal"],
+      include: [
+        {
+          model: Rol,
+          attributes: ["nombre_rol"]
+        },
+        {
+          model: Sucursal,
+          attributes: ["id_sucursal", "nombre", "direccion", "telefono", "estado"]
+        }
+      ]
     });
 
     if (creador_id) {
@@ -125,11 +135,17 @@ exports.obtenerUsuarioPorId = async (req, res, next) => {
     const { creador_id } = req.query;
 
     const usuario = await Usuario.findByPk(id, {
-      attributes: ["id_usuario", "nombre", "correo", "id_rol","estado"],
-      include: {
-        model: Rol,
-        attributes: ["nombre_rol"]
-      }
+      attributes: ["id_usuario", "nombre", "correo", "id_rol", "estado"],
+      include: [
+        {
+          model: Rol,
+          attributes: ["nombre_rol"]
+        },
+        {
+          model: Sucursal,
+          attributes: ["id_sucursal", "nombre", "direccion", "telefono", "estado"]
+        }
+      ]
     });
 
     if (!usuario) {
@@ -153,7 +169,7 @@ exports.obtenerUsuarioPorId = async (req, res, next) => {
 exports.modificarUsuario = async (req, res, next) => {
   try {
     const { id_usuario } = req.params;
-    const { nombre, correo, contrasena, id_rol, modificador_id, estado } = req.body;
+    const { nombre, correo, contrasena, id_rol, modificador_id, estado ,id_sucursal} = req.body;
 
     const rolModificador = await Usuario.findOne({ where: { id_usuario: modificador_id } });
     if (!rolModificador || rolModificador.id_rol !== 1) {
@@ -181,6 +197,7 @@ exports.modificarUsuario = async (req, res, next) => {
       datosActualizados.contrasena = hash;
     }
     if (estado) datosActualizados.estado = estado;
+    if(id_sucursal)datosActualizados.id_sucursal=id_sucursal;
 
     await usuario.update(datosActualizados);
 
@@ -195,20 +212,20 @@ exports.modificarUsuario = async (req, res, next) => {
   }
 };
 
-exports.consultarRoles=async(req,res,next)=>{
+exports.consultarRoles = async (req, res, next) => {
   try {
     const { creador_id } = req.query;
 
     const roles = await Rol.findAll({
-      attributes: [ "id_rol","nombre_rol"]
+      attributes: ["id_rol", "nombre_rol"]
     });
 
 
-      await Auditoria.create({
-        accion_registrada: "CONSULTAR ROLES",
-        id_usuario: creador_id
-      });
-    
+    await Auditoria.create({
+      accion_registrada: "CONSULTAR ROLES",
+      id_usuario: creador_id
+    });
+
 
     res.status(200).json({ mensaje: "Roles del sistema", roles });
   } catch (err) {

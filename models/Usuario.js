@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 const Rol = require("./Rol");
+const Sucursal=require("./Sucursales");
 
 const Usuario = sequelize.define("Usuario", {
   id_usuario: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
@@ -19,6 +20,14 @@ const Usuario = sequelize.define("Usuario", {
       model: "rol", // nombre de la tabla en la BD
       key: "id_rol"
     }
+  },
+  id_sucursal: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'sucursal',
+      key: 'id_sucursal'
+    }
   }
 },
 {
@@ -29,5 +38,11 @@ const Usuario = sequelize.define("Usuario", {
 // 🔗 Relaciones
 Usuario.belongsTo(Rol, { foreignKey: "id_rol" });
 Rol.hasMany(Usuario, { foreignKey: "id_rol" });
+
+Usuario.belongsTo(Sucursal, {
+    foreignKey: 'id_sucursal',
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+});
 
 module.exports = Usuario;
