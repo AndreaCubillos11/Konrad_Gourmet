@@ -1,18 +1,18 @@
-/* ===== Layout general ===== */
+/* Layout general */
 body {
   margin: 0;
   display: flex;
-  font-family: "Segoe UI", Arial, sans-serif;
-  height: 100vh;
+  font-family: Arial, sans-serif;
+  height: 100vh; /* pantalla completa */
   background-color: #f8f9fa;
 }
 
-/* ===== Sidebar ===== */
+/* Sidebar */
 .sidebar {
   width: 220px;
   background-color: #0b2a55; /* azul oscuro */
   color: white;
-  height: 100vh;
+  height: 100vh; /* ocupa toda la altura */
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -23,8 +23,8 @@ body {
 }
 
 .logo img {
-  width: 160px;
-  margin-bottom: 20px;
+    width: 160px;
+    margin-bottom: 20px;
 }
 
 .sidebar nav {
@@ -44,20 +44,23 @@ body {
   transition: background 0.3s;
 }
 
-.sidebar nav a:hover,
-.sidebar nav a.active {
-  background: #f8f9fa;
+.sidebar nav a:hover {
+  background: #163d75;
 }
 
-/* ===== Contenido principal ===== */
+.sidebar nav a.active {
+  background: #163d75;
+}
+
+/* Contenido principal */
 .content {
-  margin-left: 220px;
+  margin-left: 220px; /* espacio para la sidebar */
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-/* ===== Header ===== */
+/* Header */
 .header {
   background-color: #f8f9fa;
   padding: 15px 20px;
@@ -86,7 +89,7 @@ body {
   background: #163d75;
 }
 
-/* ===== Contenido ===== */
+/* Contenido */
 .main-content {
   padding: 30px;
 }
