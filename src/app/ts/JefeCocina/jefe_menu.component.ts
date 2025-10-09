@@ -4,13 +4,14 @@ import { RegistrarPlatoService } from '../../services/JefeCocina/registrar-plato
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ModalNotificacionComponent } from '../../shared/modal-notificacion/modal-notificacion';
 
 
 @Component({
     selector: 'app-jefe-menu',
     templateUrl: '../../html/JefeCocina/jefe_menu.html',
     styleUrls: ['../../css/jefe_menu.css'],
-    imports: [CommonModule]
+    imports: [CommonModule, ModalNotificacionComponent]
 })
 export class JefeMenuComponent {
 
@@ -19,7 +20,10 @@ export class JefeMenuComponent {
     todosPlatos: any[] = [];
     platoForm!: FormGroup;
 
-
+    modalVisible: boolean = false;
+    modalTipo: 'exito' | 'error' = 'exito';
+    modalTitulo: string = '';
+    modalMensaje: string = '';
     constructor(
         private registrarPlatoService: RegistrarPlatoService,
         private cookieService: CookieService,
@@ -75,17 +79,32 @@ export class JefeMenuComponent {
     }
 
     eliminarPlato(id: number) {
-
-        this.platoForm.patchValue({
-            id_plato: id
-        });
+        this.platoForm.patchValue({ id_plato: id });
         const token = this.cookieService.get('token');
-        this.registrarPlatoService.eliminarPlato(this.platoForm.value, token).subscribe(() => {
-            //   this.consultarPlatos(); // refrescar lista
-            // });
-        })
 
+        this.registrarPlatoService.eliminarPlato(this.platoForm.value, token).subscribe({
+            next: () => {
+                console.log("Eliminado correctamente");
+                this.modalTipo = 'exito';
+                this.modalTitulo = 'Plato eliminado';
+                this.modalMensaje = 'El plato se eliminó correctamente del menú.';
+                this.modalVisible = true;
+                this.consultarPlatos();
+            },
+            error: (error) => {
+                console.error("Error al eliminar el plato:", error);
+                this.modalTipo = 'error';
+                this.modalTitulo = 'Error al eliminar';
+                this.modalMensaje = 'No se pudo eliminar el plato. Inténtalo nuevamente.';
+                this.modalVisible = true;
+                console.log("Modal visible:", this.modalVisible);
+            }
+        });
     }
 
-}
+        cerrarModal() {
+            this.modalVisible = false;
+        }
+
+    }
 

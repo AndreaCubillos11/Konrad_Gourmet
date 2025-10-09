@@ -1,102 +1,138 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-interface Producto {
-  nombre: string;
-}
-
-interface Pedido {
-  nombre: string;
-  cantidad: number;
-}
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Pedido } from '../../services/Mesero/pedido';
+import { RegistrarPlatoService } from '../../services/JefeCocina/registrar-plato';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+import { ModalNotificacionComponent } from '../../shared/modal-notificacion/modal-notificacion'; 
 
 @Component({
   selector: 'app-agregar-pedido',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ModalNotificacionComponent], 
   templateUrl: '../../html/Mesero/agregar-pedido.html',
   styleUrls: ['../../css/agregar-pedido.css']
 })
-export class AgregarPedidoComponent {
-  
-  categorias = ['Entradas', 'Platos fuertes', 'Bebidas', 'Postres'];
-  categoriaSeleccionada = 'Entradas';
-  mesas = [1, 2, 3, 4, 5];
-  mesaSeleccionada = 1;
+export class AgregarPedidoComponent implements OnInit {
 
-  // Menú por categoría
-  menu: { [key: string]: Producto[] } = {
-    Entradas: [
-      { nombre: 'Sopa de Tomate' },
-      { nombre: 'Ensalada César' },
-      { nombre: 'Bruschetta' }
-    ],
-    'Platos fuertes': [
-      { nombre: 'Filete de Res' },
-      { nombre: 'Pasta al Pesto' },
-      { nombre: 'Risotto de Champiñones' }
-    ],
-    Bebidas: [
-      { nombre: 'Coca-Cola' },
-      { nombre: 'Jugo de Naranja' },
-      { nombre: 'Café' }
-    ],
-    Postres: [
-      { nombre: 'Tarta de Queso' },
-      { nombre: 'Brownie' },
-      { nombre: 'Helado de Vainilla' }
-    ]
-  };
+  platos: any[] = [];
+  categoriasPlato: any[] = [];
+  todosPlatos: any[] = [];
+  pedido: any[] = [];
+  mesas: number[] = [1,2,3,4,5,6,7,8,9,10];
+  mesaSeleccionada: number | null = null;
+  idUsuario: string | null = '';
 
-  pedido: Pedido[] = [];
+  modalVisible = false;
+  modalTitulo = '';
+  modalMensaje = '';
+  modalTipo: 'exito' | 'error' | 'advertencia' | 'info' = 'info';
 
-  // Productos filtrados
-  getProductosPorCategoria(): Producto[] {
-    return this.menu[this.categoriaSeleccionada] || [];
+  constructor(
+    private pedidoService: Pedido,
+    private cookieService: CookieService,
+    private router: Router,
+    private fb: FormBuilder,
+    private registrarPlatoService: RegistrarPlatoService
+  ) {}
+
+  ngOnInit() {
+    this.idUsuario = localStorage.getItem('id_usuario');
+    this.consultarPlatos();
+    this.consultarCategoriaPlato();
   }
 
-  // Seleccionar tab
-  seleccionarCategoria(cat: string) {
-    this.categoriaSeleccionada = cat;
+  consultarPlatos() {
+    const token = this.cookieService.get('token');
+    if (!token || !this.idUsuario) return;
+
+    this.registrarPlatoService.getPlatos(token, this.idUsuario).subscribe(
+      data => {
+        this.todosPlatos = data.platos || [];
+        this.platos = [...this.todosPlatos];
+      },
+      error => console.error('Error consultando el menú:', error)
+    );
   }
 
-  // Agregar al pedido
-  agregar(producto: Producto) {
-    const existente = this.pedido.find(p => p.nombre === producto.nombre);
+  consultarCategoriaPlato() {
+    const token = this.cookieService.get('token');
+    if (!token || !this.idUsuario) return;
+
+    this.registrarPlatoService.getCategoriasPlato(token, this.idUsuario).subscribe(
+      data => this.categoriasPlato = data.catPlatos || [],
+      error => console.error('Error al consultar categorías:', error)
+    );
+  }
+
+  filtrarPorCategoria(categoria: string) {
+    this.platos = categoria === 'todos'
+      ? [...this.todosPlatos]
+      : this.todosPlatos.filter(p => p.CategoriaPlato?.nombre_categoria === categoria);
+  }
+
+  agregar(plato: any) {
+    const existente = this.pedido.find(p => p.id_plato === plato.id_plato);
     if (existente) {
       existente.cantidad++;
     } else {
-      this.pedido.push({ nombre: producto.nombre, cantidad: 1 });
+      this.pedido.push({ id_plato: plato.id_plato, nombre: plato.nombre, cantidad: 1 });
     }
   }
 
-  // Incrementar
-  incrementar(p: Pedido) {
-    p.cantidad++;
+  incrementar(plato: any) {
+    plato.cantidad++;
   }
 
-  // Disminuir
-  disminuir(p: Pedido) {
-    if (p.cantidad > 1) {
-      p.cantidad--;
-    } else {
-      this.eliminar(p);
-    }
+  disminuir(plato: any) {
+    if (plato.cantidad > 1) plato.cantidad--;
+    else this.eliminar(plato);
   }
 
-  // Eliminar
-  eliminar(p: Pedido) {
-    this.pedido = this.pedido.filter(item => item !== p);
+  eliminar(plato: any) {
+    this.pedido = this.pedido.filter(item => item.id_plato !== plato.id_plato);
   }
 
-  // Enviar pedido
   enviarPedido() {
-    console.log('Pedido enviado:', {
-      mesa: this.mesaSeleccionada,
-      detalle: this.pedido
-    });
-    alert(`Pedido de la mesa ${this.mesaSeleccionada} enviado con éxito ✅`);
-    this.pedido = [];
+    const token = this.cookieService.get('token');
+    if (!token || !this.mesaSeleccionada || this.pedido.length === 0) {
+      this.mostrarModal('error', 'Error', 'Debes seleccionar una mesa y agregar platos antes de enviar.');
+      return;
+    }
+
+    const nuevoPedido = {
+      id_usuario: this.idUsuario,
+      numero_mesa: this.mesaSeleccionada,
+      fecha_hora: new Date().toISOString(),
+      id_sucursal: 1,
+      platos: this.pedido
+    };
+
+    this.pedidoService.registrarPedido(nuevoPedido, token).subscribe(
+      response => {
+        console.log('Pedido enviado con éxito:', response);
+        this.mostrarModal('exito', 'Éxito', 'El pedido fue enviado correctamente');
+        this.pedido = [];
+        this.mesaSeleccionada = null;
+      },
+      error => {
+        console.error('Error al enviar el pedido:', error);
+        this.mostrarModal('error', 'Error', 'No se pudo enviar el pedido. Intente nuevamente.');
+      }
+    );
+  }
+
+  // Mostrar modal de notificación
+  mostrarModal(tipo: 'exito' | 'error' | 'advertencia' | 'info', titulo: string, mensaje: string) {
+    this.modalTipo = tipo;
+    this.modalTitulo = titulo;
+    this.modalMensaje = mensaje;
+    this.modalVisible = true;
+  }
+
+  // Cerrar modal
+  cerrarModal() {
+    this.modalVisible = false;
   }
 }

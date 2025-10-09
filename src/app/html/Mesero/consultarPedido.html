@@ -30,59 +30,43 @@
   <div class="main-content">
     <div class="main-header">
       <h1>Pedidos en curso</h1>
-      <button class="btn-new">+ Nuevo Pedido</button>
     </div>
 
     <div class="orders">
-      <!-- Pedido Mesa 1 -->
-      <div class="order-card">
-        <h3>Mesa: <span>1</span></h3>
+      <!-- 🔹 Listar pedidos dinámicamente -->
+      <div class="order-card" *ngFor="let pedido of pedidos">
+        <h3>Mesa: <span>{{ pedido.numero_mesa }}</span></h3>
+
+        <!-- 🔹 Listar platos del pedido -->
         <ul>
-          <li>3 Sopa de Tomate</li>
-          <li>2 Pepsi</li>
-          <li>1 Limonada</li>
-          <li>3 Torta de Queso</li>
+          <li *ngFor="let detalle of pedido.PedidoDetalles">
+            {{ detalle.cantidad }} {{ detalle.Plato.nombre }}
+          </li>
         </ul>
-        <button class="btn-cancel">Cancelar Pedido</button>
-        <button class="btn-entregado">Pedido Entregado</button>
+
+        <div class="actions">
+          <button class="btn-cancel" (click)="eliminarPedido(pedido.id_pedido)">
+            Cancelar Pedido
+          </button>
+          <button class="btn-entregado" (click)="actualizarEstado(pedido.id_pedido)">
+            Pedido Entregado
+          </button>
+        </div>
       </div>
 
-      <!-- Pedido Mesa 2 -->
-      <div class="order-card">
-        <h3>Mesa: <span>2</span></h3>
-        <ul>
-          <li>2 Filete de Res</li>
-          <li>1 Tarta de Queso</li>
-          <li>2 Coca - Cola</li>
-        </ul>
-        <button class="btn-cancel">Cancelar Pedido</button>
-        <button class="btn-entregado">Pedido Entregado</button>
-      </div>
-
-      <!-- Pedido Mesa 3 -->
-      <div class="order-card">
-        <h3>Mesa: <span>3</span></h3>
-        <ul>
-          <li>2 Ensalada César</li>
-          <li>1 Pasta al Pesto</li>
-          <li>1 Filete de Res</li>
-          <li>2 Limonadas de coco</li>
-        </ul>
-        <button class="btn-cancel">Cancelar Pedido</button>
-        <button class="btn-entregado">Pedido Entregado</button>
-      </div>
-
-      <!-- Pedido Mesa 4 -->
-      <div class="order-card">
-        <h3>Mesa: <span>4</span></h3>
-        <ul>
-          <li>1 Aritos de Cebolla</li>
-          <li>1 Risotto de Champiñones</li>
-          <li>1 Colombiana</li>
-        </ul>
-        <button class="btn-cancel">Cancelar Pedido</button>
-        <button class="btn-entregado">Pedido Entregado</button>
+      <!-- 🔹 Si no hay pedidos -->
+      <div *ngIf="pedidos.length === 0" class="no-orders">
+        <p>No hay pedidos activos.</p>
       </div>
     </div>
   </div>
+
+  <!-- Modal de notificación -->
+  <app-modal-notificacion
+    [visible]="modalVisible"
+    [titulo]="modalTitulo"
+    [mensaje]="modalMensaje"
+    [tipo]="modalTipo"
+    (cerrar)="cerrarModal()">
+  </app-modal-notificacion>
 </div>

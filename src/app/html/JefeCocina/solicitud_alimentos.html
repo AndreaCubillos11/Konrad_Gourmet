@@ -24,34 +24,38 @@
         <main class="main-content">
             <h1>Solicitud de Alimentos</h1>
 
-            <form class="form-solicitud">
-
+            <form [formGroup]="solicitudForm" class="form-solicitud" (ngSubmit)=" enviarSolicitud()">
                 <div class="form-row">
+
+                    <!-- CATEGORÍA -->
                     <div class="form-group">
                         <label>Categoría del Producto</label>
-                        <select>
+                        <select formControlName="id_categoriaProducto"
+                            (change)="consultarProductoPorCategoria(solicitudForm?.get('id_categoriaProducto')?.value)">
                             <option value="">Seleccione una categoría</option>
-                            <option>Granos</option>
-                            <option>Cárnicos</option>
-                            <option>Verduras</option>
-                            <option>Lácteos</option>
+                            <option *ngFor="let cat of categoriasProducto" [value]="cat.id_categoria">
+                                {{ cat.nombre_categoria }}
+                            </option>
                         </select>
                     </div>
 
+                    <!-- PRODUCTO -->
                     <div class="form-group small-medium">
                         <label>Producto</label>
-                        <select>
-                            <option value="">Seleccione producto</option>
-                            <option>Arroz</option>
-                            <option>Frijoles</option>
-                            <option>Carne</option>
-                            <option>Leche</option>
+                        <select formControlName="id_producto">
+                            <option value="">Seleccione un producto</option>
+                            <option
+                                *ngFor="let p of productosPorIngrediente[solicitudForm?.get('id_categoriaProducto')?.value]"
+                                [value]="p.id_producto">
+                                {{ p.nombre }}
+                            </option>
                         </select>
                     </div>
 
+                    <!-- MARCA -->
                     <div class="form-group small-medium">
                         <label>Marca</label>
-                        <select>
+                        <select formControlName="id_marca">
                             <option value="">Seleccione marca</option>
                             <option>Diana</option>
                             <option>Roa</option>
@@ -60,38 +64,34 @@
                         </select>
                     </div>
 
+                    <!-- CANTIDAD -->
                     <div class="form-group small">
                         <label>Cantidad</label>
-                        <input type="number" placeholder="Ej: 10">
+                        <input type="number" formControlName="cantidad" placeholder="Ej: 10">
                     </div>
 
+                    <!-- UNIDAD -->
                     <div class="form-group small">
                         <label>Unidad</label>
-                        <select>
+                        <select formControlName="id_unidadMedida">
                             <option value="">Seleccione unidad</option>
-                            <option>Kg</option>
-                            <option>Gramos</option>
-                            <option>Litros</option>
-                            <option>Unidades</option>
+                            <option *ngFor="let u of unidades" [value]="u.id_unidad">
+                                {{ u.nombre_unidad }}
+                            </option>
                         </select>
                     </div>
+
                 </div>
 
-                <!-- Botones de agregar/eliminar alineados a la izquierda -->
-                <div class="acciones-producto izquierda">
-                    <button type="button" class="btn-eliminar">- Eliminar Producto</button>
-                    <button type="button" class="btn-agregar">+ Agregar Producto</button>
-                </div>
-
-                <!-- Botones finales -->
+                <!-- BOTONES -->
                 <div class="form-botones">
-                    <button type="button" class="btn-guardar">
+                    <button type="button" class="btn-guardar" (click)="enviarSolicitud()">
                         <i class="fas fa-paper-plane"></i> Enviar solicitud
                     </button>
-
-                    <button type="button" class="btn-cancelar">Cancelar</button>
+                    <button type="button" class="btn-cancelar" (click)="cancelar()">
+                        Cancelar
+                    </button>
                 </div>
-
             </form>
         </main>
     </div>

@@ -14,8 +14,7 @@
         </nav>
     </aside>
 
-    <!-- Main content -->
-    <!-- Contenedor Principal -->
+    <!-- Contenido principal -->
     <div class="content">
         <!-- Header -->
         <div class="header">
@@ -25,25 +24,25 @@
             </div>
         </div>
 
-        <!-- Contenido principal -->
+        <!-- Main -->
         <main>
+            <h1>Pedidos y Mesas</h1>
 
-        <h1>Pedidos y Mesas</h1>
-
-        <div class="status-cards">
-            <div class="card">
-                <p>Pedidos en curso</p>
-                <h2>{{ pedidosEnCurso }}</h2>
+            <div class="status-cards">
+                <div class="card">
+                    <p>Pedidos en curso</p>
+                    <h2>{{ pedidosEnCurso }}</h2>
+                </div>
+                <div class="card">
+                    <p>Mesas Activas</p>
+                    <h2>{{ mesasActivas }}</h2>
+                </div>
             </div>
-            <div class="card">
-                <p>Mesas Activas</p>
-                <h2>{{ mesasActivas }}</h2>
-            </div>
-        </div>
 
-        <div class="buttons">
-            <button class="btn btn-nuevo" (click)="nuevoPedido()">Nuevo Pedido</button>
-            <button class="btn btn-consultar" (click)="consultarPedidos()">Consultar Pedidos</button>
-        </div>
+            <div class="buttons">
+                <button class="btn btn-nuevo" (click)="nuevoPedido()">Nuevo Pedido</button>
+                <button class="btn btn-consultar" (click)="consultarPedidos()">Consultar Pedidos</button>
+            </div>
         </main>
     </div>
+</div>

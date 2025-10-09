@@ -1,18 +1,18 @@
-/* Layout general */
+/* ===== Layout general ===== */
 body {
   margin: 0;
   display: flex;
-  font-family: Arial, sans-serif;
-  height: 100vh; /* pantalla completa */
+  font-family: "Segoe UI", Arial, sans-serif;
+  height: 100vh;
   background-color: #f8f9fa;
 }
 
-/* Sidebar */
+/* ===== Sidebar ===== */
 .sidebar {
   width: 220px;
   background-color: #0b2a55; /* azul oscuro */
   color: white;
-  height: 100vh; /* ocupa toda la altura */
+  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -23,8 +23,8 @@ body {
 }
 
 .logo img {
-    width: 160px;
-    margin-bottom: 20px;
+  width: 160px;
+  margin-bottom: 20px;
 }
 
 .sidebar nav {
@@ -44,23 +44,20 @@ body {
   transition: background 0.3s;
 }
 
-.sidebar nav a:hover {
-  background: #163d75;
-}
-
+.sidebar nav a:hover,
 .sidebar nav a.active {
-  background: #163d75;
+  background: #f8f9fa;
 }
 
-/* Contenido principal */
+/* ===== Contenido principal ===== */
 .content {
-  margin-left: 220px; /* espacio para la sidebar */
+  margin-left: 220px;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-/* Header */
+/* ===== Header ===== */
 .header {
   background-color: #f8f9fa;
   padding: 15px 20px;
@@ -89,93 +86,123 @@ body {
   background: #163d75;
 }
 
-/* Contenido */
+/* ===== Contenido ===== */
 .main-content {
-  padding: 20px;
+  padding: 30px;
 }
 
 .main-content h1 {
-  margin-bottom: 20px;
+  font-size: 28px;
+  color: #0b2a55;
+  margin-bottom: 25px;
+  font-weight: bold;
 }
 
-/* Tabs */
+/* ===== Tabs (Categorías) ===== */
 .tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .tab {
-  padding: 8px 16px;
+  padding: 10px 18px;
   background: #f1f1f1;
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
+  border: 1px solid #ccc;
+  transition: all 0.3s;
+  font-weight: 500;
+  color: #333;
+}
+
+.tab:hover {
+  background: #e0e0e0;
 }
 
 .tab.active {
   background: #b58c58; /* dorado */
-  color: white;
+  color: #fff;
+  border-color: #b58c58;
   font-weight: bold;
 }
 
-/* Layout de la parte principal */
+/* ===== Layout principal ===== */
 .layout {
   display: flex;
   gap: 20px;
 }
 
-/* Lista de menú */
+/* ===== Lista de menú (tarjetas de platos) ===== */
 .menu-list {
   flex: 1;
   background: white;
   border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .menu-item {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #e0e0e0;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  transition: all 0.3s;
 }
 
-.menu-item:last-child {
-  border-bottom: none;
+.menu-item:hover {
+  background: #f4f6fa;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.menu-item p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
 }
 
 .menu-item button {
   background: #0b2a55;
   color: white;
   border: none;
-  padding: 5px 12px;
-  border-radius: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
 }
 
 .menu-item button:hover {
-  background: #163d75;
+  background: #b58c58;
 }
 
-/* Panel del pedido */
+/* ===== Panel del pedido ===== */
 .order-panel {
-  width: 300px;
+  width: 320px;
   background: white;
   border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .order-panel h2 {
   margin-bottom: 15px;
+  color: #0b2a55;
 }
 
 .order-panel select {
   width: 100%;
-  padding: 6px;
+  padding: 8px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 6px;
+  font-size: 14px;
 }
 
 .order-item {
@@ -197,6 +224,7 @@ body {
   color: #0b2a55;
   margin-left: 5px;
   font-size: 14px;
+  transition: color 0.3s;
 }
 
 .order-actions button:hover {
@@ -204,16 +232,110 @@ body {
 }
 
 .send-order {
-  margin-top: 15px;
+  margin-top: 20px;
   width: 100%;
   background: #0b2a55;
   color: white;
   border: none;
-  padding: 10px;
-  border-radius: 6px;
+  padding: 12px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
 }
 
 .send-order:hover {
-  background: #163d75;
+  background: #b58c58;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .order-panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 180px;
+  }
+
+  .content {
+    margin-left: 180px;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+}
+/* ===== Filtros (estilo tipo "pill" - según mockup) ===== */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-left: 6px; /* pequeño ajuste para alineación */
+}
+
+/* Aplica tanto si usas la clase .filtro (tu HTML) como .tab */
+.tabs .filtro,
+.tabs .tab,
+.filtro,
+.tab {
+  background: #f5f7fa;               /* fondo neutro claro */
+  color: #0b2a55;                    /* texto oscuro (coherente con sidebar) */
+  border: 1px solid #d8dde3;         /* borde sutil */
+  padding: 8px 14px;                 /* tamaño de la "pill" */
+  border-radius: 999px;              /* totalmente redondeado */
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 1px 2px rgba(2,6,23,0.03);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hover: elevación y aclarado */
+.tabs .filtro:hover,
+.tabs .tab:hover,
+.filtro:hover,
+.tab:hover {
+  transform: translateY(-2px);
+  background: #b58c58;
+  border-color: #c0c6cc;
+  box-shadow: 0 6px 14px rgba(2,6,23,0.06);
+}
+
+/* Focus accesible */
+.tabs .filtro:focus,
+.tabs .tab:focus,
+.filtro:focus,
+.tab:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(181,140,88,0.08);
+}
+
+/* Estado activo: dorado tal como el mockup */
+.tabs .filtro.active,
+.tabs .tab.active,
+.filtro.active,
+.tab.active {
+  background: #b58c58;               /* dorado */
+  color: #ffffff;                    /* texto claro */
+  border-color: #b58c58;
+  box-shadow: 0 8px 20px rgba(181,140,88,0.18);
+  transform: translateY(0);
+}
+
+/* Pequeño ajuste si el texto es largo para evitar que ocupe demasiado */
+.tabs .filtro,
+.tabs .tab {
+  white-space: nowrap;
 }

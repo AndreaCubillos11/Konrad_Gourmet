@@ -35,4 +35,28 @@ export class UsuarioService {
       }
     );
   }
+
+    crearUsuario(data: any,token:any): Observable<any> {
+    
+    return this.http.post<any>(this.apiUrl, data, 
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+  }
+
+    consultarRoles(idUsuario: any, token : any): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/rol?creador_id=${idUsuario}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+  }
 }

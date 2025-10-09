@@ -124,4 +124,8 @@
             </form>
         </main>
     </div> <!-- Cierra .content -->
+
+    <app-modal-notificacion [visible]="modalVisible" [tipo]="modalTipo" [titulo]="modalTitulo" [mensaje]="modalMensaje"
+        (cerrar)="cerrarModal()">
+    </app-modal-notificacion>
 </div> <!-- Cierra .agregar-plato-container -->

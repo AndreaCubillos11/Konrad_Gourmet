@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { Proveedores } from '../../services/Administrador/proveedores';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-registrar-proveedor',
   templateUrl: '../../html/Administrador/registrar_proveedor.html',
   styleUrls: ['../../css/registrar_proveedor.css'],
-  imports: [CommonModule]
+  imports: [CommonModule,ReactiveFormsModule]
 })
 export class RegistrarProveedorComponent {
 
@@ -29,10 +29,23 @@ export class RegistrarProveedorComponent {
       telefono: ['', Validators.required],
       correo: ['', Validators.required],
       ciudad: ['', Validators.required],
-      nit:['', Validators.required],
+      nit: ['', Validators.required],
       creador_id: [localStorage.getItem('id_usuario')]
     });
   }
+
+  registrarProveedor() {
+    this.proveedorService.crearProveedor(this.proveedorForm.value, this.cookieService.get('token'))
+      .subscribe(
+        () => {
+          console.log("Proveedor registrado");
+        },
+        (err) => {
+          console.error('Error al registrar el proveedor:', err);
+        }
+      );
+  }
+
 
 
   cancelar() {

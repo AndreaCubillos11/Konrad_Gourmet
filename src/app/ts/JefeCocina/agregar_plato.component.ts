@@ -4,11 +4,12 @@ import { FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } fr
 import { RegistrarPlatoService } from '../../services/JefeCocina/registrar-plato';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { ModalNotificacionComponent } from '../../shared/modal-notificacion/modal-notificacion'; 
 
 @Component({
     selector: 'app-agregar-plato',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, ModalNotificacionComponent],
     templateUrl: '../../html/JefeCocina/agregar_plato.html',
     styleUrls: ['../../css/agregar_plato.css']
 })
@@ -18,9 +19,13 @@ export class AgregarPlatoComponent implements OnInit {
     categoriasPlato: any[] = [];
     categoriasProducto: any[] = [];
     unidades: any[] = [];
-
-    //cada ingrediente tendrá su propio listado de productos
     productosPorIngrediente: any[][] = [];
+
+
+    modalVisible: boolean = false;
+    modalTipo: 'exito' | 'error' = 'exito';
+    modalTitulo: string = '';
+    modalMensaje: string = '';
 
     constructor(
         private fb: FormBuilder,
@@ -56,12 +61,12 @@ export class AgregarPlatoComponent implements OnInit {
         });
 
         this.ingredientes.push(ingrediente);
-        this.productosPorIngrediente.push([]); // se agrega un array vacío para este ingrediente
+        this.productosPorIngrediente.push([]); 
     }
 
     eliminarIngrediente(index: number) {
         this.ingredientes.removeAt(index);
-        this.productosPorIngrediente.splice(index, 1); //  eliminar también sus productos
+        this.productosPorIngrediente.splice(index, 1); 
     }
 
     consultarCategoriaPlato() {
@@ -97,7 +102,7 @@ export class AgregarPlatoComponent implements OnInit {
         if (idCategoria) {
             this.registrarPlatoService.getProductoPorCategoria(token, idUsuario, idCategoria).subscribe({
                 next: (res) => {
-                    this.productosPorIngrediente[index] = res.productos; //  solo para ese ingrediente
+                    this.productosPorIngrediente[index] = res.productos; 
                 },
                 error: (err) => {
                     console.error('Error al consultar productos por categoría:', err);
@@ -108,12 +113,29 @@ export class AgregarPlatoComponent implements OnInit {
 
     registrarPlato() {
         const token = this.cookieService.get('token');
-        this.registrarPlatoService.registrarPlato(this.platoForm.value, token).subscribe(
-            () => {
-                console.log("Plato registrado con éxito");
-                this.router.navigateByUrl('/jefe_menu');
+        this.registrarPlatoService.registrarPlato(this.platoForm.value, token).subscribe({
+            next: () => {
+                // Éxito → mostrar modal
+                this.modalTipo = 'exito';
+                this.modalTitulo = '¡Plato registrado!';
+                this.modalMensaje = 'El plato ha sido registrado correctamente.';
+                this.modalVisible = true;
             },
-            error => console.error("Error al registrar el plato:", error)
-        );
+            error: (error) => {
+                console.error("Error al registrar el plato:", error);
+                // Error → mostrar modal
+                this.modalTipo = 'error';
+                this.modalTitulo = 'Error al registrar';
+                this.modalMensaje = 'No fue posible registrar el plato. Intenta nuevamente.';
+                this.modalVisible = true;
+            }
+        });
+    }
+
+    cerrarModal() {
+        this.modalVisible = false;
+        if (this.modalTipo === 'exito') {
+            this.router.navigateByUrl('/jefe_menu');
+        }
     }
 }

@@ -32,7 +32,7 @@ export class HomeProveedoresComponent {
     }
 
   obtenerProveedores() {
-    this.proveedorService.consultarSucursales(localStorage.getItem('id_usuario'), this.cookieService.get('token')).subscribe({
+    this.proveedorService.consultarProveedores(localStorage.getItem('id_usuario'), this.cookieService.get('token')).subscribe({
         next: (data) => {
           console.log(data);
           this.proveedores = data.proveedores}

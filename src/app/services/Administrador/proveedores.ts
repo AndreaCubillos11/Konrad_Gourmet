@@ -10,7 +10,7 @@ export class Proveedores {
 
   constructor(private http: HttpClient) { }
 
-  consultarSucursales(idUsuario: any, token: any): Observable<any> {
+  consultarProveedores(idUsuario: any, token: any): Observable<any> {
     return this.http.get<any>(
       `${this.apiUrl}/proveedores?creador_id=${idUsuario}`,
       {
@@ -23,7 +23,7 @@ export class Proveedores {
   }
 
 
-  login(data: any,token:any): Observable<any> {
+  crearProveedor(data: any,token:any): Observable<any> {
 
     return this.http.post<any>(  `${this.apiUrl}/proveedores`, data,
       {

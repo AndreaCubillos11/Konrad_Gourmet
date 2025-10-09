@@ -34,59 +34,67 @@
             <div class="form-container">
                 <h2><i class="fa-solid fa-user-plus"></i> Crear nuevo usuario</h2>
 
-                <div class="form-card">
-                    <h3><i class="fa-solid fa-id-card"></i> Información principal</h3>
+                <!-- Formulario con etiqueta form -->
+                <form (ngSubmit)="crearUsuario()" [formGroup]="usuarioForm">
+                    <div class="form-card">
+                        <h3><i class="fa-solid fa-id-card"></i> Información principal</h3>
 
-                    <div class="form-grid">
-                        <div>
-                            <label>Nombre Completo</label>
-                            <input type="text" [(ngModel)]="usuario.nombre" placeholder="Ej: Juan Pérez" />
-                        </div>
+                        <div class="form-grid">
+                            <div>
+                                <label>Nombre Completo</label>
+                                <input type="text" name="nombre" placeholder="Ej: Juan Pérez" required
+                                    formControlName="nombre" />
+                            </div>
+                            <div>
+                                <label>Contraseña</label>
+                                <input type="password" name="contraseña" placeholder="Ej: Juan Pérez" required
+                                    formControlName="contrasena" />
+                            </div>
+                            <div>
+                                <label>Correo electrónico</label>
+                                <input type="email" name="email" placeholder="usuario@ejemplo.com" required
+                                    formControlName="correo" />
+                            </div>
 
-                        <div>
-                            <label>Correo electrónico</label>
-                            <input type="email" [(ngModel)]="usuario.email" placeholder="usuario@ejemplo.com" />
-                        </div>
+                            <div style="grid-column: 1 / -1;">
+                                <label>Cargo / Rol</label>
+                                <select name="cargo" formControlName="id_rol" required>
+                                    <option value="">Seleccionar cargo</option>
+                                    <option *ngFor="let rol of roles" [value]="rol.id_rol">
+                                        {{ rol.nombre_rol }}
+                                    </option>
+                                </select>
+                            </div>
 
-                        <div>
-                            <label>Teléfono</label>
-                            <input type="text" [(ngModel)]="usuario.telefono" placeholder="+57 300 000 0000" />
-                        </div>
-
-                        <div>
-                            <label>Sucursal principal</label>
-                            <select [(ngModel)]="usuario.sucursal">
-                                <option value="">Seleccionar sucursal</option>
-                                <option value="Norte">Sucursal Norte</option>
-                                <option value="Centro">Sucursal Centro</option>
-                                <option value="Sur">Sucursal Sur</option>
-                            </select>
-                        </div>
-
-                        <div style="grid-column: 1 / -1;">
-                            <label>Cargo / Rol</label>
-                            <select [(ngModel)]="usuario.cargo">
-                                <option value="">Seleccionar cargo</option>
-                                <option value="Administrador">Administrador</option>
-                                <option value="Gerente">Gerente</option>
-                                <option value="Auditor">Auditor</option>
-                                <option value="Empleado">Empleado</option>
-                            </select>
+                            <div style="grid-column: 1 / -1;">
+                                <label>Sucursal</label>
+                                <select name="cargo" formControlName="id_sucursal" required>
+                                    <option value="">Seleccionar sucursal</option>
+                                    <option *ngFor="let su of sucursales" [value]="su.id_sucursal">
+                                        {{ su.nombre}}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Botones -->
-                <div class="form-actions">
-                    <button class="btn-primary" (click)="crearUsuario()">
-                        <i class="fa-solid fa-user-plus"></i> Guardar usuario
-                    </button>
+                    <!-- Botones -->
+                    <div class="form-actions">
+                        <button class="btn-primary" type="submit" [disabled]="usuarioForm.invalid">
+                            <i class="fa-solid fa-user-plus"></i> Guardar usuario
+                        </button>
 
-                    <button class="btn-cancel">
-                        <i class="fa-solid fa-xmark"></i> Cancelar
-                    </button>
-                </div>
+                        <button class="btn-cancel" type="button">
+                            <i class="fa-solid fa-xmark"></i> Cancelar
+                        </button>
+                    </div>
+                </form>
             </div>
         </section>
     </div>
 </div>
+
+<!-- Modal de notificación -->
+<app-modal-notificacion [visible]="modalVisible" [titulo]="modalTitulo" [mensaje]="modalMensaje" [tipo]="modalTipo"
+    (cerrar)="cerrarModal()">
+</app-modal-notificacion>

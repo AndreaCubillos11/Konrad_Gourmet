@@ -85,4 +85,9 @@
             </div>
         </main>
     </div>
+    <!-- ===== MODAL DE NOTIFICACIÓN ===== -->
+    <app-modal-notificacion [visible]="modalVisible" [tipo]="modalTipo" [titulo]="modalTitulo" [mensaje]="modalMensaje"
+        (cerrar)="cerrarModal()">
+    </app-modal-notificacion>
+
 </div>

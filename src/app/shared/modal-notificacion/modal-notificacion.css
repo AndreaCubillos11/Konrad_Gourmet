@@ -1,0 +1,111 @@
+/* ====== Fondo oscuro del modal ====== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 42, 85, 0.4); /* Azul translúcido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+/* ====== Caja principal del modal ====== */
+.modal {
+    background: #ffffff;
+    border-radius: 10px;
+    width: 420px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: fadeIn 0.25s ease;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ====== Header ====== */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Colores según tipo de mensaje */
+.modal-header.exito {
+    background-color: #0b2a55; /* Azul institucional */
+}
+
+.modal-header.error {
+    background-color: #b3261e; /* Rojo elegante */
+}
+
+.modal-header.advertencia {
+    background-color: #b58c58; /* Dorado */
+}
+
+.modal-header.info {
+    background-color: #163d75; /* Azul más claro */
+}
+
+/* ====== Botón cerrar ====== */
+.cerrar {
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+.cerrar:hover {
+    transform: scale(1.1);
+}
+
+/* ====== Cuerpo ====== */
+.modal-body {
+    padding: 25px 20px;
+    font-size: 1rem;
+    color: #0b2a55;
+    text-align: center;
+}
+
+/* ====== Pie del modal ====== */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 18px;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+}
+
+.modal-footer button {
+    background-color: #0b2a55;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.modal-footer button:hover {
+    background-color: #163d75;
+}
+
+/* ====== Animación ====== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

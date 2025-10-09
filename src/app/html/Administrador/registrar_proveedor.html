@@ -33,31 +33,31 @@
       <h2><i class="fas fa-truck"></i> Agregar Proveedor</h2>
 
       <!-- Formulario -->
-      <form action="#" method="post">
+      <form [formGroup]="proveedorForm" (ngSubmit)="registrarProveedor()">
         <!-- Detalles de empresa -->
         <div class="card">
           <h3><i class="fas fa-building"></i> Detalles de la empresa</h3>
           <div class="grid detalles-empresa">
             <div>
               <label><b>Nombre:</b></label>
-              <input type="text" placeholder="Fresh Harvest" name="nombre">
+              <input type="text" placeholder="Fresh Harvest" name="nombre" formControlName="nombre">
             </div>
             <div>
               <label><b>Dirección:</b></label>
-              <input type="text" placeholder="Cra. 2 # 36-86" name="direccion">
+              <input type="text" placeholder="Cra. 2 # 36-86" name="direccion" formControlName="direccion">
             </div>
             <div>
               <label><b>Ciudad:</b></label>
-              <select name="ciudad">
+              <select formControlName="ciudad" class="form-select">
                 <option value="">Seleccione ciudad</option>
-                <option>Bogotá</option>
-                <option>Medellin</option>
-                <option>Cali</option>
+                <option value="Bogotá">Bogotá</option>
+                <option value="Medellin">Medellín</option>
+                <option value="Cali">Cali</option>
               </select>
             </div>
             <div>
               <label><b>NIT:</b></label>
-              <input type="text" placeholder="890-480-184-4" name="nit">
+              <input type="text" placeholder="890-480-184-4" name="nit" formControlName="nit">
             </div>
           </div>
         </div>
@@ -68,11 +68,11 @@
           <div class="grid">
             <div>
               <label><b>Teléfono:</b></label>
-              <input type="tel" placeholder="+57 314 5672333" name="telefono">
+              <input type="tel" placeholder="+57 314 5672333" name="telefono" formControlName="telefono">
             </div>
             <div>
               <label><b>Correo:</b></label>
-              <input type="email" placeholder="andresg@freshharvest.co" name="correo">
+              <input type="email" placeholder="andresg@freshharvest.co" name="correo" formControlName="correo">
             </div>
           </div>
         </div>

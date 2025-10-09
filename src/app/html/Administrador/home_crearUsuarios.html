@@ -52,37 +52,23 @@
                             <th>Nombre</th>
                             <th>Rol</th>
                             <th>Estado</th>
-                            <th>Sucursales</th>
+                            <th>Sucursal</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>USR-2201</td>
-                            <td>A. Patel</td>
-                            <td>Admin</td>
-                            <td>Activo</td>
-                            <td>Todas</td>
+                        <tr *ngFor="let usuario of usuarios">
+                            <td>{{ usuario.id_usuario }}</td>
+                            <td>{{ usuario.nombre }}</td>
+                            <td>{{ usuario.id_rol }}</td>
+                            <td>
+                                {{ usuario.estado }}
+                            </td>
+                            <td>{{ usuario.sucursal }}</td>
                         </tr>
-                        <tr>
-                            <td>USR-2107</td>
-                            <td>M. Chen</td>
-                            <td>Jefe de cocina</td>
-                            <td>Activo</td>
-                            <td>Centro</td>
-                        </tr>
-                        <tr>
-                            <td>USR-2184</td>
-                            <td>S. Díaz</td>
-                            <td>Mesero</td>
-                            <td>Suspendido</td>
-                            <td>Norte</td>
-                        </tr>
-                        <tr>
-                            <td>USR-2172</td>
-                            <td>J. Okoro</td>
-                            <td>D. Comercial</td>
-                            <td>Activo</td>
-                            <td>Sur</td>
+
+                        <!-- Mensaje si no hay usuarios -->
+                        <tr *ngIf="usuarios.length === 0">
+                            <td colspan="5">No hay usuarios registrados.</td>
                         </tr>
                     </tbody>
                 </table>

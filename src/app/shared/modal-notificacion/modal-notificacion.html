@@ -1,0 +1,16 @@
+<div class="overlay" *ngIf="visible">
+    <div class="modal">
+        <div class="modal-header" [ngClass]="tipo">
+            <h3>{{ titulo }}</h3>
+            <button class="cerrar" (click)="onCerrar()">×</button>
+        </div>
+
+        <div class="modal-body">
+            <p>{{ mensaje }}</p>
+        </div>
+
+        <div class="modal-footer">
+            <button (click)="onCerrar()">Aceptar</button>
+        </div>
+    </div>
+</div>
