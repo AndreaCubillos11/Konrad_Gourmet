@@ -36,7 +36,7 @@ export class LoginComponent {
                     localStorage.setItem('id_rol', JSON.stringify(data.usuario.id_rol));
                     localStorage.setItem('id_sucursal', JSON.stringify(data.usuario.id_sucursal));
 
-                    // ✅ Llamar al método para obtener roles por nombre
+                    //Llamar al método para obtener roles por nombre
                     this.obtenerNombreRol(data.usuario.id_rol, data.token);
                 },
                 error: (err) => {
@@ -61,9 +61,9 @@ export class LoginComponent {
                     const nombreRol = rol.nombre_rol.toLowerCase();
                     localStorage.setItem('rol', rol.nombre_rol); // Guardar nombre de rol
 
-                    // ✅ Redirección según el nombre del rol
+                    //Redirección según el nombre del rol
                     if (nombreRol === 'administrador') {
-                        this.router.navigateByUrl('/home_admin');
+                        this.router.navigateByUrl('/admin');
                     } else if (nombreRol === 'jefe de cocina') {
                         this.router.navigateByUrl('/home_jefe');
                     } else if (nombreRol === 'mesero') {

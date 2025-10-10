@@ -1,52 +1,51 @@
-   <!-- admin-layout.component.html -->
-   <!-- Sidebar fijo para todas las vistas del admin -->
-   <aside class="sidebar">
-       <div class="logo">
-           <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
-       </div>
-       <nav>
-           <a routerLink="/admin/home_admin" routerLinkActive="active">
-               <i class="fa-solid fa-house"></i> Inicio
-           </a>
-           <a routerLink="/admin/sucursales" routerLinkActive="active">
-               <i class="fa-solid fa-building"></i> Sucursales
-           </a>
-           <a routerLink="/admin/proveedores" routerLinkActive="active">
-               <i class="fa-solid fa-truck"></i> Proveedores
-           </a>
-           <a routerLink="/admin/inventario" routerLinkActive="active">
-               <i class="fa-solid fa-box"></i> Inventario
-           </a>
-           <a routerLink="/admin/listas" routerLinkActive="active">
-               <i class="fa-solid fa-list"></i> Listas
-           </a>
-           <a routerLink="/admin/auditorias" routerLinkActive="active">
-               <i class="fa-solid fa-clipboard-check"></i> Auditorías
-           </a>
-           <a routerLink="/admin/errores" routerLinkActive="active">
-               <i class="fa-solid fa-triangle-exclamation"></i> Errores
-           </a>
-           <a routerLink="/admin/usuarios" routerLinkActive="active">
-               <i class="fa-solid fa-users"></i> Usuarios y roles
-           </a>
-       </nav>
-   </aside>
+<!-- admin-layout.component.html -->
+<!-- Sidebar fijo para todas las vistas del admin -->
+<aside class="sidebar">
+    <div class="logo">
+        <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
+    </div>
+    <nav>
+        <a routerLink="/admin/home_admin" routerLinkActive="active">
+            <i class="fa-solid fa-house"></i> Inicio
+        </a>
+        <a routerLink="/admin/sucursales" routerLinkActive="active">
+            <i class="fa-solid fa-building"></i> Sucursales
+        </a>
+        <a routerLink="/admin/proveedores" routerLinkActive="active">
+            <i class="fa-solid fa-truck"></i> Proveedores
+        </a>
+        <a routerLink="/admin/inventario" routerLinkActive="active">
+            <i class="fa-solid fa-box"></i> Inventario
+        </a>
+        <a routerLink="/admin/listas" routerLinkActive="active">
+            <i class="fa-solid fa-list"></i> Listas
+        </a>
+        <a routerLink="/admin/auditorias" routerLinkActive="active">
+            <i class="fa-solid fa-clipboard-check"></i> Auditorías
+        </a>
+        <a routerLink="/admin/errores" routerLinkActive="active">
+            <i class="fa-solid fa-triangle-exclamation"></i> Errores
+        </a>
+        <a routerLink="/admin/usuarios" routerLinkActive="active">
+            <i class="fa-solid fa-users"></i> Usuarios y roles
+        </a>
+    </nav>
+</aside>
 
-   <!-- Contenido principal (header + área dinámica) -->
-   <div class="content">
-       <!-- Header (común a todas las vistas) -->
-       <div class="header">
-           <input type="text" class="search" placeholder="Buscar..." />
-           <button class="alerta"><i class="fa-solid fa-bell"></i> 1 Alerta: Stock bajo</button>
-           <div class="user">
-               <i class="fa-regular fa-user"></i> <span>Administrador</span>
-               <button class="logout" (click)="logout()">Cerrar Sesión</button>
-           </div>
-       </div>
+<!-- Contenido principal (header + área dinámica) -->
+<div class="content">
+    <!-- Header (común a todas las vistas) -->
+    <div class="header">
+        <input type="text" class="search" placeholder="Buscar..." />
+        <button class="alerta"><i class="fa-solid fa-bell"></i> 1 Alerta: Stock bajo</button>
+        <div class="user">
+            <i class="fa-regular fa-user"></i> <span>Administrador</span>
+            <button class="logout" (click)="logout()">Cerrar Sesión</button>
+        </div>
+    </div>
 
-       <!-- Área de contenido dinámico: aquí se cargan las sub-vistas del admin -->
-       <div class="main-content">
-           <router-outlet></router-outlet>  <!-- Esto carga el HTML de la ruta actual (ej. home_admin, sucursales, etc.) -->
-       </div>
-   </div>
-   
+    <!-- Área de contenido dinámico: aquí se cargan las sub-vistas del admin -->
+    <div class="main-content">
+        <router-outlet></router-outlet> <!-- Esto carga el HTML de la ruta actual (ej. home_admin, sucursales, etc.) -->
+    </div>
+</div>

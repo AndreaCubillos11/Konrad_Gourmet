@@ -72,7 +72,7 @@ export class CrearUsuarioComponent {
     }
 
     crearUsuario() {
-        // ✅ Verificamos si el formulario es válido antes de enviar
+        //Verificamos si el formulario es válido antes de enviar
         if (this.usuarioForm.invalid) {
             this.mostrarModal('advertencia', 'Formulario incompleto', 'Por favor, completa todos los campos requeridos.');
             return;
@@ -80,16 +80,16 @@ export class CrearUsuarioComponent {
 
         const token = this.cookieService.get('token');
 
-        // ✅ Validamos que haya token
+        //Validamos que haya token
         if (!token) {
             this.mostrarModal('error', 'Error de autenticación', 'No se encontró un token válido. Inicia sesión nuevamente.');
             return;
         }
         console.log(this.usuarioForm.value);
-        // ✅ Llamada al servicio
+        //Llamada al servicio
         this.usuarioService.crearUsuario(this.usuarioForm.value, token).subscribe({
             next: (respuesta) => {
-                console.log('✅ Usuario creado:', respuesta);
+                console.log('Usuario creado:', respuesta);
                 this.mostrarModal('exito', 'Éxito', 'Usuario creado correctamente.');
                 this.usuarioForm.reset(); // Limpiamos el formulario tras crear el usuario
             },
@@ -97,7 +97,7 @@ export class CrearUsuarioComponent {
                 this.mostrarModal('error', 'Error', 'No se pudo crear el usuario.');
             },
             complete: () => {
-                console.log('ℹ️ Proceso de creación de usuario finalizado.');
+                console.log('ℹProceso de creación de usuario finalizado.');
             }
         });
     }

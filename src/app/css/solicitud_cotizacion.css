@@ -6,7 +6,7 @@ body {
 }
 
 .content {
-    margin-left: 220px; /* espacio del menú lateral */
+    margin-left: 220px;
     padding: 20px;
 }
 
@@ -43,7 +43,7 @@ body {
 aside {
     width: 220px;
     height: 100vh;
-    background-color: #0a2c60; /* azul oscuro */
+    background-color: #0a2c60;
     color: white;
     position: fixed;
     top: 0;
@@ -70,7 +70,7 @@ aside nav a {
 
 aside nav a:hover,
 aside nav a.active {
-    background-color: #163d7a; /* azul más claro */
+    background-color: #163d7a;
 }
 
 /* ===== Contenido Principal ===== */
@@ -118,17 +118,18 @@ aside nav a.active {
 table {
     width: 100%;
     border-collapse: collapse;
+    text-align: center;         /* Centra todo el contenido horizontalmente */
 }
 
 thead {
     background-color: #0a2c60;
     color: white;
     font-size: 14px;
-    text-align: left;
 }
 
 thead th {
     padding: 12px;
+    text-align: center;         /* Centra los títulos */
 }
 
 tbody td {
@@ -136,6 +137,8 @@ tbody td {
     border-top: 1px solid #e5e7eb;
     font-size: 14px;
     color: #111827;
+    text-align: center;         /* Centra el texto en cada celda */
+    vertical-align: middle;     /* Centra verticalmente */
 }
 
 /* ===== Botones ===== */
@@ -143,10 +146,11 @@ tbody td {
     margin-top: 20px;
     display: flex;
     gap: 15px;
+    justify-content: center;    /* Centra botones generales */
 }
 
 .btn-generar {
-    background-color: #c08457; /* marrón */
+    background-color: #c08457;
     color: white;
     border: none;
     padding: 10px 18px;
@@ -159,26 +163,36 @@ tbody td {
     background-color: #a86e47;
 }
 
+/* ===== Botón Enviar ===== */
 .btn-enviar {
-    background-color: #9ca3af; /* gris */
+    background-color: #0a2c60;
     color: white;
     border: none;
-    padding: 10px 18px;
+    padding: 6px 10px;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 36px;
+    min-width: 130px;
+    margin: 0;
 }
 
-.btn-enviar:enabled {
-    background-color: #0a2c60; /* azul oscuro */
-}
-
-.btn-enviar:enabled:hover {
+.btn-enviar:hover {
     background-color: #163d7a;
 }
 
+/* ===== Ícono dentro del botón ===== */
+.btn-enviar i {
+    font-size: 14px;
+}
+
+/* ===== Logo ===== */
 .logo img {
-    width: 150px;
-    margin: 20px auto;
+    width: 140px;
+    margin: 0;
     display: block;
 }

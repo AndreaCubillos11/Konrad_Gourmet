@@ -57,10 +57,9 @@
                         <label>Marca</label>
                         <select formControlName="id_marca">
                             <option value="">Seleccione marca</option>
-                            <option>Diana</option>
-                            <option>Roa</option>
-                            <option>Colanta</option>
-                            <option>Alpina</option>
+                            <option *ngFor="let u of marcas" [value]="u.id_marca">
+                                {{ u.nombre_marca }}
+                            </option>
                         </select>
                     </div>
 
@@ -95,4 +94,7 @@
             </form>
         </main>
     </div>
+    <app-modal-notificacion [visible]="modalVisible" [tipo]="modalTipo" [titulo]="modalTitulo" [mensaje]="modalMensaje"
+        (cerrar)="cerrarModal()">
+    </app-modal-notificacion>
 </div>

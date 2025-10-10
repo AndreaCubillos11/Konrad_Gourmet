@@ -1,4 +1,4 @@
-<div class="app-container">
+<div class="app-container" [formGroup]="cotizacionForm">
     <!-- ===== Menú Lateral ===== -->
     <aside>
         <div class="logo">
@@ -31,51 +31,63 @@
         <div class="main-content">
             <h1>Solicitud de Cotización</h1>
 
-            <!-- Filtros -->
+            <!-- ===== Filtros ===== -->
             <div class="filtros">
                 <div class="form-group">
                     <label for="proveedor">Proveedor</label>
-                    <select id="proveedor">
-                        <option value="Seleccionar">Seleccione proveedor</option>
-                        <option value="Leche">Alpina</option>
-                        <option value="Granos">Diana</option>
+                    <select id="proveedor" formControlName="id_proveedor" [(ngModel)]="proveedorSeleccionado">
+                        <option value="">Seleccione proveedor</option>
+                        <option  *ngFor="let proveedor of proveedores" [value]="proveedor.id_proveedor">
+                            {{ proveedor.nombre }}
+                        </option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="fechaRespuesta">Fecha Máx. de Respuesta</label>
-                    <input type="date" id="fechaRespuesta" value="2025-05-04" />
+                    <input type="date" id="fechaRespuesta" formControlName="fecha_maxima_resp" />
+                </div>
+
+                <div class="form-group">
+                    
                 </div>
             </div>
+        </div>
 
-            <!-- Tabla -->
-            <h3>Detalles de la solicitud</h3>
-            <div class="tabla-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Fecha de Solicitud</th>
-                            <th>Producto</th>
-                            <th>Cantidad y Unidad</th>
-                            <th>Marca</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>4 de Mayo del 2025</td>
-                            <td>Pechuga de Pollo</td>
-                            <td>8 Kg</td>
-                            <td>Friko</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Botones -->
-            <div class="acciones">
-                <button class="btn-generar" (click)="generarPDF()">Generar PDF</button>
-                <button class="btn-enviar" [disabled]="!pdfGenerado" (click)="enviarCotizacion()">Enviar Cotización</button>
-            </div>
+        <!-- ===== Tabla de solicitudes ===== -->
+        <h3>Detalles de la solicitud</h3>
+        <div class="tabla-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha de Solicitud</th>
+                        <th>Producto</th>
+                        <th>Cantidad y Unidad</th>
+                        <th>Marca</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (s of solicitudes; track s.id_solicitud) {
+                    <tr>
+                        <td>{{ s.fecha_solicitud }}</td>
+                        <td>{{ s.Producto.nombre }}</td>
+                        <td>{{ s.cantidad }} {{ s.Unidad.nombre_unidad }}</td>
+                        <td>{{ s.Marca?.nombre_marca || 'SIN DEFINIR' }}</td>
+                        <td class="action-cell">
+                            <button class="btn-enviar" (click)="enviarCotizacion(s)">
+                                <i class="fa-solid fa-paper-plane"></i> Enviar Cotización
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
+
+    <!-- ===== Modal de notificación ===== -->
+    <app-modal-notificacion [visible]="modalVisible" [tipo]="modalTipo" [titulo]="modalTitulo" [mensaje]="modalMensaje"
+        (cerrar)="cerrarModal()">
+    </app-modal-notificacion>
 </div>
