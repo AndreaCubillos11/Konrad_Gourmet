@@ -41,9 +41,11 @@ exports.crearCotizacion = async (req, res, next) => {
                 id_cotizacion: nuevaCot.id_cotizacion,
             });
         }
+                console.log("Linea 44"+id_solicitud);
+
 
         // 4️⃣ Actualizar estado de la solicitud a "EN TRÁMITE"
-        const solicitud = await SolicitudAlimento.findByPk(req.body.id_solicitud);
+        const solicitud = await SolicitudAlimento.findByPk(id_solicitud);
         if (solicitud) {
             const estadoEnTramite = await EstadoSolicitud.findOne({
                 where: { nombre_estado: { [Op.iLike]: "EN TRÁMITE" } },

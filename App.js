@@ -10,6 +10,7 @@ const SolicitudAlimento = require("./routes/solicitudAlimentosRoutes");
 const ProveedorRoutes = require("./routes/proveedorRoutes");
 const InventarioRoutes = require("./routes/inventarioRoutes");
 const CotizacionRoutes=require("./routes/cotizacionRoutes");
+const emailRoutes =require("./routes/emailRoutes.js");
 
 const app = express();
 app.use(express.json());
@@ -24,6 +25,7 @@ app.use("/api", SolicitudAlimento);
 app.use("/api", ProveedorRoutes);
 app.use("/api", InventarioRoutes);
 app.use("/api",CotizacionRoutes);
+app.use("/api/email", emailRoutes);
 
 // Middleware de errores
 app.use(errorLogger);
