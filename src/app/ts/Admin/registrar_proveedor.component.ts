@@ -3,13 +3,15 @@ import { Router } from '@angular/router';
 import { Proveedores } from '../../services/Administrador/proveedores';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-proveedor',
+  standalone: true,
   templateUrl: '../../html/Administrador/registrar_proveedor.html',
   styleUrls: ['../../css/registrar_proveedor.css'],
-  imports: [CommonModule,ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule, RouterModule]
 })
 export class RegistrarProveedorComponent {
 

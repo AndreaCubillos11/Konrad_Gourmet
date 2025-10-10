@@ -9,12 +9,15 @@ import { CommonModule } from '@angular/common';  // Para directivas básicas com
   templateUrl: './admin-layout.component.html',
   styleUrls: ['./admin-layout.component.css']
 })
+
 export class AdminLayoutComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    console.log('AdminLayoutComponent cargado');
+  }
 
   logout() {
-    // Lógica de logout (ej. limpiar token de localStorage)
-    localStorage.removeItem('token');  // Ejemplo
+    console.log('Ejecutando logout');
+    localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 }

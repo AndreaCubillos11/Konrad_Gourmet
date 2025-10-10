@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SucursalService } from '../../services/Administrador/sucursal-service';
 import { CookieService } from 'ngx-cookie-service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-home-admin',
+    standalone: true,
+    imports: [CommonModule, RouterModule], // ← Importa RouterModule aquí también
     templateUrl: '../../html/Administrador/home_admin.html',
     styleUrls: ['../../css/home_admin.css']
 })
@@ -23,9 +27,9 @@ export class HomeAdminComponent implements OnInit {
     }
 
     cargarSucursales(): void {
-        this.sucursalService.consultarSucursales(2,this.cookieService.get('token')).subscribe({
+        this.sucursalService.consultarSucursales(2, this.cookieService.get('token')).subscribe({
             next: (data) => {
-                this.sucursal = data.sucursales; 
+                this.sucursal = data.sucursales;
             },
 
             error: (error) => {

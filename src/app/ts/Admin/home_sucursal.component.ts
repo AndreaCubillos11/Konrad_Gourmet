@@ -3,11 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { SucursalService } from '../../services/Administrador/sucursal-service';
 import { CommonModule } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
     selector: 'app-home-sucursal',
-    imports: [CommonModule],
+    imports: [CommonModule, RouterModule],
+    standalone: true,
     templateUrl: '../../html/Administrador/home_sucursales.html',
     styleUrls: ['../../css/home_sucursales.css']
 })

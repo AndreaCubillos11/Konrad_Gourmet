@@ -36,6 +36,10 @@
                     <div class="form-group">
                         <label>Nombre del plato</label>
                         <input type="text" formControlName="nombre" placeholder="Ej: Bandeja Paisa">
+                        <!-- NUEVO: Mensaje de error para nombre requerido -->
+                        <div *ngIf="platoForm.get('nombre')?.invalid && platoForm.get('nombre')?.touched" class="error-message">
+                            El nombre del plato es obligatorio.
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -46,10 +50,19 @@
                                 {{ cp.nombre_categoria }}
                             </option>
                         </select>
+                        <!-- NUEVO: Mensaje de error para categoría requerida -->
+                        <div *ngIf="platoForm.get('id_categoria_plato')?.invalid && platoForm.get('id_categoria_plato')?.touched" class="error-message">
+                            La categoría del plato es obligatoria.
+                        </div>
                     </div>
                 </div>
 
                 <h3>Ingredientes del plato:</h3>
+
+                <!-- NUEVO: Mensaje de error si no hay ingredientes -->
+                <div *ngIf="ingredientes.invalid && ingredientes.touched && ingredientes.length === 0" class="error-message">
+                    Debe agregar al menos un ingrediente.
+                </div>
 
                 <!-- Ingredientes dinámicos -->
                 <div formArrayName="ingredientes">
@@ -64,6 +77,10 @@
                                     {{ cp.nombre_categoria }}
                                 </option>
                             </select>
+                            <!-- NUEVO: Error para categoría de producto -->
+                            <div *ngIf="ing.get('id_categoria_producto')?.invalid && ing.get('id_categoria_producto')?.touched" class="error-message">
+                                La categoría del producto es obligatoria.
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -74,11 +91,19 @@
                                     {{ p.nombre }}
                                 </option>
                             </select>
+                            <!-- NUEVO: Error para producto -->
+                            <div *ngIf="ing.get('id_producto')?.invalid && ing.get('id_producto')?.touched" class="error-message">
+                                El producto es obligatorio.
+                            </div>
                         </div>
                         <!-- Cantidad -->
                         <div class="form-group small">
                             <label>Cantidad</label>
-                            <input type="number" formControlName="cantidad" placeholder="Ej: 200">
+                            <input type="number" formControlName="cantidad" placeholder="Ej: 200" min="0">
+                            <!-- NUEVO: Error para cantidad -->
+                            <div *ngIf="ing.get('cantidad')?.invalid && ing.get('cantidad')?.touched" class="error-message">
+                                La cantidad es obligatoria y debe ser mayor a 0.
+                            </div>
                         </div>
 
                         <!-- Unidad -->
@@ -90,10 +115,14 @@
                                     {{ u.nombre_unidad }}
                                 </option>
                             </select>
+                            <!-- NUEVO: Error para unidad -->
+                            <div *ngIf="ing.get('id_unidad')?.invalid && ing.get('id_unidad')?.touched" class="error-message">
+                                La unidad es obligatoria.
+                            </div>
                         </div>
 
-                        <!-- Botón eliminar -->
-                        <button type="button" class="eliminar" (click)="eliminarIngrediente(i)">
+                        <!-- Botón eliminar (solo si hay más de 1 ingrediente para evitar eliminar el único) -->
+                        <button type="button" class="eliminar" (click)="eliminarIngrediente(i)" *ngIf="ingredientes.length > 1">
                             - Eliminar Ingrediente
                         </button>
                     </div>
@@ -110,14 +139,21 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Precio del plato</label>
-                        <input type="number" formControlName="precio_venta" placeholder="Ej: 25000">
+                        <input type="number" formControlName="precio_venta" placeholder="Ej: 25000" min="0.01" step="0.01">
+                        <!-- NUEVO: Mensaje de error para precio (requerido y >0) -->
+                        <div *ngIf="platoForm.get('precio_venta')?.errors?.['required'] && platoForm.get('precio_venta')?.touched" class="error-message">
+                            El precio es obligatorio.
+                        </div>
+                        <div *ngIf="platoForm.get('precio_venta')?.errors?.['minValue'] && platoForm.get('precio_venta')?.touched" class="error-message">
+                            El precio debe ser mayor a 0.
+                        </div>
                     </div>
                 </div>
 
                 <!-- Botones -->
                 <div class="form-botones">
-                    <button type="submit" class="btn-guardar">Guardar</button>
-                    <button type="button" class="btn-cancelar" (click)="platoForm.reset(); ingredientes.clear()">
+                    <button type="submit" class="btn-guardar" [disabled]="platoForm.invalid">Guardar</button>
+                    <button type="button" class="btn-cancelar" (click)="platoForm.reset(); ingredientes.clear(); productosPorIngrediente = []">
                         Cancelar
                     </button>
                 </div>

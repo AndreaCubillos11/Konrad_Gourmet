@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Proveedores } from '../../services/Administrador/proveedores';
 import { Router } from '@angular/router';
 import { SucursalService } from '../../services/Administrador/sucursal-service';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,7 +13,7 @@ import { SucursalService } from '../../services/Administrador/sucursal-service';
     selector: 'app-home-crear-usuarios',
     templateUrl: '../../html/Administrador/home_crearUsuarios.html',
     styleUrls: ['../../css/home_crearUsuarios.css'],
-    imports: [CommonModule]
+    imports: [CommonModule, RouterModule]
 })
 export class HomeCrearUsuariosComponent {
 

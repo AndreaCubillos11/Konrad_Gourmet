@@ -3,13 +3,15 @@ import { Proveedores } from '../../services/Administrador/proveedores';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-proveedores',
+  standalone: true,
   templateUrl: '../../html/Administrador/home_proveedores.html',
   styleUrls: ['../../css/home_proveedores.css'],
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 })
 export class HomeProveedoresComponent {
 

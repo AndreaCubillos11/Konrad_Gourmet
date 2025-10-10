@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { ListasDesplegables } from '../../services/Administrador/listas-desplegables';
 import { CommonModule } from '@angular/common';  // 👈 para *ngFor y demás
 import { CookieService } from 'ngx-cookie-service';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
     selector: 'app-crear-listas',
     templateUrl: '../../html/Administrador/crear_listas.html',
     styleUrls: ['../../css/crear_lista.css'],
-    imports: [ReactiveFormsModule, CommonModule,FormsModule] // 👈 aquí agregas los módulos que necesita el HTML
+    imports: [ReactiveFormsModule, CommonModule,FormsModule, RouterModule] // 👈 aquí agregas los módulos que necesita el HTML
 })
 export class CrearListasComponent {
 

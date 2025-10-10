@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-home-listas',
-    templateUrl: '../../html/Administrador/home_listas.html',
+    standalone: true,
+    imports: [CommonModule, RouterModule], // ← Importa RouterModule aquí también
+    templateUrl: '../../html/Administrador/home_listas.html', // ← CORREGIDO: usa home_listas.html
     styleUrls: ['../../css/home_listas.css']
 })
 export class HomeListasComponent {

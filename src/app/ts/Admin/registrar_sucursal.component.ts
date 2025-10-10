@@ -6,12 +6,14 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/Administrador/usuario-service';
 import { CommonModule } from '@angular/common';  
 import { CookieService } from 'ngx-cookie-service';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-registrar-sucursal',
+    standalone: true,
     templateUrl: '../../html/Administrador/registrar_sucursal.html',
     styleUrls: ['../../css/registrar_sucursal.css'],
-    imports: [ReactiveFormsModule, CommonModule] 
+    imports: [ReactiveFormsModule, CommonModule, RouterModule ] 
 })
 export class RegistrarSucursalComponent implements OnInit {
 

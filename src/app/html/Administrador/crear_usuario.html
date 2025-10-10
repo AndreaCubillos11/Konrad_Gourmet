@@ -1,72 +1,96 @@
 <div class="layout">
-    <!-- Contenido principal -->
-    <div class="content">
-        <!-- Formulario crear usuario -->
-        <section class="form-section">
-            <div class="form-container">
-                <h2><i class="fa-solid fa-user-plus"></i> Crear nuevo usuario</h2>
+  <div class="content">
+    <section class="form-section">
+      <div class="form-container">
+        <h2><i class="fa-solid fa-user-plus"></i> Crear nuevo usuario</h2>
 
-                <!-- Formulario con etiqueta form -->
-                <form (ngSubmit)="crearUsuario()" [formGroup]="usuarioForm">
-                    <div class="form-card">
-                        <h3><i class="fa-solid fa-id-card"></i> Información principal</h3>
+        <form (ngSubmit)="crearUsuario()" [formGroup]="usuarioForm">
+          <div class="form-card">
+            <h3><i class="fa-solid fa-id-card"></i> Información principal</h3>
 
-                        <div class="form-grid">
-                            <div>
-                                <label>Nombre Completo</label>
-                                <input type="text" name="nombre" placeholder="Ej: Juan Pérez" required
-                                    formControlName="nombre" />
-                            </div>
-                            <div>
-                                <label>Contraseña</label>
-                                <input type="password" name="contraseña" placeholder="Ej: Juan Pérez" required
-                                    formControlName="contrasena" />
-                            </div>
-                            <div>
-                                <label>Correo electrónico</label>
-                                <input type="email" name="email" placeholder="usuario@ejemplo.com" required
-                                    formControlName="correo" />
-                            </div>
+            <div class="form-grid">
+              <!-- Nombre -->
+              <div>
+                <label>Nombre Completo</label>
+                <input type="text" placeholder="Ej: Juan Pérez" formControlName="nombre"
+                       [class.invalid]="usuarioForm.get('nombre')?.invalid && usuarioForm.get('nombre')?.touched" />
+                <small *ngIf="usuarioForm.get('nombre')?.invalid && usuarioForm.get('nombre')?.touched"
+                       class="error">El nombre es obligatorio.</small>
+              </div>
 
-                            <div style="grid-column: 1 / -1;">
-                                <label>Cargo / Rol</label>
-                                <select name="cargo" formControlName="id_rol" required>
-                                    <option value="">Seleccionar cargo</option>
-                                    <option *ngFor="let rol of roles" [value]="rol.id_rol">
-                                        {{ rol.nombre_rol }}
-                                    </option>
-                                </select>
-                            </div>
+              <!-- Contraseña -->
+              <div>
+                <label>Contraseña</label>
+                <input type="password" placeholder="********" formControlName="contrasena"
+                       [class.invalid]="usuarioForm.get('contrasena')?.invalid && usuarioForm.get('contrasena')?.touched" />
+                <small *ngIf="usuarioForm.get('contrasena')?.hasError('required') && usuarioForm.get('contrasena')?.touched"
+                       class="error">La contraseña es obligatoria.</small>
+                <small *ngIf="usuarioForm.get('contrasena')?.hasError('minlength') && usuarioForm.get('contrasena')?.touched"
+                       class="error">Debe tener al menos 8 caracteres.</small>
+                <small *ngIf="usuarioForm.get('contrasena')?.hasError('pattern') && usuarioForm.get('contrasena')?.touched"
+                       class="error">Debe incluir una mayúscula y un número.</small>
+              </div>
 
-                            <div style="grid-column: 1 / -1;">
-                                <label>Sucursal</label>
-                                <select name="cargo" formControlName="id_sucursal" required>
-                                    <option value="">Seleccionar sucursal</option>
-                                    <option *ngFor="let su of sucursales" [value]="su.id_sucursal">
-                                        {{ su.nombre}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+              <!-- Correo -->
+              <div>
+                <label>Correo electrónico</label>
+                <input type="email" placeholder="usuario@ejemplo.com" formControlName="correo"
+                       [class.invalid]="usuarioForm.get('correo')?.invalid && usuarioForm.get('correo')?.touched" />
+                <small *ngIf="usuarioForm.get('correo')?.hasError('required') && usuarioForm.get('correo')?.touched"
+                       class="error">El correo es obligatorio.</small>
+                <small *ngIf="usuarioForm.get('correo')?.hasError('email') && usuarioForm.get('correo')?.touched"
+                       class="error">Formato de correo no válido.</small>
+              </div>
 
-                    <!-- Botones -->
-                    <div class="form-actions">
-                        <button class="btn-primary" type="submit" [disabled]="usuarioForm.invalid">
-                            <i class="fa-solid fa-user-plus"></i> Guardar usuario
-                        </button>
+              <!-- Rol -->
+              <div style="grid-column: 1 / -1;">
+                <label>Cargo / Rol</label>
+                <select formControlName="id_rol"
+                        [class.invalid]="usuarioForm.get('id_rol')?.invalid && usuarioForm.get('id_rol')?.touched">
+                  <option value="0">Seleccionar cargo</option>
+                  <option *ngFor="let rol of roles" [value]="rol.id_rol">
+                    {{ rol.nombre_rol }}
+                  </option>
+                </select>
+                <small *ngIf="usuarioForm.get('id_rol')?.hasError('min') && usuarioForm.get('id_rol')?.touched"
+                       class="error">Debes seleccionar un rol.</small>
+              </div>
 
-                        <button class="btn-cancel" type="button">
-                            <i class="fa-solid fa-xmark"></i> Cancelar
-                        </button>
-                    </div>
-                </form>
+              <!-- Sucursal -->
+              <div style="grid-column: 1 / -1;">
+                <label>Sucursal</label>
+                <select formControlName="id_sucursal"
+                        [class.invalid]="usuarioForm.get('id_sucursal')?.invalid && usuarioForm.get('id_sucursal')?.touched">
+                  <option value="0">Seleccionar sucursal</option>
+                  <option *ngFor="let su of sucursales" [value]="su.id_sucursal">
+                    {{ su.nombre }}
+                  </option>
+                </select>
+                <small *ngIf="usuarioForm.get('id_sucursal')?.hasError('min') && usuarioForm.get('id_sucursal')?.touched"
+                       class="error">Debes seleccionar una sucursal.</small>
+              </div>
             </div>
-        </section>
-    </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="form-actions">
+            <button class="btn-primary" type="submit" [disabled]="usuarioForm.invalid">
+              <i class="fa-solid fa-user-plus"></i> Guardar usuario
+            </button>
+            <button class="btn-cancel" type="button">
+              <i class="fa-solid fa-xmark"></i> Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
 </div>
 
-<!-- Modal de notificación -->
-<app-modal-notificacion [visible]="modalVisible" [titulo]="modalTitulo" [mensaje]="modalMensaje" [tipo]="modalTipo"
-    (cerrar)="cerrarModal()">
+<app-modal-notificacion
+  [visible]="modalVisible"
+  [titulo]="modalTitulo"
+  [mensaje]="modalMensaje"
+  [tipo]="modalTipo"
+  (cerrar)="cerrarModal()">
 </app-modal-notificacion>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms'; // NUEVO: Importé AbstractControl y ValidationErrors para validadores personalizados
 import { RegistrarPlatoService } from '../../services/JefeCocina/registrar-plato';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
@@ -19,8 +19,7 @@ export class AgregarPlatoComponent implements OnInit {
     categoriasPlato: any[] = [];
     categoriasProducto: any[] = [];
     unidades: any[] = [];
-    productosPorIngrediente: any[][] = [];
-
+    productosPorIngrediente: any[][] = []; // NUEVO: Inicializado como array vacío
 
     modalVisible: boolean = false;
     modalTipo: 'exito' | 'error' = 'exito';
@@ -33,13 +32,30 @@ export class AgregarPlatoComponent implements OnInit {
         private cookieService: CookieService,
         private router: Router
     ) {
+        // NUEVO: Validadores personalizados
+        const minValueValidator = (min: number) => (control: AbstractControl): ValidationErrors | null => {
+            if (control.value !== null && (control.value === '' || control.value < min)) {
+                return { minValue: { valid: false, min: min } };
+            }
+            return null;
+        };
+
+        const minIngredientsValidator = (control: AbstractControl): ValidationErrors | null => {
+            const arr = control as FormArray;
+            return arr.length === 0 ? { minIngredients: true } : null;
+        };
+
         this.platoForm = this.fb.group({
             nombre: ['', Validators.required],
-            precio_venta: ['', Validators.required],
+            precio_venta: ['', [Validators.required, minValueValidator(0)]], // NUEVO: Validador >0
             id_categoria_plato: ['', Validators.required],
-            ingredientes: this.fb.array([]),
+            ingredientes: this.fb.array([], minIngredientsValidator), // NUEVO: Validador al menos 1 ingrediente
             creador_id: [localStorage.getItem('id_usuario') || '']
         });
+
+        // NUEVO: Inicializar con un ingrediente vacío para mejorar UX (y productosPorIngrediente)
+        this.agregarIngrediente();
+        this.productosPorIngrediente = [[]]; // Coincide con el primer ingrediente
     }
 
     ngOnInit() {
@@ -56,7 +72,7 @@ export class AgregarPlatoComponent implements OnInit {
         const ingrediente = this.fb.group({
             id_producto: ['', Validators.required],
             id_categoria_producto: ['', Validators.required],
-            cantidad: ['', Validators.required],
+            cantidad: ['', [Validators.required, Validators.min(0)]], // NUEVO: También >0 para cantidad
             id_unidad: ['', Validators.required]
         });
 
@@ -112,6 +128,14 @@ export class AgregarPlatoComponent implements OnInit {
     }
 
     registrarPlato() {
+        // NUEVO: Verificar si el formulario es válido antes de enviar
+        if (this.platoForm.invalid) {
+            // Marcar todos los campos como touched para mostrar errores
+            this.platoForm.markAllAsTouched();
+            this.mostrarError('Formulario inválido', 'Por favor, complete todos los campos correctamente. Verifique el precio (>0) y agregue al menos un ingrediente.');
+            return;
+        }
+
         const token = this.cookieService.get('token');
         this.registrarPlatoService.registrarPlato(this.platoForm.value, token).subscribe({
             next: () => {
@@ -130,6 +154,14 @@ export class AgregarPlatoComponent implements OnInit {
                 this.modalVisible = true;
             }
         });
+    }
+
+    // NUEVO: Método auxiliar para mostrar modal de error (reutilizable)
+    private mostrarError(titulo: string, mensaje: string) {
+        this.modalTipo = 'error';
+        this.modalTitulo = titulo;
+        this.modalMensaje = mensaje;
+        this.modalVisible = true;
     }
 
     cerrarModal() {
