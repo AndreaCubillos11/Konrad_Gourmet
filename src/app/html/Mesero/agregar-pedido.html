@@ -27,8 +27,8 @@
     <!-- Tabs de categorías -->
     <div class="tabs">
       <div>
-        <button class="filtro" (click)="filtrarPorCategoria('todos')">Todos</button>
-        <button class="filtro" *ngFor="let categoria of categoriasPlato"
+        <button class="filtro" [disabled]="platos.length === 0" (click)="filtrarPorCategoria('todos')">Todos</button>
+        <button class="filtro" *ngFor="let categoria of categoriasPlato" [disabled]="platos.length === 0"
           (click)="filtrarPorCategoria(categoria.nombre_categoria)">
           {{ categoria.nombre_categoria }}
         </button>
@@ -38,6 +38,11 @@
     <div class="layout">
       <!-- Lista de platos -->
       <div class="menu-list">
+        <!-- Mensaje si no hay platos disponibles -->
+        <div class="no-platos" *ngIf="platos.length === 0">
+          <p>Se debe registrar al menos un plato. Contacta al jefe de cocina para agregar opciones al menú.</p>
+        </div>
+        
         <div class="menu-item" *ngFor="let producto of platos">
           <span>{{ producto.nombre }}</span>
           <button (click)="agregar(producto)">Agregar</button>
@@ -68,7 +73,8 @@
           </div>
         </div>
 
-        <button class="send-order" [disabled]="pedido.length === 0 || !mesaSeleccionada" (click)="enviarPedido()">
+        <button class="send-order" [disabled]="pedido.length === 0 || !mesaSeleccionada || platos.length === 0" 
+                (click)="enviarPedido()">
           Enviar Pedido
         </button>
       </div>

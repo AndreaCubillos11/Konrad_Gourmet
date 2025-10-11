@@ -102,9 +102,15 @@ export class JefeMenuComponent {
         });
     }
 
-        cerrarModal() {
-            this.modalVisible = false;
-        }
-
+    cerrarModal() {
+        this.modalVisible = false;
     }
+
+    navegarAgregarPlato(): void {
+        console.log('Navegando a la página de agregar plato...');
+        console.log('Ruta destino: /agregar_plato');
+        console.log('Fecha/Hora:', new Date().toLocaleString());
+    }
+
+}
 
