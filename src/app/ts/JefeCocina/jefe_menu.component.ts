@@ -108,8 +108,7 @@ export class JefeMenuComponent {
 
     navegarAgregarPlato(): void {
         console.log('Navegando a la página de agregar plato...');
-        console.log('Ruta destino: /agregar_plato');
-        console.log('Fecha/Hora:', new Date().toLocaleString());
+        this.router.navigate(['/agregar_plato']);
     }
 
 }

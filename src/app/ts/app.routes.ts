@@ -68,7 +68,7 @@ export const routes: Routes = [
   { path: 'solicitud_cotizacion', component: SolicitudCotizacionComponent },
 
   // Ruta 404 (opcional, pero recomendada)
-  { path: '**', redirectTo: '/login' }
+  //{ path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({

@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 @Component({
     selector: 'app-home-admin',
     standalone: true,
-    imports: [CommonModule, RouterModule], // ← Importa RouterModule aquí también
+    imports: [CommonModule, RouterModule], 
     templateUrl: '../../html/Administrador/home_admin.html',
     styleUrls: ['../../css/home_admin.css']
 })
@@ -41,7 +41,7 @@ export class HomeAdminComponent implements OnInit {
         this.sucursalSeleccionada = s;
     }
     verDetalles(): void {
-        this.router.navigate(['/home_sucursal', this.sucursalSeleccionada.id_sucursal]);
+        this.router.navigate(['/admin/home_sucursal', this.sucursalSeleccionada.id_sucursal]);
     }
 
 }
