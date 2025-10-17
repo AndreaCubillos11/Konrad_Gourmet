@@ -4,11 +4,10 @@
     <div class="main-content">
         <div class="grid-cards">
             <!-- Gestión de sucursales -->
-            <!-- Gestión de sucursales -->
             <div class="card">
                 <div class="card-header">
                     <h3>Gestión de sucursales</h3>
-                    <button (click)="verDetalles()" class="btn-ver">Ver detalles</button>
+                    <!-- Se quita el botón "Ver detalles" del header -->
                 </div>
                 <table>
                     <thead>
@@ -16,6 +15,7 @@
                             <th>Sucursal</th>
                             <th>Teléfono</th>
                             <th>Jefe de sucursal</th>
+                            <th>Acciones</th>  <!-- Nueva columna para acciones -->
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +25,9 @@
                             <td>{{ s.nombre }}</td>
                             <td>{{ s.telefono }}</td>
                             <td>{{ s.Usuario.nombre }}</td>
+                            <td>  <!-- Nueva celda para el botón -->
+                                <button (click)="seleccionarSucursal(s); verDetalles()" class="btn-ver">Ver más</button>
+                            </td>
                         </tr>
                         }
                     </tbody>
