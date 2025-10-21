@@ -7,6 +7,7 @@ const Auditoria = require("../models/Auditoria");
 const Usuario = require("../models/Usuario");
 const Rol = require("../models/Rol");
 const Sucursal = require("../models/Sucursales");
+const CategoriaProducto = require('../models/CategoriaProducto');
 
 exports.obtenerInventarioSucursal = async (req, res, next) => {
     try {
@@ -19,16 +20,11 @@ exports.obtenerInventarioSucursal = async (req, res, next) => {
             return res.status(404).json({ message: 'Usuario no encontrado.' });
         }
 
-        const sucursal = await Sucursal.findOne({
-            where: { id_usuario: usuario.id_usuario },
-        });
-
-
         const rol = await Rol.findByPk(usuario.id_rol);
 
         // 2️⃣ Validar rol y sucursal
         if (rol.nombre_rol.toLowerCase() !== 'jefe de cocina'.toLowerCase() ||
-            sucursal.id_sucursal !== parseInt(id_sucursal)) {
+            usuario.id_sucursal !== parseInt(id_sucursal)) {
             return res.status(403).json({ message: 'No tienes permisos para acceder a este inventario.' });
         }
 
@@ -47,6 +43,10 @@ exports.obtenerInventarioSucursal = async (req, res, next) => {
                         {
                             model: Unidad,
                             attributes: ["nombre_unidad"]
+                        },
+                        {
+                            model:CategoriaProducto,
+                            attributes:["id_categoria","nombre_categoria"]
                         }
                     ]
                 }
