@@ -16,7 +16,6 @@
     <div class="content">
         <!-- Header -->
         <header class="header">
-            <input type="text" placeholder="Buscar..." class="search">
             <button class="alerta">
                 <i class="fas fa-bell"></i> 1 alerta: Stock bajo
             </button>
@@ -31,120 +30,78 @@
             <div class="tabla-container">
                 <h2>Inventario</h2>
 
-                <!-- Filtros -->
+                <!-- Filtros dinámicos -->
                 <div class="filtros">
-                    <button class="filtro active">Todas</button>
-                    <button class="filtro">Vegetales</button>
-                    <button class="filtro">Proteínas</button>
-                    <button class="filtro">Lácteos</button>
-                    <button class="filtro">Granos</button>
+                    <button
+                        *ngFor="let cat of categoriasDisponibles"
+                        class="filtro"
+                        [class.active]="categoriaSeleccionada === cat"
+                        (click)="seleccionarCategoria(cat)">
+                        {{ cat }}
+                    </button>
                 </div>
 
                 <!-- Contenido con grid + columna lateral -->
                 <div class="contenido-inventario">
                     <!-- Grid principal -->
                     <div class="grid-inventario">
-                        <!-- Vegetales -->
-                        <div class="card">
-                            <h3>Vegetales</h3>
-                            <div class="item">
-                                <span>Tomate</span>
-                                <span>80 Unidades • 75%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress azul" style="width: 75%;"></div>
-                            </div>
 
-                            <div class="item">
-                                <span>Cebolla</span>
-                                <span>50 Unidades • 45%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress azul" style="width: 45%;"></div>
-                            </div>
+                        <!-- Cards dinámicas por categoría -->
+                        <div class="card" *ngFor="let categoria of filtrarCategorias()">
+                            <h3>{{ categoria[0] }}</h3>
 
-                            <div class="item">
-                                <span>Zanahorias</span>
-                                <span>20 Unidades • 19%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress rojo" style="width: 19%;"></div>
+                            <!-- Productos dentro de cada categoría -->
+                            <div *ngFor="let item of categoria[1]" class="producto-item">
+                                <div class="item-header">
+                                    <span class="nombre">{{ item.Producto.nombre }}</span>
+                                    <span class="detalle">
+                                        {{ item.cantidad_producto }} {{ item.Producto.Unidad.nombre_unidad }}
+                                    </span>
+                                </div>
+
+                                <!-- Barra de progreso con porcentaje al lado -->
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div
+                                            class="progress"
+                                            [ngClass]="{
+                                                'rojo': item.cantidad_producto <= item.stock_minimo,
+                                                'amarillo': item.cantidad_producto > item.stock_minimo && item.cantidad_producto < (item.stock_maximo * 0.5),
+                                                'azul': item.cantidad_producto >= (item.stock_maximo * 0.5)
+                                            }"
+                                            [style.width.%]="(item.cantidad_producto / item.stock_maximo) * 100">
+                                        </div>
+                                    </div>
+                                    <span class="porcentaje">
+                                        {{ ((item.cantidad_producto / item.stock_maximo) * 100) | number:'1.0-0' }}%
+                                    </span>
+                                </div>
+
+                                <!-- Mensaje si está bajo de stock -->
+                                <div class="alerta-stock-bajo" *ngIf="item.cantidad_producto <= item.stock_minimo">
+                                    ⚠ Stock bajo, considerar solicitud
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Lácteos -->
-                        <div class="card">
-                            <h3>Lácteos</h3>
-                            <div class="item">
-                                <span>Queso</span>
-                                <span>80 Unidades • 75%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress azul" style="width: 75%;"></div>
-                            </div>
-
-                            <div class="item">
-                                <span>Mantequilla</span>
-                                <span>18 Unidades • 20%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress rojo" style="width: 20%;"></div>
-                            </div>
-                        </div>
-
-                        <!-- Proteínas -->
-                        <div class="card">
-                            <h3>Proteínas</h3>
-                            <div class="item">
-                                <span>Carne de Res</span>
-                                <span>60 Unidades • 70%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress azul" style="width: 70%;"></div>
-                            </div>
-
-                            <div class="item">
-                                <span>Pollo</span>
-                                <span>35 Unidades • 30%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress amarillo" style="width: 30%;"></div>
-                            </div>
-                        </div>
-
-                        <!-- Granos -->
-                        <div class="card">
-                            <h3>Granos</h3>
-                            <div class="item">
-                                <span>Frijol</span>
-                                <span>300 kg • 80%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress azul" style="width: 80%;"></div>
-                            </div>
+                        <!-- Si no hay inventario -->
+                        <div *ngIf="inventario.length === 0" class="sin-datos">
+                            <p>No hay productos registrados en el inventario de esta sucursal.</p>
                         </div>
                     </div>
 
                     <!-- Columna lateral derecha -->
                     <aside class="sidebar-derecha">
-                        <div class="movimientos">
-                            <h3>Últimos Movimientos</h3>
-                            <ul>
-                                <li>+20 kg Tomate (27/09/2025)</li>
-                                <li>-10 Unid Mantequilla (26/09/2025)</li>
-                                <li>+50 kg Frijol (25/09/2025)</li>
-                            </ul>
-                        </div>
-
                         <div class="alertas-stock">
                             <h3>Alertas de Stock Bajo</h3>
-                            <div class="alerta-item">
-                                <span>Zanahorias (20 u.)</span>
-                                <button class="solicitar">Solicitar</button>
-                            </div>
-                            <div class="alerta-item">
-                                <span>Mantequilla (18 u.)</span>
-                                <button class="solicitar">Solicitar</button>
+                            <div class="alerta-item" *ngFor="let item of inventario">
+                                <div *ngIf="item.cantidad_producto <= item.stock_minimo">
+                                    <p>
+                                        {{ item.Producto.nombre }} — {{ item.cantidad_producto }}
+                                        {{ item.Producto.Unidad.nombre_unidad }}
+                                    </p>
+                                    <button class="solicitar">Solicitar</button>
+                                </div>
                             </div>
                         </div>
                     </aside>

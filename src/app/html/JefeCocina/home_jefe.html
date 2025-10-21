@@ -17,10 +17,13 @@
         <!-- Header -->
         <header class="header">
             <input type="text" placeholder="Buscar..." class="search" />
-            <button class="alerta"><i class="fas fa-bell"></i> 1 alerta: Stock bajo</button>
+            <button class="alerta" (click)="consultarInventario()"><i class="fas fa-bell"></i> 1 alerta: Stock
+                bajo</button>
+
             <div class="user">
                 <span><i class="fas fa-user-tie"></i> Jefe de Cocina</span>
-                <button class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+                <button class="logout" (click)="cerrarSesion()"><i class="fas fa-sign-out-alt"></i> Cerrar
+                    Sesión</button>
             </div>
         </header>
 
@@ -29,44 +32,40 @@
             <!-- Cards -->
             <div class="grid-container">
                 <div class="card">
-                    <h3>12</h3>
+                    <h3>{{ menu }}</h3>
                     <p>Platos en el menú</p>
                 </div>
                 <div class="card">
-                    <h3>5</h3>
-                    <p>Stock Crítico</p>
+                    <h3>{{ inventario }}</h3>
+                    <p>Ingredientes registrados</p>
                 </div>
                 <div class="card">
-                    <h3>3</h3>
+                    <h3>{{ pedidos }}</h3>
                     <p>Solicitudes pendientes</p>
                 </div>
                 <div class="card">
-                    <h3>80%</h3>
+                    <h3>{{ disponibilidadInventario | number:'1.0-0' }}%</h3>
                     <p>Disponibilidad de inventario</p>
                 </div>
             </div>
 
             <!-- Botón centrado -->
             <div class="nueva-solicitud">
-                <button class="btn-solicitud">
+                <button class="btn-solicitud" (click)="nuevoPedido()">
                     <i class="fas fa-plus-circle"></i> Nueva solicitud de alimentos
                 </button>
             </div>
 
-
             <div class="card full-width">
-
-            <!-- Botones grandes -->
-            <div class="botones-grandes">
-                <button class="big-btn" (click)="irAgregarPlato()">
-                    <i class="fas fa-utensils"></i> Registrar plato en el menú
-                </button>
-                <button class="big-btn outline">
-                    <i class="fas fa-chart-line"></i> Monitorear inventario
-                </button>
-            </div>
-
-                
+                <!-- Botones grandes -->
+                <div class="botones-grandes">
+                    <button class="big-btn" (click)="irAgregarPlato()">
+                        <i class="fas fa-utensils"></i> Registrar plato en el menú
+                    </button>
+                    <button class="big-btn outline" (click)="consultarInventario()">
+                        <i class="fas fa-chart-line"></i> Monitorear inventario
+                    </button>
+                </div>
             </div>
         </main>
     </div>
