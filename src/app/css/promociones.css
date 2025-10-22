@@ -1,5 +1,3 @@
-
-
 /* 🔍 Barra superior */
 .top-bar {
   display: flex;
@@ -21,6 +19,7 @@
   background-color: #f2f4f6;
   color: #081A40;
   font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .btn-tab.active {
@@ -28,85 +27,127 @@
   color: #ECEFF1;
 }
 
-/* 🧾 Contenido */
+/* 🧾 Contenido principal */
 .content-section {
   display: flex;
   gap: 25px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
 }
 
+/* === Tarjetas === */
 .card {
-  background-color: #f9fafc;
+  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   padding: 25px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .new-promo h3,
 .promo-list h3 {
   margin-bottom: 15px;
   color: #081A40;
+  font-weight: 600;
 }
 
-.promo-form .form-grid {
+/* === Formulario de nueva promoción === */
+.promo-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 15px;
   margin-bottom: 20px;
 }
 
-.promo-form input {
-  padding: 10px;
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #081A40;
+}
+
+input,
+textarea {
+  padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #8C5818;
+  box-shadow: 0 0 4px rgba(140, 88, 24, 0.3);
 }
 
 .btn-save {
-  align-self: flex-end; /* lo deja alineado a la derecha */
+  align-self: flex-end;
   background-color: #8C5818;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-save:hover {
   background-color: #59412C;
+  transform: scale(1.05);
 }
 
-/* 📊 Estadísticas */
+/* === Estadísticas debajo del formulario === */
 .promo-stats {
   display: flex;
   justify-content: space-between;
   margin-top: 25px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .stat {
-  background-color: #e2e2e2;
+  background-color: #f0f0f0;
   padding: 10px 15px;
-  border-radius: 8px;
+  border-radius: 10px;
   flex: 1;
   text-align: center;
-  margin-right: 10px;
-}
-
-.stat:last-child {
-  margin-right: 0;
+  min-width: 120px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .stat h4 {
   color: #081A40;
   font-weight: bold;
+  margin-top: 5px;
 }
 
-.stat.highlight {
-  background-color: #081A40;
-  color: #ECEFF1;
+.stat p {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0;
 }
 
-/* 📋 Lista */
+/* === Lista de promociones === */
 .list-header {
   display: flex;
   justify-content: space-between;
@@ -116,8 +157,13 @@
 .search-list {
   padding: 8px 12px;
   border-radius: 20px;
-  border: none;
-  background-color: #f2f4f6;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.search-list:focus {
+  outline: none;
+  border-color: #8C5818;
 }
 
 table {
@@ -134,10 +180,16 @@ th, td {
 th {
   background-color: #081A40;
   color: #ECEFF1;
+  font-weight: 600;
 }
 
 td {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+tr:hover td {
+  background-color: #f8f9fb;
 }
 
 .btn-edit {
@@ -147,6 +199,7 @@ td {
   border-radius: 6px;
   padding: 6px 12px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn-edit:hover {
@@ -157,13 +210,41 @@ td {
   background-color: #8C5818;
   color: #ECEFF1;
   border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
+  border-radius: 8px;
+  padding: 10px 22px;
   cursor: pointer;
   float: right;
   margin-top: 10px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-export:hover {
   background-color: #59412C;
+  transform: scale(1.05);
+}
+
+/* === Responsivo === */
+@media (max-width: 992px) {
+  .content-section {
+    flex-direction: column;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-save {
+    align-self: center;
+    width: 100%;
+  }
+
+  .promo-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat {
+    width: 80%;
+  }
 }

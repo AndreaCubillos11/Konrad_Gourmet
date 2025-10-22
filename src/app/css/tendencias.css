@@ -204,3 +204,112 @@
     flex: 1 1 100px;
   }
 }
+
+
+/* === NUEVA SECCIÓN: AGREGAR TENDENCIA === */
+.agregar-tendencia {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+  color: #081A40;
+}
+
+.agregar-tendencia h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.agregar-tendencia h4 i {
+  color: #8C5818;
+}
+
+/* === FORMULARIO === */
+.agregar-tendencia form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #081A40;
+  box-shadow: 0 0 5px rgba(8, 26, 64, 0.2);
+  outline: none;
+}
+
+/* === CAMPO DE PERIODO === */
+.periodo-analizado .periodo-fechas {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.periodo-analizado span {
+  font-weight: bold;
+  color: #59412C;
+}
+
+/* === TEXTAREA === */
+.form-group.observaciones {
+  grid-column: span 2;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+/* === BOTÓN GUARDAR === */
+.guardar-btn {
+  grid-column: span 2;
+  background-color: #081A40;
+  color: #ECEFF1;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.guardar-btn:hover {
+  background-color: #0d2a6d;
+  transform: scale(1.03);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .agregar-tendencia form {
+    grid-template-columns: 1fr;
+  }
+}
