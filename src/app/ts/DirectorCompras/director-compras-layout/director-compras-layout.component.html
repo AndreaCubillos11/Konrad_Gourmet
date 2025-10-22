@@ -1,0 +1,35 @@
+<!-- director-layout.component.html -->
+<!-- Sidebar fijo para todas las vistas del director de compras -->
+<aside class="sidebar">
+    <div class="logo">
+        <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
+    </div>
+    <nav>
+        <a routerLink="/directorCompras/home_director_compras" routerLinkActive="active">
+            <i class="fas fa-home"></i> Inicio
+        </a>
+        <a routerLink="/directorCompras/proveedores" routerLinkActive="active">
+            <i class="fas fa-chart-line"></i> BAM KPIs
+        </a>
+        <a routerLink="/directorCompras/promociones" routerLinkActive="active">
+            <i class="fas fa-bullhorn"></i> Promociones y tendencias
+        </a>
+    </nav>
+</aside>
+
+<!-- Contenido principal (header + área dinámica) -->
+<div class="content">
+    <!-- Header (común a todas las vistas) -->
+    <div class="header">
+        <input type="text" class="search" placeholder="Buscar..." />
+        <div class="user">
+            <i class="fas fa-user-tie"></i> <span>Dir. Compras</span>
+            <button class="logout" (click)="logout()">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <!-- Área de contenido dinámico: aquí se cargan las sub-vistas del director -->
+    <div class="main-content">
+        <router-outlet></router-outlet> <!-- Esto carga el HTML de la ruta actual (ej. home_director, proveedores, etc.) -->
+    </div>
+</div>

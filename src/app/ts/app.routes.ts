@@ -23,10 +23,17 @@ import { AgregarInventarioComponent } from './Admin/agregar_inventario.component
 import { HomeAuxiliarComponent } from './AuxiliarCompra/home_auxiliar.component';
 import { ConsultaSolicitudesComponent } from './AuxiliarCompra/consulta_solicitudes.component';
 import { SolicitudCotizacionComponent } from './AuxiliarCompra/solicitud_cotizacion.component';
+import { HomeDirecComprasComponent } from './DirectorCompras/home_direc_compras.component';
+import { PromocionesComponent } from './DirectorCompras/promociones.component';
+import { TendenciasComponent } from './DirectorCompras/tendencias.component';
+
+
+//layouts
 import { AdminLayoutComponent } from './Admin/admin-layout/admin-layout.component';  // Layout para admin
 import { AuxiliarLayoutComponent } from './AuxiliarCompra/auxiliar-layout/auxiliar-layout.component';  // NUEVO: Layout para auxiliar
 import { MeseroLayoutComponent } from './Mesero/mesero-layout/mesero-layout.component';  // NUEVO
 import { JefeLayoutComponent } from './JefeCocina/jefe-layout/jefe-layout.component';  // NUEVO
+import { DirectorComprasLayoutComponent } from './DirectorCompras/director-compras-layout/director-compras-layout.component';
 
 
 export const routes: Routes = [
@@ -80,19 +87,30 @@ export const routes: Routes = [
   },
 
 
-    // Jefe de Cocina 
+  // Jefe de Cocina 
   {
-  path: 'jefe',
-  component: JefeLayoutComponent,  // Carga el layout
-  children: [
-    { path: 'home_jefe', component: HomeJefeComponent },  // Ruta: /jefe/home_jefe
-    { path: 'jefe_menu', component: JefeMenuComponent },  // Ruta: /jefe/jefe_menu
-    { path: 'agregar_plato', component: AgregarPlatoComponent },  // Ruta: /jefe/agregar_plato
-    { path: 'inventario', component: InventarioComponent },  // Ruta: /jefe/inventario
-    { path: 'solicitud_alimentos', component: SolicitudAlimentosComponent },  // Ruta: /jefe/solicitud_alimentos
-    { path: '', redirectTo: 'home_jefe', pathMatch: 'full' }  // Redirect por defecto
-  ]
-},
+    path: 'jefe',
+    component: JefeLayoutComponent,  // Carga el layout
+    children: [
+      { path: 'home_jefe', component: HomeJefeComponent },  // Ruta: /jefe/home_jefe
+      { path: 'jefe_menu', component: JefeMenuComponent },  // Ruta: /jefe/jefe_menu
+      { path: 'agregar_plato', component: AgregarPlatoComponent },  // Ruta: /jefe/agregar_plato
+      { path: 'inventario', component: InventarioComponent },  // Ruta: /jefe/inventario
+      { path: 'solicitud_alimentos', component: SolicitudAlimentosComponent },  // Ruta: /jefe/solicitud_alimentos
+      { path: '', redirectTo: 'home_jefe', pathMatch: 'full' }  // Redirect por defecto
+    ]
+  },
+
+  {
+    path: "directorCompras",
+    component: DirectorComprasLayoutComponent,
+    children: [
+      { path: "home_director_compras", component: HomeDirecComprasComponent },
+      { path: "promociones", component: PromocionesComponent },
+      { path: "tendencias", component: TendenciasComponent },
+      { path: '', redirectTo: 'home_director_compras', pathMatch: 'full' }  // Redirect por defecto
+    ]
+  }
 
 
 

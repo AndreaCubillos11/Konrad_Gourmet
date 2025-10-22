@@ -1,0 +1,105 @@
+<div class="promociones-container">
+    <!-- 🔍 Barra superior -->
+    <div class="top-bar">
+        <div class="btn-group">
+            <button class="btn-tab active">Promociones</button>
+            <button class="btn-tab" (click)="irATendencias()">Tendencias</button>
+
+        </div>
+    </div>
+
+    <!-- 🔶 Contenido principal -->
+    <div class="content-section">
+        <!-- 🧾 Nueva promoción -->
+        <div class="card new-promo">
+            <h3>Nueva promoción</h3>
+            <form class="promo-form">
+                <div class="form-grid">
+                    <input type="text" placeholder="Producto" />
+                    <input type="text" placeholder="Precio de promoción" />
+                    <input type="text" placeholder="Tipo de descuento" />
+                    <input type="text" placeholder="Valor del descuento" />
+                    <input type="date" placeholder="Fecha de inicio" />
+                    <input type="date" placeholder="Fecha de finalización" />
+                </div>
+                <button type="submit" class="btn-save">
+                    {{ indiceEdicion !== null ? 'Actualizar' : 'Guardar' }}
+                </button>
+            </form>
+
+            <div class="promo-stats">
+                <div class="stat">
+                    <p>Previsión de mejoras</p>
+                    <h4>+8.4%</h4>
+                </div>
+                <div class="stat">
+                    <p>Margen después del descuento</p>
+                    <h4>32.1%</h4>
+                </div>
+                <div class="stat">
+                    <p>Cobertura de acciones</p>
+                    <h4>18 días</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📋 Lista de promociones -->
+        <div class="card promo-list">
+            <div class="list-header">
+                <h3>Lista de promociones</h3>
+                <input type="text" class="search-list" placeholder="Buscar..." />
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Descuentos</th>
+                        <th>Fechas</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ravioles</td>
+                        <td>20%</td>
+                        <td>1 - 10 de sep</td>
+                        <td>Terminado</td>
+                        <td><button class="btn-edit">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Risotto</td>
+                        <td>20%</td>
+                        <td>13 - 25 de sep</td>
+                        <td>Activo</td>
+                        <td><button class="btn-edit">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Papa boliviana</td>
+                        <td>15%</td>
+                        <td>18 - 30 de sep</td>
+                        <td>Activo</td>
+                        <td><button class="btn-edit">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Ajiaco</td>
+                        <td>10%</td>
+                        <td>28 - 31 de ago</td>
+                        <td>Terminado</td>
+                        <td><button class="btn-edit">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Sancocho</td>
+                        <td>2x1</td>
+                        <td>3 - 12 de ago</td>
+                        <td>Terminado</td>
+                        <td><button class="btn-edit">Editar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="btn-export">Exportar</button>
+        </div>
+    </div>
+</div>

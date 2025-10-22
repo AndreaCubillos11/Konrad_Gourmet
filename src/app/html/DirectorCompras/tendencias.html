@@ -1,0 +1,89 @@
+<div class="promociones-container">
+    <!-- 🔍 Barra superior -->
+    <div class="top-bar">
+        <div class="btn-group">
+            <button class="btn-tab" (click)="irAPromociones()">Promociones</button>
+            <button class="btn-tab active">Tendencias</button>
+        </div>
+    </div>
+
+    <div class="tendencia-impulsores-container">
+        <!-- Sección izquierda: Tendencia -->
+        <div class="tendencia-section">
+            <div class="tendencia-header">
+                <h4><i class="fas fa-chart-line"></i> Tendencia: Categoría vs Tiempo</h4>
+                <button class="export-btn">Exportar</button>
+            </div>
+
+            <div class="tendencia-body">
+                <img src="assets/images/chart-placeholder.png" alt="Gráfico de tendencias" class="chart-img">
+            </div>
+
+            <div class="tendencia-footer">
+                <div class="badge">
+                    <p>Categoría Top</p>
+                    <span>Pasta (+11.2%)</span>
+                </div>
+                <div class="badge">
+                    <p>Variabilidad x tiempo</p>
+                    <span>Bajo</span>
+                </div>
+                <div class="badge">
+                    <p>Bajo rendimiento</p>
+                    <span>Lácteos (-3.1%)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección derecha: Impulsores -->
+        <div class="impulsores-section">
+            <div class="impulsores-header">
+                <h4><i class="fas fa-bolt"></i> Impulsores de tendencia</h4>
+            </div>
+
+            <div class="filtros">
+                <button class="filtro-btn activo">Bajos precios</button>
+                <button class="filtro-btn">Tendencias sociales</button>
+                <button class="filtro-btn">Nuevo SKU</button>
+                <button class="filtro-btn">Promoción destacada</button>
+                <button class="filtro-btn">Clima</button>
+                <button class="filtro-btn">Festividades</button>
+            </div>
+
+            <table class="impulsores-table">
+                <thead>
+                    <tr>
+                        <th>Impulsor</th>
+                        <th>Impacto</th>
+                        <th>Confianza</th>
+                        <th>Acción</th>
+                        <th>Notas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Características de venta minorista</td>
+                        <td>+6.4%</td>
+                        <td>Alto</td>
+                        <td>Reproducir exactamente</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Disminución de precios</td>
+                        <td>+3.1%</td>
+                        <td>Medio</td>
+                        <td>Evaluar</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Tendencias sociales</td>
+                        <td>+2.4%</td>
+                        <td>Bajo</td>
+                        <td>Monitor</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

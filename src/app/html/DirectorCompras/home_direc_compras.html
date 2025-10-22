@@ -1,0 +1,88 @@
+<main class="main-content">
+  <section class="top-section">
+    <div class="card kpi-card">
+      <h3>BAM KPIs</h3>
+      <p>Indicadores clave de rendimiento y análisis en tiempo real</p>
+      <button class="btn-primary" (click)="exportarReporte()">Ir al análisis</button>
+    </div>
+
+    <div class="card promo-card">
+      <h3>Promociones y tendencias</h3>
+      <p>Gestionar promociones y realizar un seguimiento de las demandas de productos</p>
+      <button class="btn-primary" (click)="irAPromocionesYTendencias()">Ir a las herramientas</button>
+    </div>
+  </section>
+
+  <section class="monitor-section">
+    <div class="monitor-header">
+      <h3>Monitoreo de la actividad empresarial</h3>
+      <button class="btn-secondary" (click)="refreshData()">Refrescar</button>
+    </div>
+
+    <div class="monitor-cards">
+      <div class="info-card">
+        <span>Producto más vendido</span>
+        <h4>{{ actividadEmpresarial.productoMasVendido }}</h4>
+      </div>
+
+      <div class="info-card">
+        <span>Sucursal superior (en ventas)</span>
+        <h4>{{ actividadEmpresarial.sucursalSuperior }}</h4>
+      </div>
+
+      <div class="info-card">
+        <span>Líder de precios (proveedores)</span>
+        <h4>{{ actividadEmpresarial.liderPrecios }}</h4>
+      </div>
+
+      <div class="info-card highlight">
+        <span>Impacto de la última promoción</span>
+        <h4>{{ actividadEmpresarial.impactoPromocion }}</h4>
+      </div>
+    </div>
+
+    <div class="monitor-body">
+      <div class="sales-table">
+        <h4>Ventas por día (último mes)</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Sucursal</th>
+              <th>Productos</th>
+              <th>Descuentos</th>
+              <th>Otros</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let venta of ventasData">
+              <td>{{ venta.sucursal }}</td>
+              <td>{{ venta.productos }}</td>
+              <td>{{ venta.descuentos }}</td>
+              <td>{{ venta.otros }}</td>
+              <td>{{ venta.total }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="price-comparison">
+        <h4>Comparación de precios de los proveedores</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Proveedor</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of comparacionPrecios">
+              <td>{{ item.proveedor }}</td>
+              <td>{{ item.precio }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>

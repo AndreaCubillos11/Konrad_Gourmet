@@ -1,0 +1,206 @@
+/* 🔍 Barra superior */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-tab {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f2f4f6;
+  color: #081A40;
+  font-weight: bold;
+}
+
+.btn-tab.active {
+  background-color: #081A40;
+  color: #ECEFF1;
+}
+
+/* === CONTENEDOR PRINCIPAL === */
+.tendencia-impulsores-container {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.5rem;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+/* === SECCIÓN DE TENDENCIA === */
+.tendencia-section {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tendencia-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.tendencia-header h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #081A40;
+}
+
+.export-btn {
+  background-color: #081A40;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.export-btn:hover {
+  background-color: #081A40;
+  transform: scale(1.05);
+}
+
+.tendencia-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 230px;
+  margin-bottom: 1.2rem;
+}
+
+.chart-img {
+  width: 95%;
+  max-width: 480px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* === PIE DE TENDENCIA === */
+.tendencia-footer {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background-color: #e0e0e0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 120px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.badge p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.badge span {
+  font-weight: 600;
+  color: #081A40;
+  font-size: 0.9rem;
+}
+
+/* === SECCIÓN DE IMPULSORES === */
+.impulsores-section {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.impulsores-header h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #59412C;
+  margin-bottom: 1rem;
+}
+
+/* === FILTROS === */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filtro-btn {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.filtro-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.filtro-btn.activo {
+  background-color: #8C5818;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* === TABLA DE IMPULSORES === */
+.impulsores-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.impulsores-table th {
+  text-align: left;
+  background-color: #f7f9fc;
+  color: #444;
+  padding: 10px;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+.impulsores-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.impulsores-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 992px) {
+  .tendencia-impulsores-container {
+    grid-template-columns: 1fr;
+  }
+
+  .tendencia-body {
+    height: 200px;
+  }
+
+  .badge {
+    flex: 1 1 100px;
+  }
+}

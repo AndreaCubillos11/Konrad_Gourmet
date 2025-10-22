@@ -1,0 +1,138 @@
+.main-content {
+    padding: 20px;
+}
+
+
+/* === Top Section === */
+.top-section {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  flex: 1;
+  box-shadow: 0 4px 10px rgba(8, 26, 64, 0.1);
+}
+
+.card h3 {
+  color: #081A40;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: #081826;
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.btn-primary {
+  background-color: #8C5818;
+  color: #ECEFF1;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  background-color: #59412C;
+}
+
+/* === Monitor Section === */
+.monitor-section {
+  background: white;
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 10px rgba(8, 26, 64, 0.1);
+}
+
+.monitor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.btn-secondary {
+  background-color: #081A40;
+  color: #ECEFF1;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background-color: #081826;
+}
+
+.monitor-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-card {
+  background: #ECEFF1;
+  border-left: 6px solid #8C5818;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.info-card.highlight {
+  border-left: 6px solid #59412C;
+  background-color: #f7f8fa;
+}
+
+.info-card span {
+  font-size: 0.85rem;
+  color: #081826;
+}
+
+.info-card h4 {
+  color: #081A40;
+  margin-top: 0.5rem;
+}
+
+/* === Tables === */
+.monitor-body {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.sales-table, .price-comparison {
+  flex: 1;
+  background-color: #ECEFF1;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  border-bottom: 1px solid #ccc;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  color: #081A40;
+}
+
+td {
+  color: #081826;
+}
+
+.sales-table h4, .price-comparison h4 {
+  color: #081A40;
+}
