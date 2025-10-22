@@ -41,11 +41,13 @@ export class HomeComponent {
       });
   }
   nuevoPedido() {
-    console.log('Nuevo pedido creado');
+    this.router.navigate(['mesero/agregar_pedido']);
+    //console.log('Nuevo pedido creado');
     // lógica para crear un nuevo pedido
   }
 
   consultarPedidos() {
-    this.router.navigate(['/consultar_pedido']);
+    this.router.navigate(['mesero/consultar_pedido']);
   }
+
 }

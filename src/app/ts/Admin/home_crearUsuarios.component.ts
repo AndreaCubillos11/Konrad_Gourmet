@@ -55,4 +55,8 @@ export class HomeCrearUsuariosComponent {
             });
     }
 
+     navegarACrearUsuario(): void {
+    this.router.navigate(['/admin/crear_usuario']);  // Redirige a la ruta anidada
+  }
 }
+

@@ -65,11 +65,11 @@ export class LoginComponent {
                     if (nombreRol === 'administrador') {
                         this.router.navigateByUrl('/admin');
                     } else if (nombreRol === 'jefe de cocina') {
-                        this.router.navigateByUrl('/home_jefe');
+                        this.router.navigateByUrl('/jefe/home_jefe');
                     } else if (nombreRol === 'mesero') {
                         this.router.navigateByUrl('/mesero');
                     } else if (nombreRol === 'auxiliar de compras') {
-                        this.router.navigateByUrl('/home_auxiliar');
+                        this.router.navigateByUrl('/auxiliar/home_auxiliar');
                     } else {
                         console.warn('Rol no reconocido:', rol.nombre_rol);
                     }

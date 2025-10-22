@@ -24,6 +24,10 @@ import { HomeAuxiliarComponent } from './AuxiliarCompra/home_auxiliar.component'
 import { ConsultaSolicitudesComponent } from './AuxiliarCompra/consulta_solicitudes.component';
 import { SolicitudCotizacionComponent } from './AuxiliarCompra/solicitud_cotizacion.component';
 import { AdminLayoutComponent } from './Admin/admin-layout/admin-layout.component';  // Layout para admin
+import { AuxiliarLayoutComponent } from './AuxiliarCompra/auxiliar-layout/auxiliar-layout.component';  // NUEVO: Layout para auxiliar
+import { MeseroLayoutComponent } from './Mesero/mesero-layout/mesero-layout.component';  // NUEVO
+import { JefeLayoutComponent } from './JefeCocina/jefe-layout/jefe-layout.component';  // NUEVO
+
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -50,22 +54,47 @@ export const routes: Routes = [
     ]
   },
 
+  // Rutas del Auxiliar de Compras: ANIDADAS bajo el layout con sidebar
+  {
+    path: 'auxiliar',
+    component: AuxiliarLayoutComponent,
+    children: [
+      { path: 'home_auxiliar', component: HomeAuxiliarComponent },  // Ruta: /auxiliar/home_auxiliar
+      { path: 'consulta_solicitudes', component: ConsultaSolicitudesComponent },  // Ruta: /auxiliar/consulta_solicitudes
+      { path: 'solicitud_cotizacion', component: SolicitudCotizacionComponent },  // Ruta: /auxiliar/solicitud_cotizacion
+      // Redirect por defecto: al ir a /auxiliar, carga el home_auxiliar
+      { path: '', redirectTo: 'home_auxiliar', pathMatch: 'full' }
+    ]
+  },
+
   // Mesero (sin cambios)
-  { path: 'mesero', component: HomeComponent },
-  { path: 'agregar_pedido', component: AgregarPedidoComponent },
-  { path: 'consultar_pedido', component: ConsultarPedidoComponent },
+  {
+    path: 'mesero',
+    component: MeseroLayoutComponent,  // Carga el layout
+    children: [
+      { path: 'home', component: HomeComponent },  // Ruta: /mesero/home
+      { path: 'agregar_pedido', component: AgregarPedidoComponent },  // Ruta: /mesero/agregar_pedido
+      { path: 'consultar_pedido', component: ConsultarPedidoComponent },  // Ruta: /mesero/consultar_pedido
+      { path: '', redirectTo: 'home', pathMatch: 'full' }  // Redirect por defecto
+    ]
+  },
 
-  // Jefe de Cocina (sin cambios, corregí el comentario)
-  { path: 'home_jefe', component: HomeJefeComponent },
-  { path: 'jefe_menu', component: JefeMenuComponent },
-  { path: 'agregar_plato', component: AgregarPlatoComponent },
-  { path: 'solicitud_alimentos', component: SolicitudAlimentosComponent },
-  { path: 'inventario', component: InventarioComponent },
 
-  // Auxiliar de compras (sin cambios)
-  { path: 'home_auxiliar', component: HomeAuxiliarComponent },
-  { path: 'consulta_solicitudes', component: ConsultaSolicitudesComponent },
-  { path: 'solicitud_cotizacion', component: SolicitudCotizacionComponent },
+    // Jefe de Cocina 
+  {
+  path: 'jefe',
+  component: JefeLayoutComponent,  // Carga el layout
+  children: [
+    { path: 'home_jefe', component: HomeJefeComponent },  // Ruta: /jefe/home_jefe
+    { path: 'jefe_menu', component: JefeMenuComponent },  // Ruta: /jefe/jefe_menu
+    { path: 'agregar_plato', component: AgregarPlatoComponent },  // Ruta: /jefe/agregar_plato
+    { path: 'inventario', component: InventarioComponent },  // Ruta: /jefe/inventario
+    { path: 'solicitud_alimentos', component: SolicitudAlimentosComponent },  // Ruta: /jefe/solicitud_alimentos
+    { path: '', redirectTo: 'home_jefe', pathMatch: 'full' }  // Redirect por defecto
+  ]
+},
+
+
 
   // Ruta 404 (opcional, pero recomendada)
   //{ path: '**', redirectTo: '/login' }

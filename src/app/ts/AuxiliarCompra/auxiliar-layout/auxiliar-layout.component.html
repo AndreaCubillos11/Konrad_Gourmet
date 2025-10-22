@@ -1,0 +1,36 @@
+<!-- auxiliar-layout.component.html -->
+<!-- Sidebar fijo para todas las vistas del auxiliar -->
+<aside class="sidebar">
+    <div class="logo">
+        <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
+    </div>
+    <nav>
+        <a routerLink="/auxiliar/home_auxiliar" routerLinkActive="active">
+            <i class="fas fa-home"></i> Inicio
+        </a>
+        <a routerLink="/auxiliar/consulta_solicitudes" routerLinkActive="active">
+            <i class="fas fa-clipboard-list"></i> Solicitudes
+        </a>
+        <a routerLink="/auxiliar/solicitud_cotizacion" routerLinkActive="active">
+            <i class="fas fa-file-invoice-dollar"></i> Cotizaciones
+        </a>
+    </nav>
+</aside>
+
+<!-- Contenido principal (header + área dinámica) -->
+<div class="content">
+    <!-- Header (común a todas las vistas) -->
+    <div class="header">
+        <input type="text" class="search" placeholder="Buscar..." />
+        <button class="alerta"><i class="fa-solid fa-bell"></i> 1 Alerta: Solicitud pendiente</button>
+        <div class="user">
+            <i class="fas fa-user-tie"></i> <span>Aux. Compras</span>
+            <button class="logout" (click)="logout()">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <!-- Área de contenido dinámico: aquí se cargan las sub-vistas del auxiliar -->
+    <div class="main-content">
+        <router-outlet></router-outlet> <!-- Esto carga el HTML de la ruta actual (ej. home_admin, sucursales, etc.) -->
+    </div>
+</div>

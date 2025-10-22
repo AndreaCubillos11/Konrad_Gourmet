@@ -1,0 +1,43 @@
+<!-- jefe-layout.component.html -->
+<!-- Sidebar fijo para todas las vistas del jefe de cocina -->
+<aside class="sidebar">
+    <div class="logo">
+        <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
+    </div>
+    <nav>
+        <a routerLink="/jefe/home_jefe" routerLinkActive="active">
+            <i class="fas fa-home"></i> Inicio
+        </a>
+        <a routerLink="/jefe/jefe_menu" routerLinkActive="active">
+            <i class="fas fa-utensils"></i> Menú
+        </a>
+        <a routerLink="/jefe/solicitud_alimentos" routerLinkActive="active">
+            <i class="fas fa-clipboard-list"></i> Solicitudes
+        </a>
+        <a routerLink="/jefe/inventario" routerLinkActive="active">
+            <i class="fa-solid fa-box"></i> Inventario
+        </a>
+        <!-- Agrega más enlaces si es necesario -->
+    </nav>
+</aside>
+
+<!-- Contenido principal (header + área dinámica) -->
+<div class="content">
+    <!-- Header (común a todas las vistas) -->
+    <div class="header">
+<input type="text" placeholder="Buscar..." class="search" />
+            <button class="alerta" (click)="consultarInventario()"><i class="fas fa-bell"></i> 1 alerta: Stock
+                bajo</button>
+
+            <div class="user">
+                <span><i class="fas fa-user-tie"></i> Jefe de Cocina</span>
+                <button class="logout" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar
+                    Sesión</button>
+            </div>
+    </div>
+
+    <!-- Área de contenido dinámico: aquí se cargan las sub-vistas del jefe -->
+    <div class="main-content">
+        <router-outlet></router-outlet> <!-- Esto carga el HTML de la ruta actual (ej. home_jefe, inventario, etc.) -->
+    </div>
+</div>

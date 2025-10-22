@@ -1,0 +1,32 @@
+<!-- mesero-layout.component.html -->
+<aside class="sidebar">
+    <div class="logo">
+        <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
+    </div>
+    <nav>
+        <a routerLink="/mesero/home" routerLinkActive="active">
+            <i class="fas fa-home"></i> Inicio
+        </a>
+        <a routerLink="/mesero/consultar_pedido" routerLinkActive="active">
+            <i class="fas fa-search"></i> Consultar Pedido
+        </a>
+    </nav>
+</aside>
+
+<!-- Contenido principal (header + área dinámica) -->
+<div class="content">
+    <!-- Header (común a todas las vistas) -->
+    <div class="header">
+        <div class="header">
+            <div class="user">
+                <i class="fa-regular fa-user"></i> <span>Mesero</span>
+                <button class="logout" (click)="logout()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Área de contenido dinámico: aquí se cargan las sub-vistas del mesero -->
+    <div class="main-content">
+        <router-outlet></router-outlet> <!-- Esto carga el HTML de la ruta actual (ej. home, agregar_pedido, etc.) -->
+    </div>
+</div>

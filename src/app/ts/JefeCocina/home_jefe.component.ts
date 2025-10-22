@@ -31,19 +31,18 @@ export class HomeJefeComponent implements OnInit {
     }
 
     irAgregarPlato() {
-        this.router.navigate(['/agregar_plato']);
+        this.router.navigate(['jefe/agregar_plato']);
     }
 
     consultarInventario() {
         alert('Consultando inventario...');
+        this.router.navigate(['jefe/inventario']);
     }
 
     nuevoPedido() {
         alert('Creando un nuevo pedido...');
-    }
-
-    cerrarSesion() {
-        alert('Sesión cerrada.');
+        this.router.navigate(['jefe/solicitud_alimentos']);
+       
     }
 
     // 🔹 Calcula la disponibilidad de inventario desde la API

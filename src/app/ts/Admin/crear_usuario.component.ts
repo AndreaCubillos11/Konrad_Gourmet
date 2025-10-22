@@ -104,4 +104,8 @@ export class CrearUsuarioComponent {
     this.modalMensaje = mensaje;
     this.modalVisible = true;
   }
+
+  cancelar(): void {
+    this.router.navigate(['/admin/home_crear_usuarios']);  // Redirige a la ruta anidada
+  }
 }
