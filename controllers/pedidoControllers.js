@@ -50,8 +50,16 @@ exports.crearPedido = async (req, res, next) => {
     });
   } catch (err) {
     await t.rollback();
+      // 💡 Detectar error de PostgreSQL con RAISE EXCEPTION
+  if (err.name === 'SequelizeDatabaseError' && err.parent && err.parent.message) {
+    const mensajeError = err.parent.message;
+
+    return res.status(400).json({
+      error: mensajeError, // <-- se envía el mensaje original del SP
+    });
     next(err);
   }
+}
 };
 
 exports.consultarPedidosActivosPorSucursal = async (req, res, next) => {
@@ -194,7 +202,5 @@ exports.eliminarPedido = async (req, res, next) => {
     next(error);
   }
 };
-
-
 
 

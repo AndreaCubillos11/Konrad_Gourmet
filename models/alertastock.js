@@ -3,7 +3,7 @@ const sequelize = require('../config/database'); // Ajusta la ruta a tu conexió
 
 // Importa los modelos relacionados
 const InventarioProducto = require('./InventarioProducto');
-const Sucursal = require('./Sucursal');
+const Sucursal = require('./Sucursales');
 
 const AlertaStock = sequelize.define('AlertaStock', {
     id_alerta_stock: {
