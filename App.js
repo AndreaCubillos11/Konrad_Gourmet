@@ -59,8 +59,8 @@ const InventarioRoutes = require("./routes/inventarioRoutes");
 const CotizacionRoutes = require("./routes/cotizacionRoutes");
 const emailRoutes = require("./routes/emailRoutes.js");
 const alertas = require("./routes/alertasRoutes.js");
-//const sipsa = require("./routes/sipsaRoutes.js");
-//const promocionRoutes = require("./routes/promocionRoutes");
+const sipsa = require("./routes/sipsaRoutes.js");
+const promocionRoutes = require("./routes/promocionRoutes");
 const errorLogger = require("./middlewares/errorLogger");
 
 // Registrar rutas

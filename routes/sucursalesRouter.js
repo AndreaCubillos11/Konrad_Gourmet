@@ -9,6 +9,6 @@ router.post("/sucursal", auth.verificarToken, crearSucursal);
 // Consultar todas las sucursales
 router.get("/sucursales", auth.verificarToken, obtenerSucursales);
 
-router.get("/sucursales/:id_sucursal", auth. verificarToken, obtenerSucursalPorId);
+router.get("/sucursales/:id_sucursal", auth.verificarToken, obtenerSucursalPorId);
 
 module.exports = router;

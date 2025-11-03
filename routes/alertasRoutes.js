@@ -4,6 +4,6 @@ const Alertas=require("../controllers/alertas");
 const auth = require("../middlewares/auth");
 
 
-router.get("/consultar-alertas", Alertas.ConsultarNotificacionesActivas);
+router.get("/consultar-alertas",auth.verificarToken, Alertas.ConsultarNotificacionesActivas);
 
 module.exports = router;
