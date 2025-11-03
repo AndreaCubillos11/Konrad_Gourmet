@@ -61,6 +61,8 @@ const emailRoutes = require("./routes/emailRoutes.js");
 const alertas = require("./routes/alertasRoutes.js");
 const sipsa = require("./routes/sipsaRoutes.js");
 const promocionRoutes = require("./routes/promocionRoutes");
+const auditoria=require("./routes/auditoriaRoutes.js");
+const logErrorRoutes = require("./routes/logErrorRoutes");
 const errorLogger = require("./middlewares/errorLogger");
 
 // Registrar rutas
@@ -77,6 +79,8 @@ app.use("/api/email", emailRoutes);
 app.use("/api", alertas);
 app.use("/api", sipsa);
 app.use("/api", promocionRoutes);
+app.use("/api",auditoria);
+app.use("/api", logErrorRoutes);
 app.use(errorLogger);
 
 // Conexión Sequelize y levantamiento del servidor
