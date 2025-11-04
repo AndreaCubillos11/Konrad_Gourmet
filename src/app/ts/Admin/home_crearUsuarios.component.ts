@@ -36,7 +36,7 @@ export class HomeCrearUsuariosComponent {
     cargarDatos(): void {
         Promise.all([
             this.usuarioService.consultarUsuarios(2, this.cookieService.get('token')).toPromise(),
-            this.sucursalService.consultarSucursales(localStorage.getItem('id_usuario'),this.cookieService.get('token')).toPromise()
+            this.sucursalService.consultarSucursales(localStorage.getItem('id_usuario'), this.cookieService.get('token')).toPromise()
         ])
             .then(([usuariosData, sucursalesData]) => {
                 this.usuarios = usuariosData.usuarios;
@@ -55,8 +55,8 @@ export class HomeCrearUsuariosComponent {
             });
     }
 
-     navegarACrearUsuario(): void {
-    this.router.navigate(['/admin/crear_usuario']);  // Redirige a la ruta anidada
-  }
+    navegarACrearUsuario(): void {
+        this.router.navigate(['/admin/crear_usuario']);  // Redirige a la ruta anidada
+    }
 }
 

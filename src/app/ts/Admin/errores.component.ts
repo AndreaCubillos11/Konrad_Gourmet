@@ -1,78 +1,91 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { ErroresService } from '../../services/Administrador/errores-service';
+import { CommonModule } from '@angular/common';
 
 interface ErrorCritico {
     id: string;
     tipo: string;
     fecha: string;
-    hora: string;
     descripcion: string;
-    modulo: string;
-    origen: string;
 }
 
 @Component({
     selector: 'app-errors-admin',
-    templateUrl:'../../html/Administrador/errores.html',
+    templateUrl: '../../html/Administrador/errores.html',
     styleUrls: ['../../css/errores.css'],
-    imports: [FormsModule]
+    imports: [FormsModule, CommonModule]
 })
 export class ErrorsComponent {
-    filtroFecha: string = '';
-    errorSeleccionado: ErrorCritico | null = null;
 
-    erroresCriticos: ErrorCritico[] = [
-        {
-            id: 'ERR-001',
-            tipo: 'Fallo de conexión',
-            fecha: '2025-11-03',
-            hora: '14:21',
-            descripcion: 'No se pudo conectar al servidor de autenticación. Código: ECONNREFUSED.',
-            modulo: 'Autenticación',
-            origen: 'API Auth Server'
-        },
-        {
-            id: 'ERR-002',
-            tipo: 'Caída de servicio',
-            fecha: '2025-11-03',
-            hora: '11:42',
-            descripcion: 'El servicio de reportes dejó de responder durante 10 minutos.',
-            modulo: 'Reportes',
-            origen: 'Servicio Backend Reports'
-        },
-        {
-            id: 'ERR-003',
-            tipo: 'Timeout en base de datos',
-            fecha: '2025-11-02',
-            hora: '19:05',
-            descripcion: 'Timeout en consulta de inventario principal. Duración: 30s.',
-            modulo: 'Inventario',
-            origen: 'ClusterDB-02'
-        },
-        {
-            id: 'ERR-004',
-            tipo: 'Excepción no controlada',
-            fecha: '2025-11-01',
-            hora: '08:18',
-            descripcion: 'NullPointerException en proceso de pagos automáticos.',
-            modulo: 'Pagos',
-            origen: 'Servicio de Cobros'
-        }
-    ];
+    constructor(
+        private cookieService: CookieService,
+        private erroresService: ErroresService
+    ) { }
+
+
+    filtroFecha: string = '';
+    errorSeleccionado: any | null = null;
+
+    erroresCriticos: any[] = [];
+    erroresMostrados: any[] = [];
 
     filtrarPorFecha() {
-        if (!this.filtroFecha) return;
-        this.errorSeleccionado = null;
-        this.erroresCriticos = this.erroresCriticos.filter(e => e.fecha === this.filtroFecha);
+        // Si no hay filtros, mostrar todos
+        if (!this.filtroFecha) {
+            this.erroresMostrados = [...this.erroresCriticos];
+        } else {
+            this.erroresMostrados = this.erroresFiltrados;
+        }
+
     }
+
+    get erroresFiltrados(): any[] {
+        return this.erroresCriticos.filter(e => {
+            const fechaEvento = e.fecha_hora ? e.fecha_hora.split('T')[0] : ''; // toma solo la fecha
+            const coincideFecha = !this.filtroFecha || fechaEvento === this.filtroFecha;
+
+            return coincideFecha;
+        });
+    }
+
+
+
+
+    seleccionarError(error: any) {
+        this.errorSeleccionado = error;
+    }
+
 
     limpiarFiltro() {
         this.filtroFecha = '';
         this.errorSeleccionado = null;
-        // En un entorno real se volvería a consultar al backend
+        this.consultaErrores();
     }
 
-    seleccionarError(error: ErrorCritico) {
-        this.errorSeleccionado = error;
+
+    ngOnInit(): void {
+
+        this.consultaErrores();
     }
+
+    consultaErrores(): void {
+        this.erroresService.consultarErrores(
+            localStorage.getItem('id_usuario'),
+            this.cookieService.get('token')
+        )
+            .subscribe({
+                next: (data: any) => {
+                    console.log('Errores cargados:', data);
+                    this.erroresCriticos = data.errores || [];
+                    this.erroresMostrados = [...this.erroresCriticos];
+                },
+                error: (error: any) => {
+                    console.error('Error al cargar los errores:', error);
+                },
+            });
+    }
+
+
 }

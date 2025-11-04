@@ -3,11 +3,6 @@
         <h1><i class="fas fa-exclamation-triangle"></i> <strong>Gestión de Errores Críticos del Sistema</strong></h1>
     </div>
 
-    <!-- Tabs -->
-    <div class="tabs">
-        <button class="tab active"><i class="fas fa-bug"></i> Errores Críticos</button>
-        <button class="tab"><i class="fas fa-history"></i> Historial</button>
-    </div>
 
     <div class="grid">
         <!-- Tabla principal -->
@@ -31,22 +26,20 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Tipo</th>
+                        <th>Tipo de Error</th>
                         <th>Fecha</th>
                         <th>Hora</th>
-                        <th>Módulo</th>
-                        <th>Origen</th>
+                        <th>Descripción</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let err of erroresCriticos" [class.selected]="errorSeleccionado?.id === err.id"
+                    <tr *ngFor="let err of erroresMostrados" [class.selected]="errorSeleccionado?.id === err.id"
                         (click)="seleccionarError(err)">
-                        <td>{{ err.id }}</td>
-                        <td><span class="badge crítico">{{ err.tipo }}</span></td>
-                        <td>{{ err.fecha }}</td>
-                        <td>{{ err.hora }}</td>
-                        <td>{{ err.modulo }}</td>
-                        <td>{{ err.origen }}</td>
+                        <td>{{ err.id_error }}</td>
+                        <td><span class="badge crítico">{{ err.tipo_error }}</span></td>
+                        <td>{{ err.fecha_hora | date: 'yyyy-MM-dd' }}</td>
+                        <td>{{ err.fecha_hora | date: 'HH:mm:ss' }}</td>
+                        <td>{{ err.descripcion }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -63,18 +56,18 @@
                 <h3>Detalles del Error</h3>
             </div>
             <div *ngIf="errorSeleccionado as error; else noSeleccionado">
-                <p><strong>ID:</strong> {{ error.id }}</p>
-                <p><strong>Tipo:</strong> {{ error.tipo }}</p>
-                <p><strong>Fecha:</strong> {{ error.fecha }} {{ error.hora }}</p>
-                <p><strong>Módulo:</strong> {{ error.modulo }}</p>
-                <p><strong>Origen:</strong> {{ error.origen }}</p>
+                <p><strong>ID:</strong> {{ error.id_error }}</p>
+                <p><strong>Tipo:</strong> {{ error.tipo_error }}</p>
+                <p><strong>Descripción:</strong> {{ error.descripcion }}</p>>
+                <p><strong>Fecha:</strong> {{ error.fecha_hora }}</p>
                 <div class="descripcion">
                     <strong>Descripción:</strong>
                     <p>{{ error.descripcion }}</p>
                 </div>
             </div>
             <ng-template #noSeleccionado>
-                <p style="color:#999;"><i class="fas fa-mouse-pointer"></i> Selecciona un error para ver los detalles.</p>
+                <p style="color:#999;"><i class="fas fa-mouse-pointer"></i> Selecciona un error para ver los detalles.
+                </p>
             </ng-template>
         </div>
     </div>

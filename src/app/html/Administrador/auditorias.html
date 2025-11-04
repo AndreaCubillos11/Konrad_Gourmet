@@ -3,14 +3,46 @@
         <h1><i class="fas fa-shield-alt"></i> Auditorías del Sistema</h1>
     </div>
 
-    <!-- FILTROS -->
-    <div class="filters-row">
-        <input type="date" [(ngModel)]="filtroFecha" />
-        <input type="text" [(ngModel)]="filtroUsuario" placeholder="Filtrar por usuario" />
+<div class="filters-row">
+    <input type="date" [(ngModel)]="filtroFecha" />
+    <input type="text" [(ngModel)]="filtroUsuario" placeholder="Filtrar por usuario" />
+    
+    <div class="actions">
         <button class="filter-btn" (click)="filtrar()">
-            <i class="fas fa-filter"></i> Filtrar
+            <i class="fas fa-filter"></i> Filtrar 
+            </button>
+        <button (click)="limpiarFiltro()">
+            <i class="fas fa-eraser"></i> Limpiar
         </button>
     </div>
+</div>
+
+    <!-- ====== ESTADÍSTICAS ====== -->
+    <div class="card stats">
+        <h3><i class="fas fa-chart-bar"></i> Resumen de Auditorías</h3>
+        <div class="stats-grid">
+            <div class="stat">
+                <span class="label"><i class="fas fa-database"></i> Total eventos</span>
+                <span class="value">{{ eventos.length }}</span>
+            </div>
+
+            <div class="stat">
+                <span class="label"><i class="fas fa-plus-circle"></i> Creaciones</span>
+                <span class="value">{{ totalPorAccion('creacion') }}</span>
+            </div>
+
+            <div class="stat">
+                <span class="label"><i class="fas fa-edit"></i> Actualizaciones</span>
+                <span class="value">{{ totalPorAccion('actualizacion') }}</span>
+            </div>
+
+            <div class="stat">
+                <span class="label"><i class="fas fa-trash-alt"></i> Eliminaciones</span>
+                <span class="value">{{ totalPorAccion('eliminacion') }}</span>
+            </div>
+        </div>
+    </div>
+
 
     <div class="grid">
         <!-- ====== TABLA DE AUDITORÍAS ====== -->
@@ -19,23 +51,19 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Identificador</th>
                         <th>Fecha</th>
-                        <th>Hora</th>
                         <th>Usuario</th>
                         <th>Acción</th>
-                        <th>Módulo</th>
-                        <th>Resultado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let evento of eventosFiltrados" (click)="verDetalle(evento)"
-                        [class.selected]="evento === eventoSeleccionado">
-                        <td>{{ evento.fecha }}</td>
-                        <td>{{ evento.hora }}</td>
-                        <td>{{ evento.usuario }}</td>
-                        <td>{{ evento.accion }}</td>
-                        <td>{{ evento.modulo }}</td>
-                        <td>{{ evento.resultado }}</td>
+                    <tr *ngFor="let evento of eventosMostrados" [class.selected]="evento === eventoSeleccionado">
+                        <td>{{ evento.id_auditoria }}</td>
+                        <td>{{ evento.fecha_hora }}</td>
+                        <td>{{ evento.Usuario.nombre }}</td>
+                        <td>{{ evento.accion_registrada}}</td>
+
                     </tr>
                 </tbody>
             </table>
@@ -47,7 +75,7 @@
             <div class="detail">
                 <p><strong>Usuario:</strong> {{ eventoSeleccionado?.usuario }}</p>
                 <p><strong>Acción:</strong> {{ eventoSeleccionado?.accion }}</p>
-                <p><strong>Módulo:</strong> {{ eventoSeleccionado?.modulo }}</p>
+                <p><strong>Módulo:</strong> {{ eventoSeleccionado?.descripcion }}</p>
                 <p><strong>Fecha:</strong> {{ eventoSeleccionado?.fecha }}</p>
                 <p><strong>Hora:</strong> {{ eventoSeleccionado?.hora }}</p>
                 <p><strong>Resultado:</strong> {{ eventoSeleccionado?.resultado }}</p>
@@ -58,27 +86,6 @@
             </div>
         </div>
 
-        <!-- ====== ESTADÍSTICAS ====== -->
-        <div class="card stats">
-            <h3><i class="fas fa-chart-bar"></i> Resumen de Auditorías</h3>
-            <div class="stats-grid">
-                <div class="stat">
-                    <span class="label"><i class="fas fa-database"></i> Total eventos</span>
-                    <span class="value">{{ eventos.length }}</span>
-                </div>
-                <div class="stat">
-                    <span class="label"><i class="fas fa-plus-circle"></i> Creaciones</span>
-                    <span class="value">{{ totalPorAccion('Creación') }}</span>
-                </div>
-                <div class="stat">
-                    <span class="label"><i class="fas fa-edit"></i> Actualizaciones</span>
-                    <span class="value">{{ totalPorAccion('Actualización') }}</span>
-                </div>
-                <div class="stat">
-                    <span class="label"><i class="fas fa-trash-alt"></i> Eliminaciones</span>
-                    <span class="value">{{ totalPorAccion('Eliminación') }}</span>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>

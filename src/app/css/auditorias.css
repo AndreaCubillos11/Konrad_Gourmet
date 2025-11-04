@@ -262,3 +262,48 @@ tbody tr.selected {
     }
 }
 
+
+.actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.actions input[type="date"] {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.actions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.actions button:first-of-type {
+    background-color: #0b2a55;
+    color: white;
+}
+
+.actions button:first-of-type:hover {
+    background-color: #163d75;
+}
+
+.actions button:last-of-type {
+    background-color: #b58c58;
+    color: white;
+}
+
+.actions button:last-of-type:hover {
+    background-color: #966c3d;
+}

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { AuditoriaService } from '../../services/Administrador/auditoria-service';
+import { CommonModule } from '@angular/common';
 
 interface Auditoria {
     fecha: string;
@@ -15,84 +18,103 @@ interface Auditoria {
 
 @Component({
     selector: 'app-auditorias-admin',
-    templateUrl:'../../html/Administrador/auditorias.html',
+    templateUrl: '../../html/Administrador/auditorias.html',
     styleUrls: ['../../css/auditorias.css'],
-    imports: [FormsModule]
+    imports: [FormsModule, CommonModule],
 })
 export class AuditoriasComponent {
+    constructor(
+        private cookieService: CookieService,
+        private auditoriasService: AuditoriaService
+    ) { }
+
     filtroFecha = '';
     filtroUsuario = '';
     eventoSeleccionado: Auditoria | null = null;
 
-    eventos: Auditoria[] = [
-        {
-            fecha: '2025-11-03',
-            hora: '14:22',
-            usuario: 'A. Patel',
-            accion: 'Actualización',
-            modulo: 'Listas desplegables',
-            resultado: 'Exitoso',
-            descripcion: 'Actualizó categorías del producto CAT-PR a CAT-PR02.',
-            ip: '192.168.1.11',
-            sesion: 'SID-9F22A'
-        },
-        {
-            fecha: '2025-11-03',
-            hora: '10:04',
-            usuario: 'S. Chen',
-            accion: 'Creación',
-            modulo: 'Proveedores',
-            resultado: 'Exitoso',
-            descripcion: 'Se agregó un nuevo proveedor: Distribuidora Central.',
-            ip: '192.168.1.12',
-            sesion: 'SID-8A55B'
-        },
-        {
-            fecha: '2025-11-02',
-            hora: '18:34',
-            usuario: 'Sistema',
-            accion: 'Auto-Archivado',
-            modulo: 'Inventario',
-            resultado: 'Automático',
-            descripcion: 'Inventarios antiguos fueron archivados.',
-            ip: '192.168.1.10',
-            sesion: 'SYS-ARCH'
-        },
-        {
-            fecha: '2025-11-02',
-            hora: '09:12',
-            usuario: 'J. Rivera',
-            accion: 'Eliminación',
-            modulo: 'Usuarios y Roles',
-            resultado: 'Exitoso',
-            descripcion: 'Se eliminó el usuario temporal de pruebas.',
-            ip: '192.168.1.15',
-            sesion: 'SID-777B2'
-        }
-    ];
+    eventos: any[] = [];
+    eventosMostrados: any[] = [];
 
-    get eventosFiltrados(): Auditoria[] {
+    //Getter que devuelve los eventos filtrados
+    get eventosFiltrados(): any[] {
         return this.eventos.filter(
-            e =>
-                (!this.filtroFecha || e.fecha === this.filtroFecha) &&
+            (e) =>
+                (!this.filtroFecha || e.fecha_hora?.startsWith(this.filtroFecha)) &&
                 (!this.filtroUsuario ||
-                    e.usuario.toLowerCase().includes(this.filtroUsuario.toLowerCase()))
+                    e.Usuario?.nombre
+                        ?.toLowerCase()
+                        .includes(this.filtroUsuario.toLowerCase()))
         );
     }
 
-    verDetalle(evento: Auditoria) {
-        this.eventoSeleccionado = evento;
-    }
-
+    //Se ejecuta al presionar el botón de filtrar
     filtrar() {
         this.eventoSeleccionado = null;
+        // Si no hay filtros, mostrar todos
+        if (!this.filtroFecha && !this.filtroUsuario) {
+            this.eventosMostrados = [...this.eventos];
+        } else {
+            this.eventosMostrados = this.eventosFiltrados;
+        }
     }
 
-    totalPorAccion(accion: string): number {
-        return this.eventos.filter(e => e.accion.includes(accion)).length;
+        limpiarFiltro() {
+        this.filtroFecha = '';
+        this.consultaAuditorias();
     }
 
-    exportarPDF() {
-        alert('Exportando reporte de auditorías en PDF...');
+    //Cuenta cuántas veces aparece una acción
+    totalPorAccion(tipo: string): number {
+        return this.eventos.filter(e => {
+            const accion = (e.accion_registrada ?? '').toLowerCase();
+
+            if (tipo === 'creacion') {
+                return (
+                    accion.includes('creado') ||
+                    accion.includes('crear') ||
+                    accion.includes('nuevo') // opcional
+                );
+            }
+
+            if (tipo === 'actualizacion') {
+                return (
+                    accion.includes('actualizado') ||
+                    accion.includes('modificado') ||
+                    accion.includes('cambio') ||
+                    accion.includes('editar')
+                );
+            }
+
+            if (tipo === 'eliminacion') {
+                return accion.includes('eliminado') || accion.includes('borrado');
+            }
+
+            return false;
+        }).length;
+    }
+
+
+    ngOnInit(): void {
+        this.consultaAuditorias();
+    }
+
+    //Carga las auditorías desde el servicio
+    consultaAuditorias(): void {
+        this.auditoriasService
+            .consultarAuditorias(
+                localStorage.getItem('id_usuario'),
+                this.cookieService.get('token')
+            )
+            .subscribe({
+                next: (data) => {
+                    console.log('Auditorias cargadas:', data);
+                    this.eventos = data.auditorias || [];
+                    //Mostrar todas las auditorías inicialmente
+                    this.eventosMostrados = [...this.eventos];
+                },
+                error: (error) => {
+                    console.error('Error al cargar auditorias:', error);
+                },
+            });
     }
 }
