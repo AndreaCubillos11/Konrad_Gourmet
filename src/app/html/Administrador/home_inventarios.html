@@ -1,120 +1,96 @@
 <!-- Contenido principal -->
 <div class="content">
-    <!-- Main content -->
+    <div class="page-header">
+        <i class="fa-solid fa-warehouse"></i>
+        <h2>Inventario por Sucursal</h2>
+    </div>
+
     <div class="main-content">
-        <!-- Barra superior de filtros -->
-        <div class="top-actions">
-            <button class="add"><i class="fa-solid fa-plus"></i> Agregar</button>
-            <button class="export"><i class="fa-solid fa-file-export"></i> Exportar</button>
-        </div>
+
+
 
         <div class="inventory-layout">
             <!-- Filtros -->
             <div class="filters">
                 <h3>Filtros</h3>
                 <div class="quick-filters">
-                    <button>Artículos 120</button>
-                    <button>Stock bajo 12</button>
-                    <button>Vencimiento 15</button>
+                    <button>Sin stock: 2</button>
+                    <button>Stock bajo: 9</button>
+                    <button>Sobreinventario: 7</button>
                 </div>
 
-                <h4>Almacenamiento</h4>
+                <h4>Sucursales</h4>
                 <select>
-                    <option value="all">Todos</option>
-                    <option value="refrigerado">Refrigerado</option>
-                    <option value="congelado">Congelado</option>
-                    <option value="seco">Seco</option>
+                    <option value="all">Todas</option>
+                    <option value="1">Sucursal Norte</option>
+                    <option value="2">Sucursal Centro</option>
+                    <option value="3">Sucursal Sur</option>
                 </select>
 
-                <h4>Proveedores</h4>
+                <h4>Categoría</h4>
                 <select>
-                    <option value="all">Todos</option>
-                    <option value="freshco">FreshCo</option>
-                    <option value="primefood">Prime Food</option>
-                    <option value="oceancatch">Ocean Catch</option>
+                    <option value="all">Todas</option>
+                    <option value="productos">Productos</option>
+                    <option value="despensa">Despensa</option>
+                    <option value="mariscos">Mariscos</option>
                 </select>
-
-                <h4>Actividad</h4>
-                <div class="activity-messages">
-                    <p>📦 PO #1041 fue marcado como recibido</p>
-                    <p>🔄 Sincronizar desde el punto de venta</p>
-                </div>
+                
             </div>
 
-            <!-- Total de inventario -->
+            <!-- Tabla de inventario por sucursal -->
             <div class="inventory">
-                <h3>Total de inventario</h3>
+                <h3>Inventario por Sucursal</h3>
                 <div class="table-box">
-                    <button class="tab-active">Artículos</button>
+
                     <table>
                         <thead>
                             <tr>
-                                <th>Artículo</th>
+                                <th>ID Sucursal</th>
+                                <th>Nombre Sucursal</th>
+                                <th>Producto</th>
                                 <th>Categoría</th>
-                                <th>Proveedor</th>
-                                <th>Inventario Actual</th>
-                                <th>Mínimo Inventario</th>
+                                <th>Cantidad Actual</th>
+                                <th>Stock Mínimo</th>
+                                <th>Stock Máximo</th>
                                 <th>Estatus</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td>001</td>
+                                <td>Sucursal Norte</td>
                                 <td>Tomates</td>
                                 <td>Producto</td>
-                                <td>FreshCo</td>
                                 <td>42kg</td>
                                 <td>60kg</td>
-                                <td>Bajo</td>
+                                <td>100kg</td>
+                                <td class="status-bajo">Bajo</td>
                             </tr>
                             <tr>
+                                <td>002</td>
+                                <td>Sucursal Centro</td>
                                 <td>Aceite</td>
                                 <td>Despensa</td>
-                                <td>Prime Food</td>
                                 <td>18L</td>
                                 <td>15L</td>
-                                <td>Normal</td>
+                                <td>40L</td>
+                                <td class="status-normal">Normal</td>
                             </tr>
                             <tr>
+                                <td>003</td>
+                                <td>Sucursal Sur</td>
                                 <td>Salmón</td>
                                 <td>Mariscos</td>
-                                <td>Ocean Catch</td>
                                 <td>9kg</td>
                                 <td>10kg</td>
-                                <td>Bajo</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Sugerencias -->
-                <div class="suggestions">
-                    <h4>Sugerencias de reordenamiento</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Artículo</th>
-                                <th>Cantidad Sugerida</th>
-                                <th>Proveedor</th>
-                                <th>Razón</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tomates</td>
-                                <td>20kg</td>
-                                <td>Fresh Co</td>
-                                <td>Debajo del estándar</td>
-                            </tr>
-                            <tr>
-                                <td>Filete</td>
-                                <td>5kg</td>
-                                <td>Ocean Catch</td>
-                                <td>Debajo del estándar del vendedor</td>
+                                <td>30kg</td>
+                                <td class="status-bajo">Bajo</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
     </div>
 </div>

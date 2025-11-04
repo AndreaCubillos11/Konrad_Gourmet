@@ -1,0 +1,264 @@
+/* ===== Main ===== */
+.main-content {
+    padding: 25px;
+    color: #0b2a55;
+}
+
+.main-header h1 {
+    color: #0b2a55;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* ===== Filtros ===== */
+.filters-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.filters-row input {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 180px;
+    font-size: 14px;
+}
+
+.filters-row input:focus {
+    outline: none;
+    border-color: #0b2a55;
+}
+
+.filter-btn {
+    background: #0b2a55;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.filter-btn:hover {
+    background: #163d75;
+}
+
+.filter-btn.export {
+    background: #b58c58;
+}
+
+.filter-btn.export:hover {
+    background: #966c3d;
+}
+
+/* ===== Grid Layout ===== */
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card.full {
+    grid-column: span 2;
+}
+
+.card h3 {
+    margin: 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0b2a55;
+}
+
+/* ===== Tabla de auditorías ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+thead {
+    background-color: #f1f1f1;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+tbody tr.selected {
+    background-color: #e8f0ff !important;
+}
+
+/* ===== Detalle del evento ===== */
+.detail p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.descripcion {
+    background-color: #f7f8fa;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    margin-top: 6px;
+    color: #333;
+    border: 1px solid #eee;
+}
+
+/* ===== Estadísticas ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.stat {
+    background-color: #f9f9f9;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+}
+
+.stat .label {
+    display: block;
+    font-size: 13px;
+    color: #555;
+}
+
+.stat .value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0b2a55;
+}
+
+/* ===== Acciones (Botones globales) ===== */
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.actions button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Botón principal */
+.actions button:first-child {
+    background-color: #0b2a55;
+    color: white;
+}
+
+.actions button:first-child:hover {
+    background-color: #163d75;
+}
+
+/* Botón secundario */
+.actions button:last-child {
+    background-color: #b58c58;
+    color: white;
+}
+
+.actions button:last-child:hover {
+    background-color: #966c3d;
+}
+
+/* ===== Scroll y adaptabilidad ===== */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-row {
+        flex-wrap: wrap;
+    }
+
+    .filters-row input {
+        width: 100%;
+        max-width: 240px;
+    }
+}
+
+/* ===== Tabla de resumen de auditorías ===== */
+.stats-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 160px);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.stat {
+    background-color: #f9f9f9;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.stat:hover {
+    background-color: #f0f4fa;
+    transform: translateY(-2px);
+}
+
+.stat .label {
+    display: block;
+    font-size: 13px;
+    color: #555;
+}
+
+.stat .value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0b2a55;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

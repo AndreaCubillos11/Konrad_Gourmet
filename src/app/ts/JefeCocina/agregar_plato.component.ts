@@ -132,7 +132,7 @@ export class AgregarPlatoComponent implements OnInit {
         if (this.platoForm.invalid) {
             // Marcar todos los campos como touched para mostrar errores
             this.platoForm.markAllAsTouched();
-            this.mostrarError('Formulario inválido', 'Por favor, complete todos los campos correctamente. Verifique el precio (>0) y agregue al menos un ingrediente.');
+            this.mostrarError('Formulario No Valido', 'Por favor, complete todos los campos correctamente. Verifique el precio (>0) y agregue al menos un ingrediente.');
             return;
         }
 

@@ -52,10 +52,17 @@
 
         <!-- Botones -->
         <div class="acciones">
-          <button type="reset" class="cancelar"><i class="fas fa-times"></i> Cancelar</button>
-          <button type="submit" class="crear"><i class="fas fa-paper-plane"></i> Enviar solicitud</button>
+          <button type="button" class="cancelar" (click)="cancelarRegistro()"> <i class="fas fa-times"></i> Cancelar
+          </button>
+          <button type="submit" class="crear">
+            <i class="fas fa-save"></i> Guardar proveedor
+          </button>
         </div>
       </form>
     </section>
   </main>
+
+  <app-modal-notificacion [visible]="modalVisible" [tipo]="modalTipo" [titulo]="modalTitulo" [mensaje]="modalMensaje"
+    (cerrar)="cerrarModal()">
+  </app-modal-notificacion>
 </div>

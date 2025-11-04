@@ -11,8 +11,10 @@
         <div class="card full-width">
           <h3><i class="fa-solid fa-truck-field"></i> Todos los proveedores</h3>
           <div class="filtros">
-            <button class="tag dark">Total {{ proveedores.length }}</button>
-            <button class="agregar"><i class="fa-solid fa-plus"></i> Agregar</button>
+            <button class="tag dark">Total: {{ proveedores.length }}</button>
+            <button class="agregar" (click)="agregarNuevo()">
+              <i class="fa-solid fa-plus"></i> Agregar
+            </button>
           </div>
 
           <table>

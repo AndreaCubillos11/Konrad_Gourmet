@@ -1,12 +1,13 @@
 <div class="content">
-    <!-- Main content -->
     <div class="main-content">
         <h2 class="titulo"><i class="fas fa-store"></i> Sucursales</h2>
 
         <!-- Filtros superiores -->
         <div class="filtros-superiores">
-            <button class="tag">Estatus: Activo</button>
-            <button class="agregar"><i class="fas fa-plus"></i> Agregar Sucursal</button>
+            <button class="agregar" (click)="irARegistrarSucursal()">
+                <i class="fas fa-plus"></i> Agregar Sucursal
+            </button>
+
         </div>
 
         <div class="grid-container">
@@ -14,85 +15,43 @@
             <div class="card" *ngIf="sucursal">
                 <h3><i class="fas fa-info-circle"></i> Detalles de la sucursal</h3>
 
-                <div class="detalle">
-                    <label>Nombre</label>
-                    <span>{{ sucursal.nombre }}</span>
-                </div>
-
-                <div class="detalle">
-                    <label>Teléfono</label>
-                    <span>{{ sucursal.telefono }}</span>
-                </div>
-
-                <div class="detalle">
-                    <label>Dirección</label>
-                    <span>{{ sucursal.direccion }}</span>
-                </div>
-
-                <div class="detalle">
-                    <label>Jefe de cocina</label>
-                    <span>{{ sucursal.Usuario.nombre }}</span>
-                </div>
-            </div>
-            <!-- Todas las sucursales -->
-            <div class="card">
-                <h3><i class="fas fa-building"></i> Todas las sucursales</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Dirección</th>
-                            <th>Teléfono</th>
-                            <th>Jefe de cocina</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (s of sucursales; track s.id_sucursal) {
-                        <tr>
-                            <td>{{ s.nombre }}</td>
-                            <td>{{ s.direccion }}</td>
-                            <td>{{ s.telefono }}</td>
-                            <td>{{ s.Usuario.nombre }}</td>
-                            <td>{{ s.estado }}</td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+                <div class="detalle"><label>Nombre</label><span>{{ sucursal.nombre }}</span></div>
+                <div class="detalle"><label>Teléfono</label><span>{{ sucursal.telefono }}</span></div>
+                <div class="detalle"><label>Dirección</label><span>{{ sucursal.direccion }}</span></div>
+                <div class="detalle"><label>Jefe de cocina</label><span>{{ sucursal.Usuario.nombre }}</span></div>
             </div>
 
-            <!-- Inventario -->
+            <!-- Tabla de sucursales -->
             <div class="card full-width">
-                <h3><i class="fas fa-clipboard-list"></i> Resumen de inventario por sucursal
-                    <button class="btn-editar"><i class="fas fa-eye"></i> Ver Inventario</button>
-                </h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Unidad</th>
-                            <th>Capacidad</th>
-                            <th>Estatus</th>
-                            <th>Actualizado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Tomate</td>
-                            <td>12</td>
-                            <td>100</td>
-                            <td>12%</td>
-                            <td>Hoy</td>
-                        </tr>
-                        <tr>
-                            <td>Aceite de oliva</td>
-                            <td>70</td>
-                            <td>200</td>
-                            <td>35%</td>
-                            <td>Hoy</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h3><i class="fas fa-building"></i> Todas las sucursales</h3>
+
+                <div class="tabla-wrapper">
+                    <table class="tabla-sucursales">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Teléfono</th>
+                                <th>Jefe de cocina</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (s of sucursales; track s.id_sucursal) {
+                            <tr>
+                                <td>{{ s.nombre }}</td>
+                                <td>{{ s.direccion }}</td>
+                                <td>{{ s.telefono }}</td>
+                                <td>{{ s.Usuario.nombre }}</td>
+                                <td>
+                                    <span class="estado" [class.activo]="s.estado === 'Activo'"
+                                        [class.inactivo]="s.estado === 'Inactivo'">{{ s.estado }}</span>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SucursalService } from '../../services/Administrador/sucursal-service';
 import { CommonModule } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -19,27 +19,11 @@ export class HomeSucursalComponent implements OnInit {
     creadorId = 2; // 👈 fijo por ahora, pero podría venir de localStorage o un token
     sucursales: any[] = [];
 
-
-    /* Lista de sucursales
-    sucursales: Sucursal[] = [
-        { nombre: 'Central', direccion: '9° a, Ac. 11 Sur #956', telefono: '(555) 123-4567', jefeCocina: 'A. Reyes', status: 'Activo' },
-        { nombre: 'Norte', direccion: '9° a, Ac. 11 Sur #956', telefono: '(555) 123-4567', jefeCocina: 'N. Ramírez', status: 'Pendiente' }
-    ];
-
-    // Inventario
-    inventario: Inventario[] = [
-        { producto: 'Tomate', unidad: 12, capacidad: 100, estatus: '12%', actualizado: 'Hoy' },
-        { producto: 'Aceite de oliva', unidad: 70, capacidad: 200, estatus: '35%', actualizado: 'Hoy' }
-    ];
-
-    total = 7;
-    activos = 5;
-    stockBajo = 1;
-*/
     constructor(
         private route: ActivatedRoute,
         private sucursalService: SucursalService,
-        private cookieService: CookieService
+        private cookieService: CookieService,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -61,7 +45,7 @@ export class HomeSucursalComponent implements OnInit {
     }
 
     cargarSucursales(): void {
-        this.sucursalService.consultarSucursales(2,this.cookieService.get('token')).subscribe({
+        this.sucursalService.consultarSucursales(2, this.cookieService.get('token')).subscribe({
             next: (data) => {
                 this.sucursales = data.sucursales;
             },
@@ -73,5 +57,9 @@ export class HomeSucursalComponent implements OnInit {
 
     editarSucursal() {
         alert('Función editar sucursal en construcción...');
+    }
+
+    irARegistrarSucursal() {
+        this.router.navigate(['/admin/registrar_sucursal']);
     }
 }

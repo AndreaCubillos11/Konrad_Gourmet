@@ -1,16 +1,19 @@
-/* 🔍 Barra superior */
-.top-bar {
+/* === TITULO PRINCIPAL === */
+.main-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #081A40;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.btn-group {
-  display: flex;
-  gap: 15px;
+.trends-icon {
+  font-size: 28px;
+  color: #8C5818;
 }
-
 .btn-tab {
   border: none;
   border-radius: 20px;
@@ -19,6 +22,7 @@
   background-color: #f2f4f6;
   color: #081A40;
   font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .btn-tab.active {
@@ -26,290 +30,126 @@
   color: #ECEFF1;
 }
 
-/* === CONTENEDOR PRINCIPAL === */
-.tendencia-impulsores-container {
+/* === TITULOS DE SECCIÓN === */
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #081A40;
+  margin: 20px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* === GRID VIRAL === */
+.viral-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 1.5rem;
-  padding: 20px;
-  font-family: 'Poppins', sans-serif;
-  color: #333;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.3rem;
 }
 
-/* === SECCIÓN DE TENDENCIA === */
-.tendencia-section {
-  background: #fff;
+/* === CARDS === */
+.viral-card {
+  background: linear-gradient(180deg, #ffffff 60%, #f8f5f0 100%);
   border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  border: 1px solid #e8e6e3;
+  box-shadow: 0 4px 10px #081A40;
+  transition: all .2s ease-in-out;
+  font-family: 'Poppins', sans-serif;
 }
 
-.tendencia-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+.viral-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px #081A40;
 }
 
-.tendencia-header h4 {
+/* Productos */
+.viral-name {
   font-size: 1.1rem;
   font-weight: 600;
   color: #081A40;
 }
 
-.export-btn {
-  background-color: #081A40;
-  color: #fff;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 8px;
+/* Motivo de tendencia */
+.reason-label {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.reason-text {
+  font-size: 0.93rem;
   font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: #8C5818;
+  margin-bottom: 10px;
 }
 
-.export-btn:hover {
-  background-color: #081A40;
-  transform: scale(1.05);
-}
-
-.tendencia-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 230px;
-  margin-bottom: 1.2rem;
-}
-
-.chart-img {
-  width: 95%;
-  max-width: 480px;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-/* === PIE DE TENDENCIA === */
-.tendencia-footer {
-  display: flex;
-  justify-content: space-around;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.badge {
-  background-color: #e0e0e0;
-  padding: 10px 14px;
+/* Descuento Badge */
+.discount-text {
+  background: #f7efe6;
+  padding: 8px 12px;
   border-radius: 10px;
-  text-align: center;
-  min-width: 120px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-}
-
-.badge p {
-  margin: 0;
-  font-size: 0.85rem;
-  color: #666;
-}
-
-.badge span {
-  font-weight: 600;
-  color: #081A40;
-  font-size: 0.9rem;
-}
-
-/* === SECCIÓN DE IMPULSORES === */
-.impulsores-section {
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.impulsores-header h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #59412C;
-  margin-bottom: 1rem;
-}
-
-/* === FILTROS === */
-.filtros {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.filtro-btn {
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 20px;
-  padding: 6px 14px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-}
-
-.filtro-btn:hover {
-  background-color: #e0e0e0;
-}
-
-.filtro-btn.activo {
-  background-color: #8C5818;
-  color: #fff;
-  font-weight: 600;
-}
-
-/* === TABLA DE IMPULSORES === */
-.impulsores-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-
-.impulsores-table th {
-  text-align: left;
-  background-color: #f7f9fc;
-  color: #444;
-  padding: 10px;
-  font-weight: 600;
-  border-bottom: 2px solid #ddd;
-}
-
-.impulsores-table td {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-.impulsores-table tbody tr:hover {
-  background-color: #f9fafb;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 992px) {
-  .tendencia-impulsores-container {
-    grid-template-columns: 1fr;
-  }
-
-  .tendencia-body {
-    height: 200px;
-  }
-
-  .badge {
-    flex: 1 1 100px;
-  }
-}
-
-
-/* === NUEVA SECCIÓN: AGREGAR TENDENCIA === */
-.agregar-tendencia {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background-color: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  font-family: 'Poppins', sans-serif;
-  color: #081A40;
-}
-
-.agregar-tendencia h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 0.92rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.agregar-tendencia h4 i {
+  gap: 6px;
+  margin-bottom: 8px;
+  font-weight: 600;
   color: #8C5818;
 }
 
-/* === FORMULARIO === */
-.agregar-tendencia form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem 1.5rem;
+.discount-icon {
+  font-size: 18px;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+/* Precios */
+.price-original {
+  font-size: 0.88rem;
+  color: #777;
+  text-decoration: line-through;
 }
 
-.form-group label {
-  font-weight: 500;
-  color: #333;
-  font-size: 0.9rem;
+.price-final {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0b2a61;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #081A40;
-  box-shadow: 0 0 5px rgba(8, 26, 64, 0.2);
-  outline: none;
-}
-
-/* === CAMPO DE PERIODO === */
-.periodo-analizado .periodo-fechas {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.periodo-analizado span {
-  font-weight: bold;
-  color: #59412C;
-}
-
-/* === TEXTAREA === */
-.form-group.observaciones {
-  grid-column: span 2;
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 70px;
-}
-
-/* === BOTÓN GUARDAR === */
-.guardar-btn {
-  grid-column: span 2;
-  background-color: #081A40;
-  color: #ECEFF1;
-  border: none;
-  padding: 10px 18px;
+/* === TABLA === */
+.productos-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.92rem;
+  font-family: 'Poppins', sans-serif;
   border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  overflow: hidden;
 }
 
-.guardar-btn:hover {
-  background-color: #0d2a6d;
-  transform: scale(1.03);
+.productos-table th {
+  background: #081A40;
+  color: #fff;
+  padding: 12px;
+  text-align: left;
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .agregar-tendencia form {
+.productos-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.productos-table tr:hover {
+  background: #f9fafc;
+}
+
+.discount-table {
+  color: #8C5818;
+  font-weight: 700;
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+  .viral-grid {
     grid-template-columns: 1fr;
   }
 }

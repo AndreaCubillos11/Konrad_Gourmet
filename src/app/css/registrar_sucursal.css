@@ -1,125 +1,51 @@
-/* ===== Sidebar ===== */
-.sidebar {
-    width: 220px;
-    background-color: #0b2a55;
-    color: white;
-    height: 100vh;
+.layout {
     display: flex;
-    flex-direction: column;
-    padding: 20px;
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-/* Logo */
-.logo img {
-    width: 160px;
-    margin-bottom: 20px;
-}
-
-/* Menú */
-.menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.menu li a {
-    text-decoration: none;
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    transition: background 0.3s;
+    background-color: #fff;
+    min-height: 100vh;
+    padding: 40px 20px;
 }
 
-/* Hover y activo */
-.menu li a:hover,
-.menu li.active a {
-    background: #163d75;
-}
-
-
-/* ===== Contenido principal ===== */
 .content {
-    margin-left: 220px; /* espacio para sidebar fija */
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    max-width: 900px;
 }
 
-/* ===== Header ===== */
-.header {
-    background-color: #f8f9fa;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 15px;
-    border-bottom: 1px solid #e0e0e0;
+.main-content {
+    background-color: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    text-align: center;
 }
 
-.search {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-}
 
-.alerta {
-    background: #b58c58;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.alerta:hover {
-    background: #966c3d;
-}
-
-.user {
-    font-weight: bold;
-    color: #0b2a55;
-}
-
-.logout {
-    background: #0b2a55;
-    border: none;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.logout:hover {
-    background: #163d75;
-}
 
 /* ===== Main ===== */
 .main-content {
-    padding: 22px;
+    background-color: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    text-align: center;
 }
 
 .main-content h1 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-size: 26px;
     font-weight: bold;
     color: #0b2a55;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+/* ===== Formulario ===== */
+.formulario-sucursal {
+    width: 90%;
+    margin: 0 auto;
 }
 
 /* ===== Grid de tarjetas ===== */
@@ -127,31 +53,33 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
+    margin-bottom: 30px;
 }
 
 .full-width {
     grid-column: span 2;
 }
 
-/* ===== Tarjeta ===== */
+/* ===== Tarjetas ===== */
 .card {
-    background-color: white;
-    border-radius: 15px;
-    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 22px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    text-align: left;
 }
 
 .card h3 {
-    margin: 0 0 15px;
     font-size: 18px;
     font-weight: bold;
     color: #0b2a55;
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-bottom: 15px;
 }
 
-/* ===== Formularios ===== */
+/* ===== Formulario interno ===== */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -159,75 +87,48 @@
 }
 
 .form-grid label {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     color: #333;
+    grid-column: span 2;
 }
 
 .form-grid input,
-.form-grid textarea {
-    padding: 2px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    background-color: #f1f3f5;
-}
-
-textarea {
-    grid-column: span 2;
-    resize: none;
-    height: 60px;
-}
-
-/* ===== Mapa y ubicación ===== */
-.map img {
+.form-grid select {
     width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    margin-bottom: 12px;
+    font-size: 14px;
+    background-color: #f9fafb;
+    transition: border-color 0.2s ease;
 }
 
-.ubicacion-grid {
-    display: flex;
-    gap: 12px;
+.form-grid input:focus,
+.form-grid select:focus {
+    border-color: #0b2a55;
+    outline: none;
+    box-shadow: 0 0 4px rgba(11, 42, 85, 0.3);
 }
 
-.btn-ubicacion {
-    background: #0b2a55;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: background 0.3s;
-}
-
-.btn-ubicacion:hover {
-    background: #163d75;
-}
-
-/* ===== Botones principales ===== */
+/* ===== Botones ===== */
 .buttons {
-    margin-top: 30px;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
 }
 
 .btn {
     padding: 10px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 
 .btn-cancelar {
@@ -237,6 +138,7 @@ textarea {
 
 .btn-cancelar:hover {
     background: #966c3d;
+    transform: scale(1.03);
 }
 
 .btn-crear {
@@ -246,4 +148,20 @@ textarea {
 
 .btn-crear:hover {
     background: #163d75;
+    transform: scale(1.03);
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 900px) {
+    .grid-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .formulario-sucursal {
+        width: 100%;
+    }
 }

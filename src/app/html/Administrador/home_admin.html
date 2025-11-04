@@ -1,13 +1,9 @@
-<!-- Contenido principal -->
-<div class="content"> 
-    <!-- Main content -->
+<div class="content">
     <div class="main-content">
         <div class="grid-cards">
-            <!-- Gestión de sucursales -->
             <div class="card">
                 <div class="card-header">
                     <h3>Gestión de sucursales</h3>
-                    <!-- Se quita el botón "Ver detalles" del header -->
                 </div>
                 <table>
                     <thead>
@@ -15,17 +11,21 @@
                             <th>Sucursal</th>
                             <th>Teléfono</th>
                             <th>Jefe de sucursal</th>
-                            <th>Acciones</th>  <!-- Nueva columna para acciones -->
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @for (s of sucursal; track s) {
                         <tr (click)="seleccionarSucursal(s)"
                             [class.seleccionada]="s.id_sucursal === sucursalSeleccionada?.id_sucursal">
-                            <td>{{ s.nombre }}</td>
-                            <td>{{ s.telefono }}</td>
-                            <td>{{ s.Usuario.nombre }}</td>
-                            <td>  <!-- Nueva celda para el botón -->
+
+                            <td>{{ s?.nombre }}</td>
+
+                            <td>{{ s?.telefono }}</td>
+
+                            <td>{{ s?.Usuario?.nombre }}</td>
+
+                            <td>
                                 <button (click)="seleccionarSucursal(s); verDetalles()" class="btn-ver">Ver más</button>
                             </td>
                         </tr>
@@ -35,46 +35,41 @@
             </div>
 
 
-            <!-- Directorio de proveedores -->
             <div class="card">
                 <div class="card-header">
                     <h3>Directorio de proveedores</h3>
-                    <button class="btn-ver">Ver detalles</button>
                 </div>
                 <table>
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>NIT</th>
                             <th>Teléfono</th>
                             <th>Email</th>
-                            <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>FreshCo</td>
-                            <td>123456789</td>
                             <td>123-456789</td>
                             <td>ventas@freshco.com</td>
-                            <td>Activo</td>
+                            <td> <button class="btn-ver">Ver más</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>Prime Foods</td>
-                            <td>987654321</td>
                             <td>123-4567</td>
                             <td>prime@foods.com</td>
-                            <td>Pendiente</td>
+                            <td> <button class="btn-ver">Ver más</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Gestión de listas -->
             <div class="card">
                 <div class="card-header">
                     <h3>Gestión de listas</h3>
-                    <button class="btn-ver">Ver detalles</button>
                 </div>
                 <table>
                     <thead>
@@ -83,6 +78,7 @@
                             <th>Código</th>
                             <th>Activo</th>
                             <th>Acciones</th>
+                            <th>Detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,17 +86,17 @@
                             <td>Tomate</td>
                             <td>Tx2342</td>
                             <td>Sí</td>
-                            <td><button class="btn-ver">Editar</button></td>
+                            <td>Acción genérica</td>
+                            <td> <button class="btn-ver">Ver más</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Usuarios y roles -->
             <div class="card">
                 <div class="card-header">
                     <h3>Usuarios y roles</h3>
-                    <button class="btn-ver">Ver detalles</button>
                 </div>
                 <table>
                     <thead>
@@ -109,6 +105,7 @@
                             <th>Correo</th>
                             <th>Rol</th>
                             <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,6 +114,8 @@
                             <td>nramirez@kg.com</td>
                             <td>Admin</td>
                             <td>Activo</td>
+                            <td> <button class="btn-ver">Ver más</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -1,0 +1,84 @@
+<div class="main-content">
+    <div class="main-header">
+        <h1><i class="fas fa-shield-alt"></i> Auditorías del Sistema</h1>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="filters-row">
+        <input type="date" [(ngModel)]="filtroFecha" />
+        <input type="text" [(ngModel)]="filtroUsuario" placeholder="Filtrar por usuario" />
+        <button class="filter-btn" (click)="filtrar()">
+            <i class="fas fa-filter"></i> Filtrar
+        </button>
+    </div>
+
+    <div class="grid">
+        <!-- ====== TABLA DE AUDITORÍAS ====== -->
+        <div class="card full">
+            <h3><i class="fas fa-history"></i> Historial de Transacciones</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Usuario</th>
+                        <th>Acción</th>
+                        <th>Módulo</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let evento of eventosFiltrados" (click)="verDetalle(evento)"
+                        [class.selected]="evento === eventoSeleccionado">
+                        <td>{{ evento.fecha }}</td>
+                        <td>{{ evento.hora }}</td>
+                        <td>{{ evento.usuario }}</td>
+                        <td>{{ evento.accion }}</td>
+                        <td>{{ evento.modulo }}</td>
+                        <td>{{ evento.resultado }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ====== DETALLE DEL EVENTO ====== -->
+        <div class="card" *ngIf="eventoSeleccionado">
+            <h3><i class="fas fa-info-circle"></i> Detalle del Evento</h3>
+            <div class="detail">
+                <p><strong>Usuario:</strong> {{ eventoSeleccionado?.usuario }}</p>
+                <p><strong>Acción:</strong> {{ eventoSeleccionado?.accion }}</p>
+                <p><strong>Módulo:</strong> {{ eventoSeleccionado?.modulo }}</p>
+                <p><strong>Fecha:</strong> {{ eventoSeleccionado?.fecha }}</p>
+                <p><strong>Hora:</strong> {{ eventoSeleccionado?.hora }}</p>
+                <p><strong>Resultado:</strong> {{ eventoSeleccionado?.resultado }}</p>
+                <p><strong>Dirección IP:</strong> {{ eventoSeleccionado?.ip }}</p>
+                <p><strong>Sesión:</strong> {{ eventoSeleccionado?.sesion }}</p>
+                <p><strong>Descripción:</strong></p>
+                <div class="descripcion">{{ eventoSeleccionado?.descripcion }}</div>
+            </div>
+        </div>
+
+        <!-- ====== ESTADÍSTICAS ====== -->
+        <div class="card stats">
+            <h3><i class="fas fa-chart-bar"></i> Resumen de Auditorías</h3>
+            <div class="stats-grid">
+                <div class="stat">
+                    <span class="label"><i class="fas fa-database"></i> Total eventos</span>
+                    <span class="value">{{ eventos.length }}</span>
+                </div>
+                <div class="stat">
+                    <span class="label"><i class="fas fa-plus-circle"></i> Creaciones</span>
+                    <span class="value">{{ totalPorAccion('Creación') }}</span>
+                </div>
+                <div class="stat">
+                    <span class="label"><i class="fas fa-edit"></i> Actualizaciones</span>
+                    <span class="value">{{ totalPorAccion('Actualización') }}</span>
+                </div>
+                <div class="stat">
+                    <span class="label"><i class="fas fa-trash-alt"></i> Eliminaciones</span>
+                    <span class="value">{{ totalPorAccion('Eliminación') }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

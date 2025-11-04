@@ -9,7 +9,7 @@ import { ModalNotificacionComponent } from '../../shared/modal-notificacion/moda
 
 @Component({
     selector: 'app-solicitud-alimentos',
-    templateUrl: '../../html/JefeCocina/solicitud_alimentos.html',
+    templateUrl:'../../html/JefeCocina/solicitud_alimentos.html',
     styleUrls: ['../../css/solicitud_alimentos.css'],
     imports: [CommonModule, ReactiveFormsModule, ModalNotificacionComponent]
 })

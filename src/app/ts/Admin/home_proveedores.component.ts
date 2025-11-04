@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 })
 export class HomeProveedoresComponent {
 
-    proveedores: any[] = [];
+  proveedores: any[] = [];
 
   constructor(
     private router: Router,
@@ -30,17 +30,22 @@ export class HomeProveedoresComponent {
 
 
   ngOnInit() {
-        this.obtenerProveedores();
-    }
+    this.obtenerProveedores();
+  }
 
   obtenerProveedores() {
     this.proveedorService.consultarProveedores(localStorage.getItem('id_usuario'), this.cookieService.get('token')).subscribe({
-        next: (data) => {
-          console.log(data);
-          this.proveedores = data.proveedores}
+      next: (data) => {
+        console.log(data);
+        this.proveedores = data.proveedores
+      }
 
-        ,
-        error: (err) => console.error('Error al consultar los proveedores:', err)
-      })
-    } 
+      ,
+      error: (err) => console.error('Error al consultar los proveedores:', err)
+    })
+  }
+
+  agregarNuevo(): void {
+    this.router.navigate(['/admin/registrar_proveedor']);
+  }
 }

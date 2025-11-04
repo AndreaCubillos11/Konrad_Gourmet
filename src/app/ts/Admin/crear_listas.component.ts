@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // 👈 importa esto
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ListasDesplegables } from '../../services/Administrador/listas-desplegables';
-import { CommonModule } from '@angular/common';  // 👈 para *ngFor y demás
+import { CommonModule } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { RouterModule } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
     selector: 'app-crear-listas',
     templateUrl: '../../html/Administrador/crear_listas.html',
     styleUrls: ['../../css/crear_lista.css'],
-    imports: [ReactiveFormsModule, CommonModule,FormsModule, RouterModule] // 👈 aquí agregas los módulos que necesita el HTML
+    imports: [ReactiveFormsModule, CommonModule, FormsModule, RouterModule] // 👈 aquí agregas los módulos que necesita el HTML
 })
 export class CrearListasComponent {
 
@@ -25,22 +25,22 @@ export class CrearListasComponent {
 
 
     categorias = [
-    { id: 1, nombre: 'Bebidas' },
-    { id: 2, nombre: 'Lácteos' },
-    { id: 3, nombre: 'Panadería' }
-];
+        { id: 1, nombre: 'Bebidas' },
+        { id: 2, nombre: 'Lácteos' },
+        { id: 3, nombre: 'Panadería' }
+    ];
 
-marcas = [
-    { id: 1, nombre: 'Marca A' },
-    { id: 2, nombre: 'Marca B' },
-    { id: 3, nombre: 'Marca C' }
-];
+    marcas = [
+        { id: 1, nombre: 'Marca A' },
+        { id: 2, nombre: 'Marca B' },
+        { id: 3, nombre: 'Marca C' }
+    ];
 
-unidades = [
-    { id: 1, nombre: 'Kg' },
-    { id: 2, nombre: 'Litros' },
-    { id: 3, nombre: 'Unidad' }
-];
+    unidades = [
+        { id: 1, nombre: 'Kg' },
+        { id: 2, nombre: 'Litros' },
+        { id: 3, nombre: 'Unidad' }
+    ];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -102,61 +102,60 @@ unidades = [
         }
     }
 
-crearCategoriaPlato(): void {
-    console.log(this.catPlatoForm.value); // aquí tienes categoria_Plato y creador_id
+    crearCategoriaPlato(): void {
+        console.log(this.catPlatoForm.value); // aquí tienes categoria_Plato y creador_id
 
-    this.listaDesplegables.nuevaCategoriaPlato(this.catPlatoForm.value,this.cookieService.get('token')).subscribe(
-        () => {
-            console.log("Categoría de plato registrada");
-        },
-        (error) => {
-            console.error("Error:", error);
-        }
-    );
-}
+        this.listaDesplegables.nuevaCategoriaPlato(this.catPlatoForm.value, this.cookieService.get('token')).subscribe(
+            () => {
+                console.log("Categoría de plato registrada");
+            },
+            (error) => {
+                console.error("Error:", error);
+            }
+        );
+    }
 
-crearCategoriaProducto(): void {
-    console.log(this.catProductoForm.value); // aquí tienes categoria_Plato y creador_id
+    crearCategoriaProducto(): void {
+        console.log(this.catProductoForm.value); // aquí tienes categoria_Plato y creador_id
 
-    this.listaDesplegables.nuevaCategoriaPlato(this.catProductoForm.value,this.cookieService.get('token')).subscribe(
-        () => {
-            console.log("Categoría registrada");
-        },
-        (error) => {
-            console.error("Error:", error);
-        }
-    );
-}
+        this.listaDesplegables.nuevaCategoriaPlato(this.catProductoForm.value, this.cookieService.get('token')).subscribe(
+            () => {
+                console.log("Categoría registrada");
+            },
+            (error) => {
+                console.error("Error:", error);
+            }
+        );
+    }
 
-crearUnidad(): void {
-    console.log(this.unidadForm.value); // aquí tienes categoria_Plato y creador_id
+    crearUnidad(): void {
+        console.log(this.unidadForm.value); // aquí tienes categoria_Plato y creador_id
 
-    this.listaDesplegables.nuevaCategoriaPlato(this.unidadForm.value,this.cookieService.get('token')).subscribe(
-        () => {
-            console.log("Categoría registrada");
-        },
-        (error) => {
-            console.error("Error:", error);
-        }
-    );
-}
+        this.listaDesplegables.nuevaCategoriaPlato(this.unidadForm.value, this.cookieService.get('token')).subscribe(
+            () => {
+                console.log("Categoría registrada");
+            },
+            (error) => {
+                console.error("Error:", error);
+            }
+        );
+    }
 
-crearProducto(): void {
-    console.log(this.productoForm.value); // aquí tienes categoria_Plato y creador_id
+    crearProducto(): void {
+        console.log(this.productoForm.value); // aquí tienes categoria_Plato y creador_id
 
-    this.listaDesplegables.nuevaCategoriaPlato(this.productoForm.value,this.cookieService.get('token')).subscribe(
-        () => {
-            console.log("Categoría registrada");
-        },
-        (error) => {
-            console.error("Error:", error);
-        }
-    );
-}
+        this.listaDesplegables.nuevaCategoriaPlato(this.productoForm.value, this.cookieService.get('token')).subscribe(
+            () => {
+                console.log("Categoría registrada");
+            },
+            (error) => {
+                console.error("Error:", error);
+            }
+        );
+    }
 
-
-
-
-
+    cancelar(): void {
+        this.router.navigateByUrl('/admin/home_listas');
+    }
 
 }

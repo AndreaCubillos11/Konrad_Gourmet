@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
     selector: 'app-home-listas',
     standalone: true,
-    imports: [CommonModule, RouterModule], // ← Importa RouterModule aquí también
-    templateUrl: '../../html/Administrador/home_listas.html', // ← CORREGIDO: usa home_listas.html
+    imports: [CommonModule, RouterModule, RouterModule],
+    templateUrl: '../../html/Administrador/home_listas.html',
     styleUrls: ['../../css/home_listas.css']
 })
 export class HomeListasComponent {
+
+    constructor(
+        private router: Router
+    ) { }
+
+
     categorias = [
         { nombre: 'Producto', codigo: 'CAT-PRO', activo: 'Sí' },
         { nombre: 'Despensa', codigo: 'CAT-PAN', activo: 'Sí' },
@@ -35,4 +41,10 @@ export class HomeListasComponent {
             estado: cat.activo === 'Sí' ? 'Activo' : 'Inactivo'
         };
     }
+
+    redirigirCrearLista(tipo: string): void {
+        this.router.navigateByUrl('/admin/crear_lista');
+    }
+
+
 }

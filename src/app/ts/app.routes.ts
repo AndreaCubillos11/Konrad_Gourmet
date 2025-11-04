@@ -26,6 +26,8 @@ import { SolicitudCotizacionComponent } from './AuxiliarCompra/solicitud_cotizac
 import { HomeDirecComprasComponent } from './DirectorCompras/home_direc_compras.component';
 import { PromocionesComponent } from './DirectorCompras/promociones.component';
 import { TendenciasComponent } from './DirectorCompras/tendencias.component';
+import { ErrorsComponent } from './Admin/errores.component';
+import { AuditoriasComponent } from './Admin/auditorias.component';
 
 
 //layouts
@@ -56,6 +58,8 @@ export const routes: Routes = [
       { path: 'crear_usuario', component: CrearUsuarioComponent },
       { path: 'home_inventarios', component: HomeInventariosComponent },
       { path: 'agregar_inventario', component: AgregarInventarioComponent },
+      { path: 'errores', component: ErrorsComponent },
+      { path: 'auditorias', component: AuditoriasComponent },
       // Redirect por defecto: al ir a /admin, carga el home_admin
       { path: '', redirectTo: 'home_admin', pathMatch: 'full' }
     ]
