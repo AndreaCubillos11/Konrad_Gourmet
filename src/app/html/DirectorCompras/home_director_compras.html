@@ -1,0 +1,97 @@
+
+
+<div class="main-content">
+  <!-- === Sección de Consulta SIPSA === -->
+  <section class="monitor-section">
+    <div class="monitor-header">
+      <h3>Consulta de precios SIPSA</h3>
+      <button class="btn-primary" (click)="nuevaConsulta()">Limpiar</button>
+    </div>
+
+    <!-- Formulario de consulta -->
+    <div class="consulta-form">
+      <div class="form-group">
+        <label for="producto">Producto</label>
+        <select id="producto" 
+                [value]="filtro.producto" 
+                (change)="onProductoChange($event)">
+          <option value="">Seleccionar producto</option>
+          <option value="Arroz (blanco)">Arroz (blanco)</option>
+          <option value="Fríjoles (rojos)">Fríjoles (rojos)</option>
+          <option value="Plátano (verde)">Plátano (verde)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="sucursal">Sucursal</label>
+        <select id="sucursal" 
+                [value]="filtro.sucursal" 
+                (change)="onSucursalChange($event)">
+          <option value="">Seleccionar sucursal</option>
+          <option value="Norte">Norte</option>
+          <option value="Sur">Sur</option>
+          <option value="Centro">Centro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" 
+               [value]="filtro.fecha" 
+               (change)="onFechaChange($event)">
+      </div>
+    </div>
+
+    <div class="sales-table">
+      <h4>Precios recientes</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Sucursal</th>
+            <th>Fecha</th>
+            <th>Unidad</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of resultados">
+            <td>{{ item.producto }}</td>
+            <td>{{ item.sucursal }}</td>
+            <td>{{ formatFecha(item.fecha) }}</td>
+            <td>{{ item.unidad }}</td>
+            <td>{{ item.precio }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- === Sección de Cotizaciones con opción === -->
+  <section class="monitor-section">
+    <div class="monitor-header">
+      <h3>Opcion de cotizaciones</h3>
+      <button class="btn-secondary" (click)="verTodasCotizaciones()">Ver todas</button>
+    </div>
+
+    <div class="sales-table">
+      <h4>Últimas cotizaciones</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Identificación</th>
+            <th>Proveedor</th>
+            <th>Fecha</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cot of cotizaciones">
+            <td>{{ cot.id }}</td>
+            <td>{{ cot.proveedor }}</td>
+            <td>{{ cot.fecha }}</td>
+            <td>{{ cot.total }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

@@ -7,7 +7,7 @@ import { Router, RouterModule } from '@angular/router';
     selector: 'app-tendencias',
     standalone: true,
     imports: [CommonModule, DecimalPipe, RouterModule],
-    templateUrl: '../../html/DirectorCompras/tendencias.html',
+    templateUrl: '../../html/DirectorComercial/tendencias.html',
     styleUrls: ['../../css/tendencias.css']
 })
 export class TendenciasComponent {

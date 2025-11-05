@@ -1,0 +1,376 @@
+/* 🔍 Barra superior */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-tab {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #f2f4f6;
+    color: #081A40;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-tab.active {
+    background-color: #081A40;
+    color: #ECEFF1;
+}
+
+/* 🧾 Contenido principal */
+.content-section {
+    display: flex;
+    gap: 25px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+
+/* === Tarjetas === */
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.monitor-section h3 {
+    margin-bottom: 15px;
+    color: #081A40;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* === Formulario de consulta === */
+.consulta-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #081A40;
+    font-family: 'Poppins', sans-serif;
+}
+
+select,
+input[type="date"],
+input[type="number"],
+input[type="text"] {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    background-color: #f9f9f9;
+}
+
+select:focus,
+input:focus {
+    outline: none;
+    border-color: #8C5818;
+    box-shadow: 0 0 4px rgba(140, 88, 24, 0.3);
+}
+
+/* === Mejoras específicas para el input de "Buscar producto o categoría" === */
+#buscar-producto {
+    position: relative;
+    padding-left: 40px;
+    /* Espacio para el ícono */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%238C5818" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: 12px center;
+    background-size: 16px;
+    transition: all 0.3s ease;
+}
+
+#buscar-producto::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+#buscar-producto:hover {
+    background-color: #f0f0f0;
+    border-color: #8C5818;
+}
+
+#buscar-producto:focus {
+    border-color: #8C5818;
+    box-shadow: 0 0 8px rgba(140, 88, 24, 0.5);
+    background-color: #fff;
+}
+
+/* === Botones === */
+.btn-primary {
+    background-color: #8C5818;
+    color: #ECEFF1;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary:hover {
+    background-color: #59412C;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: #081A40;
+    color: #ECEFF1;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-secondary:hover {
+    background-color: #0a2a5a;
+    transform: scale(1.05);
+}
+
+/* === Tablas === */
+.sales-table {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.sales-table h4 {
+    color: #081A40;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+}
+
+th {
+    background-color: #081A40;
+    color: #ECEFF1;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+td {
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+tr:hover td {
+    background-color: #f0f4f8;
+}
+
+/* === Secciones === */
+.monitor-section {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+}
+
+.monitor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.monitor-header h3 {
+    color: #081A40;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* === Comparación Rápida === */
+.comparacion-positiva {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.comparacion-negativa {
+    color: #c62828;
+    font-weight: 600;
+}
+
+/* === Estadísticas Dentro del Rango === */
+.estadisticas-rango {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.estadistica-card {
+    background: linear-gradient(135deg, #f9f9f9 0%, #e0e0e0 100%);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.estadistica-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.estadistica-valor {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #081A40;
+    margin: 5px 0;
+}
+
+.estadistica-label {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Mejoras específicas para las tarjetas de estadísticas */
+.estadistica-card:nth-child(1) {
+    /* Por encima */
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+}
+
+.estadistica-card:nth-child(1)::before {
+    content: '⬆️';
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.estadistica-card:nth-child(2) {
+    /* Por debajo */
+    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+}
+
+.estadistica-card:nth-child(2)::before {
+    content: '⬇️';
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.estadistica-card:nth-child(3) {
+    /* Cotizaciones */
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+}
+
+.estadistica-card:nth-child(3)::before {
+    content: '📋';
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.estadistica-card:nth-child(4) {
+    /* Total */
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+}
+
+.estadistica-card:nth-child(4)::before {
+    content: '💰';
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* === Responsivo === */
+@media (max-width: 992px) {
+    .content-section {
+        flex-direction: column;
+    }
+
+    .consulta-form,
+    .estadisticas-rango {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .estado-rechazada {
+        color: red;
+        font-weight: bold;
+    }
+
+    .estado-sospechosa {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .estado-opcionada {
+        color: green;
+        font-weight: bold;
+    }
+
+    .comparacion-positiva {
+        color: green;
+    }
+
+    .comparacion-negativa {
+        color: red;
+    }
+
+    .comparacion-neutra {
+        color: gray;
+    }
+
+}

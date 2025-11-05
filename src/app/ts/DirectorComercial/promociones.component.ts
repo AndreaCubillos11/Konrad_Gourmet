@@ -12,7 +12,7 @@ interface Promocion {
 
 @Component({
   selector: 'app-promociones-tendencias',
-  templateUrl: '../../html/DirectorCompras/promociones.html',
+  templateUrl: '../../html/DirectorComercial/promociones.html',
   styleUrls: ['../../css/promociones.css']
 })
 export class PromocionesComponent {

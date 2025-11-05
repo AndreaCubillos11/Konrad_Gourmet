@@ -4,14 +4,14 @@ import { Router } from '@angular/router';
 
 
 @Component({
-    selector: 'app-home-direc-compras',
+    selector: 'app-home-direc-comercial',
     standalone: true, // si lo estás usando como componente standalone
     imports: [CommonModule], // 👈 agrega esto
-    templateUrl: '../../html/DirectorCompras/home_direc_compras.html',
-    styleUrls: ['../../css/home_direc_compras.css']
+    templateUrl: '../../html/DirectorComercial/home_direc_comercial.html',
+    styleUrls: ['../../css/home_direc_comercial.css']
 })
 
-export class HomeDirecComprasComponent implements OnInit {
+export class HomeDirecComercialComponent implements OnInit {
 
 
     // === Datos para la tabla de ventas ===

@@ -23,20 +23,23 @@ import { AgregarInventarioComponent } from './Admin/agregar_inventario.component
 import { HomeAuxiliarComponent } from './AuxiliarCompra/home_auxiliar.component';
 import { ConsultaSolicitudesComponent } from './AuxiliarCompra/consulta_solicitudes.component';
 import { SolicitudCotizacionComponent } from './AuxiliarCompra/solicitud_cotizacion.component';
-import { HomeDirecComprasComponent } from './DirectorCompras/home_direc_compras.component';
-import { PromocionesComponent } from './DirectorCompras/promociones.component';
-import { TendenciasComponent } from './DirectorCompras/tendencias.component';
+import { HomeDirecComercialComponent } from './DirectorComercial/home_direc_comercial.component';
+import { PromocionesComponent } from './DirectorComercial/promociones.component';
+import { TendenciasComponent } from './DirectorComercial/tendencias.component';
 import { ErrorsComponent } from './Admin/errores.component';
 import { AuditoriasComponent } from './Admin/auditorias.component';
-
+import { HomeDirectorComprasComponent } from './DirectorCompras/home_director_compras.component';
+import { ConsultaSIPSAComponent } from './DirectorCompras/consulta_SIPSA.component';
+import { CompararCotizacionesComponent } from './DirectorCompras/comparar_cotizaciones.component';
+import { ListaCotizacionesComponent } from './DirectorCompras/listas_cotizaciones.component';
 
 //layouts
 import { AdminLayoutComponent } from './Admin/admin-layout/admin-layout.component';  // Layout para admin
 import { AuxiliarLayoutComponent } from './AuxiliarCompra/auxiliar-layout/auxiliar-layout.component';  // NUEVO: Layout para auxiliar
 import { MeseroLayoutComponent } from './Mesero/mesero-layout/mesero-layout.component';  // NUEVO
 import { JefeLayoutComponent } from './JefeCocina/jefe-layout/jefe-layout.component';  // NUEVO
+import { DirectorComercialLayoutComponent } from './DirectorComercial/director-comercial-layout/director-comercial-layout.component';
 import { DirectorComprasLayoutComponent } from './DirectorCompras/director-compras-layout/director-compras-layout.component';
-
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -105,13 +108,29 @@ export const routes: Routes = [
     ]
   },
 
+
+  // Director Comercial
+  {
+    path: "directorComercial",
+    component: DirectorComercialLayoutComponent,
+    children: [
+      { path: "home_director_comercial", component: HomeDirecComercialComponent },
+      { path: "promociones", component: PromocionesComponent },
+      { path: "tendencias", component: TendenciasComponent },
+      { path: '', redirectTo: 'home_director_comercial', pathMatch: 'full' }  // Redirect por defecto
+    ]
+  },
+
+  //Director de Compras
+
   {
     path: "directorCompras",
     component: DirectorComprasLayoutComponent,
     children: [
-      { path: "home_director_compras", component: HomeDirecComprasComponent },
-      { path: "promociones", component: PromocionesComponent },
-      { path: "tendencias", component: TendenciasComponent },
+      { path: "home_director_compras", component: HomeDirectorComprasComponent },
+      { path: "consultaSIPSA", component: ConsultaSIPSAComponent },
+      { path: "compararCotizaciones", component: CompararCotizacionesComponent },
+      { path: "listas_cotizaciones", component: ListaCotizacionesComponent },
       { path: '', redirectTo: 'home_director_compras', pathMatch: 'full' }  // Redirect por defecto
     ]
   }

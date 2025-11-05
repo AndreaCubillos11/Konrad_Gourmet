@@ -1,0 +1,148 @@
+<style>
+
+</style>
+
+<div class="main-content">
+  <!-- === Barra de búsqueda === -->
+  <section class="monitor-section">
+    <div class="monitor-header">
+      <h3>Buscar...</h3>
+    </div>
+    
+    <div class="consulta-form">
+      <div class="form-group">
+        <label for="buscar-producto">Buscar producto o categoría</label>
+        <input type="text" id="buscar-producto" 
+               placeholder="Ingrese producto o categoría..."
+               (input)="onBuscarProductoChange($event)">
+      </div>
+      <div class="form-group">
+        <label for="rango-fecha">Rango de fecha</label>
+        <input type="date" id="rango-fecha"
+               (change)="onRangoFechaChange($event)">
+      </div>
+      <div class="form-group">
+        <label for="sucursales">Sucursales</label>
+        <select id="sucursales" (change)="onSucursalesChange($event)">
+          <option value="">Todas las sucursales</option>
+          <option value="Norte">Norte</option>
+          <option value="Sur">Sur</option>
+          <option value="Centro">Centro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tipo-producto">Tipo de producto</label>
+        <select id="tipo-producto" (change)="onTipoProductoChange($event)">
+          <option value="">Todos los tipos</option>
+          <option value="granos">Granos</option>
+          <option value="frutas">Frutas</option>
+          <option value="verduras">Verduras</option>
+        </select>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+      <button class="btn-secondary" (click)="limpiarFiltros()" 
+              style="padding: 8px 16px; font-size: 0.9rem;">
+        Limpiar Filtros
+      </button>
+    </div>
+  </section>
+
+  <!-- === Consulta SIPSA === -->
+  <section class="monitor-section">
+    <div class="monitor-header">
+      <h3>Consulta SIPSA</h3>
+    </div>
+
+    <div class="sales-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Sucursal</th>
+            <th>Fecha</th>
+            <th>Unidad</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of preciosSipsaFiltrados">
+            <td>{{ item.producto }}</td>
+            <td>{{ item.sucursal }}</td>
+            <td>{{ item.fecha }}</td>
+            <td>{{ item.unidad }}</td>
+            <td>${{ formatNumber(item.precio) }}</td>
+          </tr>
+          <tr *ngIf="preciosSipsaFiltrados.length === 0">
+            <td colspan="5" style="text-align: center; color: #666;">
+              No se encontraron productos con los filtros aplicados
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- === Comparación Rápida === -->
+  <section class="monitor-section">
+    <div class="monitor-header">
+      <h3>Ultimas Comparaciones</h3>
+      <button class="btn-primary" (click)="irAComparar()">+ Comparar</button>
+    </div>
+
+    <div class="sales-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Oficial</th>
+            <th>Cotización</th>
+            <th>Comparación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let comparacion of ultimasComparaciones">
+            <td>{{ comparacion.producto }}</td>
+            <td>${{ formatNumber(comparacion.precioOficial) }}</td>
+            <td>${{ formatNumber(comparacion.cotizacionPersonal) }}</td>
+            <td [class.comparacion-positiva]="comparacion.porcentaje <= 0" 
+                [class.comparacion-negativa]="comparacion.porcentaje > 0">
+              {{ comparacion.porcentaje >= 0 ? '+' : '' }}{{ comparacion.porcentaje.toFixed(1) }}%
+            </td>
+          </tr>
+          <tr *ngIf="ultimasComparaciones.length === 0">
+            <td colspan="4" style="text-align: center; color: #666;">
+              No hay comparaciones recientes
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- === Dentro del Rango === -->
+  <section class="monitor-section">
+    <div class="monitor-header">
+      <h3>Dentro del rango</h3>
+    </div>
+
+    <div class="estadisticas-rango">
+      <div class="estadistica-card">
+        <div class="estadistica-label">Por encima</div>
+        <div class="estadistica-valor">{{ estadisticas.porEncima }}</div>
+      </div>
+      <div class="estadistica-card">
+        <div class="estadistica-label">Por debajo</div>
+        <div class="estadistica-valor">{{ estadisticas.porDebajo }}</div>
+      </div>
+      <div class="estadistica-card">
+        <div class="estadistica-label">Cotizaciones</div>
+        <div class="estadistica-valor">{{ estadisticas.cotizaciones }}</div>
+      </div>
+      <div class="estadistica-card">
+        <div class="estadistica-label">Total</div>
+        <div class="estadistica-valor">{{ estadisticas.total }}</div>
+      </div>
+    </div>
+  </section>
+</div>

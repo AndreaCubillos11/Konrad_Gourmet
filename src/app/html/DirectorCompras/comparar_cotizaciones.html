@@ -1,0 +1,152 @@
+<div class="main-content">
+  <!-- Barra de búsqueda -->
+  <section class="monitor-section">
+    <div class="monitor-header">
+      <h3>Buscar...</h3>
+    </div>
+    <div class="buscar-form">
+      <div class="form-group">
+        <label for="buscar-producto">Buscar producto o proveedor</label>
+        <input type="text" id="buscar-producto" [(ngModel)]="busqueda.productoProveedor"
+          placeholder="Ingrese producto o proveedor..." />
+      </div>
+      <div class="form-group">
+        <button class="btn-primary" (click)="buscarComparacion()" style="height: 42px;">
+          Buscar Comparación
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulario para ingresar comparación -->
+  <section class="monitor-section" *ngIf="mostrarFormularioComparacion">
+    <div class="monitor-header">
+      <h3>Ingresar datos para comparar</h3>
+    </div>
+    <div class="buscar-form">
+      <div class="form-group">
+        <label for="producto-comparar">Producto</label>
+        <select id="producto-comparar" [(ngModel)]="nuevaComparacion.producto">
+          <option value="">Seleccionar producto</option>
+          <option *ngFor="let producto of productosDisponibles" [value]="producto">
+            {{ producto }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="proveedor">Proveedor</label>
+        <input type="text" id="proveedor" [(ngModel)]="nuevaComparacion.proveedor" placeholder="Nombre del proveedor" />
+      </div>
+      <div class="form-group">
+        <label for="unidad">Unidad</label>
+        <select id="unidad" [(ngModel)]="nuevaComparacion.unidad">
+          <option value="">Seleccionar unidad</option>
+          <option value="Kilogramo">Kilogramo</option>
+          <option value="Unidad">Unidad</option>
+          <option value="Litro">Litro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="precio-cotizado">Precio Cotizado</label>
+        <input type="number" id="precio-cotizado" [(ngModel)]="nuevaComparacion.precioCotizado"
+          placeholder="Precio cotizado" />
+      </div>
+      <div class="form-group">
+        <button class="btn-primary" (click)="agregarComparacion()" style="height: 42px;">
+          Agregar a Comparación
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparación lado a lado -->
+  <section class="monitor-section" *ngIf="comparaciones.length > 0">
+    <div class="monitor-header">
+      <h3>Comparación lado a lado</h3>
+      <button class="btn-success" (click)="generarOrdenCompra()">
+        Generar Orden de Compra
+      </button>
+    </div>
+    <div class="sales-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Proveedor</th>
+            <th>Unidad</th>
+            <th>SIPSA</th>
+            <th>Cotizado</th>
+            <th>Comparación</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let comp of comparaciones">
+            <td>{{ comp.producto }}</td>
+            <td>{{ comp.proveedor }}</td>
+            <td>{{ comp.unidad }}</td>
+            <td>${{ formatNumber(comp.precioSipsa) }}</td>
+            <td>${{ formatNumber(comp.precioCotizado) }}</td>
+            <td [class.comparacion-positiva]="comp.porcentaje < 0" [class.comparacion-negativa]="comp.porcentaje > 0"
+              [class.comparacion-neutra]="comp.porcentaje === 0">
+              {{ comp.porcentaje > 0 ? '+' : '' }}{{ comp.porcentaje.toFixed(1) }}%
+            </td>
+            <td>
+              <span [class.estado-opcionada]="comp.estado === 'OPCIONADA'"
+                [class.estado-rechazada]="comp.estado === 'RECHAZADA'"
+                [class.estado-sospechosa]="comp.estado === 'SOSPECHOSA'">
+                {{ comp.estado }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="info-text">
+        Cambio calculado sobre el último precio del SIPSA.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mejor precio por producto -->
+  <section class="monitor-section" *ngIf="comparaciones.length > 0">
+    <div class="monitor-header">
+      <h3>Mejor precio por producto</h3>
+    </div>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+      <div *ngFor="let producto of productosUnicos" class="estadistica-card" style="min-width: 200px;">
+        <div class="estadistica-label">Mejor precio para {{ producto }}</div>
+        <div class="estadistica-valor" style="font-size: 1.2rem;">
+          ${{ formatNumber(obtenerMejorPrecio(producto)) }}
+        </div>
+        <div style="font-size: 0.8rem; color: #666; margin-top: 5px;">
+          {{ obtenerMejorProveedor(producto) }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Estadísticas por estado -->
+  <section class="monitor-section" *ngIf="comparaciones.length > 0">
+    <div class="monitor-header">
+      <h3>Estadísticas por estado</h3>
+    </div>
+    <div class="estadisticas-rango">
+      <div class="estadistica-card">
+        <div class="estadistica-label">OPCIONADAS</div>
+        <div class="estadistica-valor">{{ obtenerCantidadOpcionadas() }}</div>
+      </div>
+      <div class="estadistica-card">
+        <div class="estadistica-label">RECHAZADAS</div>
+        <div class="estadistica-valor">{{ obtenerCantidadRechazadas() }}</div>
+      </div>
+      <div class="estadistica-card">
+        <div class="estadistica-label">SOSPECHOSAS</div>
+        <div class="estadistica-valor">{{ obtenerCantidadSospechosas() }}</div>
+      </div>
+      <div class="estadistica-card">
+        <div class="estadistica-label">Total OPCIONADAS</div>
+        <div class="estadistica-valor">${{ formatNumber(calcularTotalOpcionadas()) }}</div>
+      </div>
+    </div>
+  </section>
+</div>

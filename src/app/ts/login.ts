@@ -70,6 +70,8 @@ export class LoginComponent {
                         this.router.navigateByUrl('/mesero');
                     } else if (nombreRol === 'auxiliar de compras') {
                         this.router.navigateByUrl('/auxiliar/home_auxiliar');
+                    } else if (nombreRol === 'director comercial') {
+                        this.router.navigateByUrl('directorComercial/home_director_comercial');
                     } else if (nombreRol === 'director de compras') {
                         this.router.navigateByUrl('directorCompras/home_director_compras');
                     } else {

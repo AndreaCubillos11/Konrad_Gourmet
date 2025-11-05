@@ -1,20 +1,19 @@
-// director-layout.component.spec.ts
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
-import { DirectorComprasLayoutComponent } from './director-compras-layout.component';  // Ajusta el path si es necesario
+import { DirectorComprasLayoutComponent } from './director-compras-layout.component';  // Import ajustado al nuevo componente
 
-describe('DirectorComprasLayoutComponent', () => {
-  let component: DirectorComprasLayoutComponent;
-  let fixture: ComponentFixture<DirectorComprasLayoutComponent>;
+describe('DirectorComprasLayoutComponent', () => {  // Nombre en describe cambiado
+  let component: DirectorComprasLayoutComponent;  // Tipo del componente cambiado
+  let fixture: ComponentFixture<DirectorComprasLayoutComponent>;  // Tipo del fixture cambiado
   let mockRouter: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      declarations: [DirectorComprasLayoutComponent],
+      declarations: [DirectorComprasLayoutComponent],  // Declaración ajustada
       imports: [
         RouterTestingModule
       ],
@@ -24,7 +23,7 @@ describe('DirectorComprasLayoutComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DirectorComprasLayoutComponent);
+    fixture = TestBed.createComponent(DirectorComprasLayoutComponent);  // Creación del componente cambiada
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

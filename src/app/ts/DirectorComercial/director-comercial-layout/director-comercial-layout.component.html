@@ -5,17 +5,14 @@
         <img src="assets/images/KonradGourmetLogo.png" alt="Logo" />
     </div>
     <nav>
-        <a routerLink="/directorCompras/home_director_compras" routerLinkActive="active">
+        <a routerLink="/directorComercial/home_director_comercial" routerLinkActive="active">
             <i class="fas fa-home"></i> Inicio
         </a>
-        <a routerLink="/directorCompras/consultaSIPSA" routerLinkActive="active">
-            <i class="fa-solid fa-database"></i> Consulta SIPSA
+        <a routerLink="/directorComercial/proveedores" routerLinkActive="active">
+            <i class="fas fa-chart-line"></i> BAM KPIs
         </a>
-        <a routerLink="/directorCompras/compararCotizaciones" routerLinkActive="active">
-            <i class="fa-solid fa-money-bill-transfer"></i> Comparar Cotizaciones
-        </a>
-        <a routerLink="/directorCompras/listas_cotizaciones" routerLinkActive="active">
-            <i class="fa-solid fa-file-invoice-dollar"></i> Lista de Cotizaciones
+        <a routerLink="/directorComercial/promociones" routerLinkActive="active">
+            <i class="fas fa-bullhorn"></i> Promociones y tendencias
         </a>
     </nav>
 </aside>
@@ -26,14 +23,13 @@
     <div class="header">
         <input type="text" class="search" placeholder="Buscar..." />
         <div class="user">
-            <i class="fas fa-user-tie"></i> <span>Dir. Compras</span>
+            <i class="fas fa-user-tie"></i> <span>Dir. Comercial</span>
             <button class="logout" (click)="logout()">Cerrar Sesión</button>
         </div>
     </div>
 
     <!-- Área de contenido dinámico: aquí se cargan las sub-vistas del director -->
     <div class="main-content">
-        <router-outlet></router-outlet>
-        <!-- Esto carga el HTML de la ruta actual (ej. home_director, proveedores, etc.) -->
+        <router-outlet></router-outlet> <!-- Esto carga el HTML de la ruta actual (ej. home_director, proveedores, etc.) -->
     </div>
 </div>

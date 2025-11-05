@@ -1,0 +1,113 @@
+<div class="main-content">
+  <!-- Barra de búsqueda -->
+  <section class="monitor-section">
+    <div class="monitor-header">
+      <h3>Cotizaciones Opcionadas</h3>
+    </div>
+    <div class="buscar-form">
+      <div class="form-group">
+        <label for="buscar-proveedor">Buscar proveedor</label>
+        <input type="text" id="buscar-proveedor"
+               placeholder="Nombre del proveedor"
+               [(ngModel)]="filtros.proveedor"
+               (input)="aplicarFiltros()">
+      </div>
+      <div class="form-group">
+        <label for="buscar-producto">Buscar producto</label>
+        <input type="text" id="buscar-producto"
+               placeholder="Nombre del producto"
+               [(ngModel)]="filtros.producto"
+               (input)="aplicarFiltros()">
+      </div>
+      <div class="form-group">
+        <button class="btn-secondary" (click)="limpiarFiltros()" style="height: 42px;">
+          Limpiar Filtros
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lista de Cotizaciones Opcionadas -->
+  <section class="monitor-section">
+    <div class="monitor-header">
+      <h3>Cotizaciones en Estado "OPCIONADA"</h3>
+      <button class="btn-success"
+              [disabled]="!tieneSeleccionadas()"
+              (click)="generarOrdenCompra()">
+        Generar Orden de Compra
+      </button>
+    </div>
+    <div class="sales-table">
+      <table>
+        <thead>
+          <tr>
+            <th width="40">Seleccionar</th>
+            <th>Producto</th>
+            <th>Proveedor</th>
+            <th>Unidad</th>
+            <th>SIPSA</th>
+            <th>Cotizado</th>
+            <th>Comparación</th>
+            <th>Estado</th>
+            <th>Válido hasta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cotizacion of cotizacionesFiltradas; let i = index">
+            <td>
+              <div class="checkbox-container" (click)="toggleSeleccion(i)">
+                <div class="checkbox-custom" [class.checked]="cotizacion.seleccionada"></div>
+              </div>
+            </td>
+            <td><strong>{{ cotizacion.producto }}</strong></td>
+            <td>{{ cotizacion.proveedor }}</td>
+            <td>{{ cotizacion.unidad }}</td>
+            <td>${{ formatNumber(cotizacion.precioSipsa) }}</td>
+            <td>${{ formatNumber(cotizacion.precioCotizado) }}</td>
+            <td [class.comparacion-positiva]="cotizacion.porcentaje < 0"
+                [class.comparacion-negativa]="cotizacion.porcentaje > 0"
+                [class.comparacion-neutra]="cotizacion.porcentaje === 0">
+              {{ cotizacion.porcentaje > 0 ? '+' : '' }}{{ cotizacion.porcentaje.toFixed(1) }}%
+            </td>
+            <td>
+              <span class="badge badge-opcionada">{{ cotizacion.estado }}</span>
+            </td>
+            <td>
+              <span class="badge-valido">{{ cotizacion.validaHasta }}</span>
+            </td>
+          </tr>
+          <tr *ngIf="cotizacionesFiltradas.length === 0">
+            <td colspan="9" style="text-align: center; color: #666; padding: 30px;">
+              No se encontraron cotizaciones en estado "OPCIONADA" con los filtros aplicados
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Resumen de Selección -->
+  <section class="monitor-section" *ngIf="tieneSeleccionadas()">
+    <div class="monitor-header">
+      <h3>Resumen de Selección</h3>
+      <button class="btn-primary" (click)="limpiarSeleccion()">
+        Limpiar Selección
+      </button>
+    </div>
+    <div class="resumen-seleccion">
+      <div *ngFor="let cotizacion of obtenerSeleccionadas()" class="resumen-item">
+        <span>{{ cotizacion.producto }} - {{ cotizacion.proveedor }}</span>
+        <span>${{ formatNumber(cotizacion.precioCotizado) }} ({{ cotizacion.porcentaje > 0 ? '+' : '' }}{{ cotizacion.porcentaje.toFixed(1) }}%)</span>
+      </div>
+      <div class="resumen-total">
+        <span>Total de productos seleccionados:</span>
+        <span>{{ obtenerSeleccionadas().length }}</span>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+      <button class="btn-success" (click)="generarOrdenCompra()" style="padding: 12px 30px;">
+        Confirmar y Generar Orden de Compra
+      </button>
+    </div>
+  </section>
+</div>

@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { Router, RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-director-compras-layout',  // Cambiado para el nuevo rol
-  templateUrl: './director-compras-layout.component.html',  // Ajusta el path al nuevo archivo HTML
-  styleUrls: ['./director-compras-layout.component.css'],  // Ajusta el path al nuevo archivo CSS
+  selector: 'app-director-layout',
+  templateUrl: './director-comercial-layout.component.html',
+  styleUrls: ['./director-comercial-layout.component.css'],
   standalone: true,
   imports: [RouterOutlet, RouterModule]
 })
-export class DirectorComprasLayoutComponent {  // Nombre del componente cambiado
+export class DirectorComercialLayoutComponent {
   constructor(private router: Router) {}
 
   logout(): void {
