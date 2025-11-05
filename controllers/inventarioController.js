@@ -93,6 +93,11 @@ exports.ObtenerInventarioTodaSucursales = async (req, res, next) => {
                 {
                     model: Inventario,
                     attributes: ['id_inventario', 'id_sucursal'],
+                    include: [{
+                        model: Sucursal,
+                        attributes: ["nombre"]
+                    }
+                    ]
                 },
                 {
                     model: Producto,
@@ -123,10 +128,12 @@ exports.ObtenerInventarioTodaSucursales = async (req, res, next) => {
         // 4️⃣ Agrupar los resultados por sucursal
         const agrupadoPorSucursal = inventario.reduce((acc, item) => {
             const idSucursal = item.Inventario.id_sucursal;
+              const nombreSucursal = item.Inventario.Sucursal?.nombre || 'Sucursal sin nombre';
 
             if (!acc[idSucursal]) {
                 acc[idSucursal] = {
                     id_sucursal: idSucursal,
+                    nombre_sucursal: nombreSucursal, // ✅ agregar el nombre
                     inventario: []
                 };
             }
