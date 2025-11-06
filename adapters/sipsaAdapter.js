@@ -52,9 +52,7 @@ class SipsaAdapter {
       return await this.getXMLQuemado();
     }
   }
-
-  // 🔥 XML quemado: productos de la canasta básica familiar
-  async getXMLQuemado() {
+ async getXMLQuemado() {
     const xmlBackup = `
       <ProductosCanasta>
         <Producto>
@@ -101,9 +99,10 @@ class SipsaAdapter {
     `;
 
     const jsonBackup = await parseStringPromise(xmlBackup, { explicitArray: false });
+
     return {
       ok: true,
-      totalRegistros: 10,
+      totalRegistros: jsonBackup.ProductosCanasta.Producto.length,
       data: jsonBackup.ProductosCanasta.Producto
     };
   }
