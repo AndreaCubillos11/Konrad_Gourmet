@@ -32,6 +32,7 @@ import { HomeDirectorComprasComponent } from './DirectorCompras/home_director_co
 import { ConsultaSIPSAComponent } from './DirectorCompras/consulta_SIPSA.component';
 import { CompararCotizacionesComponent } from './DirectorCompras/comparar_cotizaciones.component';
 import { ListaCotizacionesComponent } from './DirectorCompras/listas_cotizaciones.component';
+import { DashboardComponent } from './DirectorComercial/kpis_direc_comercial.component';
 
 //layouts
 import { AdminLayoutComponent } from './Admin/admin-layout/admin-layout.component';  // Layout para admin
@@ -117,6 +118,7 @@ export const routes: Routes = [
       { path: "home_director_comercial", component: HomeDirecComercialComponent },
       { path: "promociones", component: PromocionesComponent },
       { path: "tendencias", component: TendenciasComponent },
+      { path: "kpis", component: DashboardComponent },
       { path: '', redirectTo: 'home_director_comercial', pathMatch: 'full' }  // Redirect por defecto
     ]
   },

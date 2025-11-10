@@ -88,6 +88,6 @@ export class PromocionesComponent {
   }
 
   irATendencias() {
-    this.router.navigate(['/directorCompras/tendencias']);
+    this.router.navigate(['/directorComercial/tendencias']);
   }
 }

@@ -93,7 +93,7 @@ export class TendenciasComponent {
     });
 
     irAPromociones() {
-        this.router.navigate(['directorCompras/promociones']);
+        this.router.navigate(['directorComercial/promociones']);
     }
 
 }

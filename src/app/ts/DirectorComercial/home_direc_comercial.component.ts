@@ -57,11 +57,11 @@ export class HomeDirecComercialComponent implements OnInit {
 
     // --- Métodos adicionales (placeholders para futuro) ---
     exportarReporte(): void {
-        console.log('Exportando reporte...');
+        this.router.navigate(['directorComercial/kpis']);
     }
 
     irAPromocionesYTendencias() {
-        this.router.navigate(['directorCompras/promociones']);
+        this.router.navigate(['directorComercial/promociones']);
     }
 
     verDetalleSucursal(sucursal: string): void {
